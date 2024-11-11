@@ -12,7 +12,7 @@ namespace WpfDormitories.DataBase.Repositories
     {
         public void Create(IUserData entity)
         {
-            string query = $"INSERT INTO users (login, password) VALUES ('{entity.Login}','{entity.Password}')";
+            string query = $"INSERT INTO users (login, password) VALUES ('{entity.User.Login}','{entity.User.Password}')";
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
@@ -36,7 +36,7 @@ namespace WpfDormitories.DataBase.Repositories
 
         public void Update(IUserData entity)
         {
-            string query = $"UPDATE `dormitory`.`users` SET `login` = '{entity.Login}', `password` = '{entity.Password}' WHERE (`id` = '{entity.Id}')";
+            string query = $"UPDATE `dormitory`.`users` SET `login` = '{entity.User.Login}', `password` = '{entity.User.Password}' WHERE (`id` = '{entity.Id}')";
             DormitorySQLConnection.GetInstance().Request(query);
         }
     }

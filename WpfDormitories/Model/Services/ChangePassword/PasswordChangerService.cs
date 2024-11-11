@@ -12,9 +12,9 @@ namespace WpfDormitories.Model.Services.ChangePassword
         }
         public void Change(string oldPassword, string newPassword)
         {
-            if (_convertor.Convert(oldPassword) == DataManager.GetInstance().CurrentUser.Password)
+            if (_convertor.Convert(oldPassword) == DataManager.GetInstance().CurrentUser.User.Password)
             {
-                DataManager.GetInstance().CurrentUser.Password = _convertor.Convert(newPassword);
+                DataManager.GetInstance().CurrentUser.User.Password = _convertor.Convert(newPassword);
                 DataManager.GetInstance().UsersRepository.Update(DataManager.GetInstance().CurrentUser);
             }
             else 

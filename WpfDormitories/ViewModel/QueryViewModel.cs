@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -37,15 +38,32 @@ namespace WpfDormitories.ViewModel
             try
             {
                 string exception = string.Empty;
-                DataTable table = DormitorySQLConnection.GetInstance().GetData(
-                    Query
-                );
-                DataBaseTable = table;
+                if(IsGetQuery())
+                    DataBaseTable = DormitorySQLConnection.GetInstance().GetData(Query);
+                else
+                {
+                    DormitorySQLConnection.GetInstance().Request(Query);
+                    DataBaseTable.Clear();
+                    MessageBox.Show("Запрос выполнен");
+                }
             }
             catch (Exception ex) 
             {
                 DataBaseTable.Clear();
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private bool IsGetQuery()
+        {
+            string command = Query.Split(' ')[0].ToUpper();
+            if (command == "SELECT")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

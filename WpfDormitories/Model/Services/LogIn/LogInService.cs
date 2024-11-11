@@ -21,7 +21,7 @@ namespace WpfDormitories.Model.Services.LogIn
         {
             foreach (IUserData userData in DataManager.GetInstance().UsersRepository.Read())
             {
-                if (userData.Login == login && userData.Password == _convertor.Convert(password))
+                if (userData.User.Login == login && userData.User.Password == _convertor.Convert(password))
                 {
                     DataManager.GetInstance().CurrentUser = userData;
                     return true;

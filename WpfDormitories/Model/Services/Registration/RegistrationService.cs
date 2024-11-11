@@ -16,7 +16,7 @@ namespace WpfTest.Model.Services.Registration
         {
             foreach(IUserData userData in DataManager.GetInstance().UsersRepository.Read())
             {
-                if(userData.Login == login)
+                if(userData.User.Login == login)
                 {
                     return false;
                 }

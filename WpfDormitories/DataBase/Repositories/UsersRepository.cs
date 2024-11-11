@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Data;
-using System.IO;
 using WpfDormitories.DataBase.Entity.User;
 
 namespace WpfDormitories.DataBase.Repositories

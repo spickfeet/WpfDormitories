@@ -30,17 +30,9 @@ namespace WpfDormitories.DataBase.Repositories
             ICollection<IChildData> result = new Collection<IChildData>();
             foreach (DataRow row in dt.Rows)
             {
-
-                string[] dateString = row[2].ToString().Split("-");
-                int[] dateInt = new int[3] 
-                { 
-                    int.Parse(dateString[0]), int.Parse(dateString[1]), int.Parse(dateString[2]) 
-                };
-                DateOnly date = new(dateInt[0], dateInt[1], dateInt[2]);
-
                 result.Add(
                     new ChildData(uint.Parse(row[0].ToString()),
-                    row[1].ToString(), date, new FullName(row[2].ToString(), row[3].ToString(), row[4].ToString())
+                    row[1].ToString(), DateOnly.Parse(row[2].ToString()), new FullName(row[2].ToString(), row[3].ToString(), row[4].ToString())
                     ));
             }
             return result;

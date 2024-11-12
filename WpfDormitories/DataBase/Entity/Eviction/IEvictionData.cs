@@ -1,8 +1,8 @@
 ﻿using WpfDormitories.Model.PersonDocument;
 
-namespace WpfDormitories.DataBase.Entity.Evictions
+namespace WpfDormitories.DataBase.Entity.Eviction
 {
-    public interface IEvictionsData
+    public interface IEvictionData
     {
         uint Id { get; set; }
         IPersonDocuments PersonDocuments { get; set; }

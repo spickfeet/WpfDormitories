@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data;
 using WpfDormitories.DataBase.Entity.Child;
-using WpfDormitories.DataBase.Entity.Room;
 using WpfDormitories.Model.FullName;
 
 namespace WpfDormitories.DataBase.Repositories
@@ -42,9 +41,9 @@ namespace WpfDormitories.DataBase.Repositories
         {
             string query = $"UPDATE `dormitory`.`children` SET " +
                 $"`gender` = '{entity.Gender}', " +
-                $"`date_of_birth` = '{entity.DateOfBirth.ToString("yyyy-MM-dd")}' " +
-                $"`surname` = '{entity.FullName.Surname}' " +
-                $"`name` = '{entity.FullName.Name}' " +
+                $"`date_of_birth` = '{entity.DateOfBirth.ToString("yyyy-MM-dd")}', " +
+                $"`surname` = '{entity.FullName.Surname}', " +
+                $"`name` = '{entity.FullName.Name}', " +
                 $"`patronymic` = '{entity.FullName.Patronymic}' " +
                 $"WHERE (`id` = '{entity.Id}')";
             DormitorySQLConnection.GetInstance().Request(query);

@@ -33,7 +33,7 @@ namespace WpfDormitories.DataBase.Repositories
         public void Update(IInventoryData entity)
         {
             string query = $"UPDATE `dormitory`.`inventory` SET " +
-                $"`room_id` = '{entity.RoomId}' " +
+                $"`room_id` = '{entity.RoomId}', " +
                 $"`name_id` = '{entity.NameId}' " +
                 $"WHERE (`id` = '{entity.Id}')";
             DormitorySQLConnection.GetInstance().Request(query);

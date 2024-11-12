@@ -1,15 +1,15 @@
 ﻿using WpfDormitories.Model.PersonDocument;
 
-namespace WpfDormitories.DataBase.Entity.Evictions
+namespace WpfDormitories.DataBase.Entity.Eviction
 {
-    public class EvictionsData : IEvictionsData
+    public class EvictionData : IEvictionData
     {
         public uint Id { get; set; }
         public IPersonDocuments PersonDocuments { get; set; }
         public string Reason { get; set; }
         public DateOnly Date { get; set; }
 
-        public EvictionsData(uint id, IPersonDocuments personDocuments, string reason, DateOnly date)
+        public EvictionData(uint id, IPersonDocuments personDocuments, string reason, DateOnly date)
         {
             Id = id;
             PersonDocuments = personDocuments;

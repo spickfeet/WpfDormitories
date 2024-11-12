@@ -40,10 +40,10 @@ namespace WpfDormitories.DataBase.Repositories
         {
             string query = $"UPDATE `dormitory`.`rooms` SET " +
                 $"`dorm_id` = '{entity.DormId}', " +
-                $"`number_room` = '{entity.NumberRoom}' " +
-                $"`room_area` = '{entity.RoomArea}' " +
-                $"`total_number_places` = '{entity.TotalNumberPlaces}' " +
-                $"`floor` = '{entity.Floor}' " +
+                $"`number_room` = '{entity.NumberRoom}', " +
+                $"`room_area` = '{entity.RoomArea}', " +
+                $"`total_number_places` = '{entity.TotalNumberPlaces}', " +
+                $"`floor` = '{entity.Floor}', " +
                 $"`number_free_places` = '{entity.NumberFreePlaces}' " +
                 $"WHERE (`id` = '{entity.Id}')";
             DormitorySQLConnection.GetInstance().Request(query);

@@ -21,7 +21,7 @@ namespace WpfDormitories.DataBase.Repositories
                 $"'{entity.PersonDocuments.RegistrationNumber}'," +
                 $"'{entity.PersonDocuments.Passport.FullName.Surname}'," +
                 $"'{entity.PersonDocuments.Passport.FullName.Name}'," +
-                $"'{entity.PersonDocuments.Passport.FullName.Patronymic}'," +
+                $"'{(entity.PersonDocuments.Passport.FullName.Patronymic == null ? "" : entity.PersonDocuments.Passport.FullName.Patronymic)}'," +
                 $"'{entity.PersonDocuments.Passport.Gender}'," +
                 $"'{entity.PersonDocuments.Passport.DateOfBirth.ToString("yyyy-MM-dd")}'," +
                 $"'{entity.PersonDocuments.Passport.Series}'," +
@@ -59,14 +59,14 @@ namespace WpfDormitories.DataBase.Repositories
                         new PersonDocuments(
                             row[3].ToString(),
                             new Passport(
-                                new FullName(row[4].ToString(), row[5].ToString(), row[6].ToString()),
+                                new FullName(row[4].ToString(), row[5].ToString(), row[6]?.ToString()),
                                 row[7].ToString(), DateOnly.Parse(row[8].ToString()), uint.Parse(row[9].ToString()),
                                 uint.Parse(row[10].ToString()), DateOnly.Parse(row[11].ToString()), row[12].ToString())),
                         int.Parse(row[15].ToString()) == 1 ? true : false,
                         DateOnly.Parse(row[16].ToString()),
                         (float)row[17],
-                        row[18].ToString(),
-                        row[19].ToString())
+                        row[18]?.ToString(),
+                        row[19]?.ToString())
                     );
             }
             return result;
@@ -80,7 +80,7 @@ namespace WpfDormitories.DataBase.Repositories
                 $"`registration_number` = '{entity.PersonDocuments.RegistrationNumber}', " +
                 $"`surname` = '{entity.PersonDocuments.Passport.FullName.Surname}', " +
                 $"`name` = '{entity.PersonDocuments.Passport.FullName.Name}', " +
-                $"`patronymic` = '{entity.PersonDocuments.Passport.FullName.Patronymic}', " +
+                $"`patronymic` = '{(entity.PersonDocuments.Passport.FullName.Patronymic == null ? "" : entity.PersonDocuments.Passport.FullName.Patronymic)}', " +
                 $"`gender` = '{entity.PersonDocuments.Passport.Gender}', " +
                 $"`date_of_birth` = '{entity.PersonDocuments.Passport.DateOfBirth.ToString("yyyy-MM-dd")}', " +
                 $"`series_passport` = '{entity.PersonDocuments.Passport.Series}', " +

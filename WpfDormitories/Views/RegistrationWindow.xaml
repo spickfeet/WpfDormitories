@@ -3,14 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfDormitories" xmlns:viewmodel="clr-namespace:WpfTest.ViewModel"
+        xmlns:local="clr-namespace:WpfDormitories"
         mc:Ignorable="d"
         Title="RegistrationWindow" Height="400" Width="300">
-
-    <Window.DataContext>
-        <viewmodel:RegistrationViewModel/>
-    </Window.DataContext>
-    
     <Grid Background="#C0C0C0">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.7*"/>

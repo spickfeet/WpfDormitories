@@ -4,7 +4,7 @@ using WpfDormitories.DataBase.Entity.Dorm;
 
 namespace WpfDormitories.DataBase.Repositories
 {
-    public class DormRepository : IRepository<IDormData>
+    public class DormsRepository : IRepository<IDormData>
     {
         public void Create(IDormData entity)
         {

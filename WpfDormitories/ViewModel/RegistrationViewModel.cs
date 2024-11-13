@@ -2,10 +2,10 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using WpfDormitories.Model.Convertors;
-using WpfDormitories.ViewModel;
 using WpfTest.Model.Services.Registration;
+using WpfTest.ViewModel;
 
-namespace WpfTest.ViewModel
+namespace WpfDormitories.ViewModel
 {
     public class RegistrationViewModel : BasicVM
     {
@@ -18,30 +18,30 @@ namespace WpfTest.ViewModel
         public string Login
         {
             get { return _login; }
-            set 
+            set
             {
                 _login = value;
-                Set<string>(ref _login, value);
+                Set(ref _login, value);
             }
         }
 
         public string Password
         {
             get { return _password; }
-            set 
-            { 
+            set
+            {
                 _password = value;
-                Set<string>(ref _password, value);
+                Set(ref _password, value);
             }
         }
 
         public string RepeatPassword
         {
             get { return _repeatPassword; }
-            set 
-            { 
+            set
+            {
                 _repeatPassword = value;
-                Set<string>(ref _repeatPassword, value);
+                Set(ref _repeatPassword, value);
             }
         }
 
@@ -54,8 +54,8 @@ namespace WpfTest.ViewModel
 
         public ICommand RegisterCommand
         {
-            get 
-            { 
+            get
+            {
                 return new DelegateCommand(() => Register());
             }
         }

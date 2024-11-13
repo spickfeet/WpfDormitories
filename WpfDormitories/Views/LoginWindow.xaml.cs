@@ -20,7 +20,7 @@ namespace WpfDormitories.Views
 
         public void LogInSuccess()
         {
-            ChangePasswordWindow window = new();
+            MainWindow window = new();
             window.Show();
             Close();
         }

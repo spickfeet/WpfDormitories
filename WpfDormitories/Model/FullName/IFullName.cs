@@ -10,6 +10,6 @@ namespace WpfDormitories.Model.FullName
     {
         string Surname { get; set; }
         string Name { get; set; }
-        string Patronymic { get; set; }
+        string? Patronymic { get; set; }
     }
 }

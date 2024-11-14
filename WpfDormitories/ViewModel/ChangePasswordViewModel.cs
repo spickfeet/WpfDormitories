@@ -17,6 +17,9 @@ namespace WpfDormitories.ViewModel
         private string _newPassword;
         private string _repeatNewPassword;
         private IPasswordChangerService _passwordChanger = new PasswordChangerService(new HashCodeConvertor());
+
+        public Action OnCancel;
+
         public string OldPassword 
         {  
             get { return _oldPassword; } 
@@ -49,6 +52,10 @@ namespace WpfDormitories.ViewModel
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(OldPassword) || string.IsNullOrWhiteSpace(NewPassword) || string.IsNullOrWhiteSpace(RepeatNewPassword)) 
+                {
+                    throw new ArgumentException("Одно или несколько полей не заполнены");
+                }
                 if (RepeatNewPassword == NewPassword)
                 {
                     _passwordChanger.Change(OldPassword, NewPassword);
@@ -65,6 +72,14 @@ namespace WpfDormitories.ViewModel
             get
             {
                 return new DelegateCommand(() => ChangePassword());
+            }
+        }
+
+        public ICommand CancelCommand
+        {
+            get
+            {
+                return new DelegateCommand(() => { OnCancel?.Invoke(); });
             }
         }
     }

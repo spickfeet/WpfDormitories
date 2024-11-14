@@ -4,5 +4,6 @@
     {
         Street,
         Districts,
+        InventoryDirectories
     }
 }

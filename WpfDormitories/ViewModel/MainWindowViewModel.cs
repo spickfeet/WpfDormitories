@@ -26,6 +26,11 @@ namespace WpfDormitories.ViewModel
 
         private UserAbilitiesService _abilitiesService;
 
+        public Action OnMenuContents;
+        public Action OnAboutProgram;
+        public Action OnSettings;
+        public Action OnChangePassword;
+
         private ITableService _currentTable;
         private IDictionary<Tables,ITableService> _tableServices;
 
@@ -34,6 +39,9 @@ namespace WpfDormitories.ViewModel
 
         public Action<DataRow> OnEditDistrict;
         public Action OnAddDistrict;
+
+        public Action<DataRow> OnEditInventoryDirectory;
+        public Action OnAddInventoryDirectory;
 
         public DataTable Table
         {
@@ -98,17 +106,69 @@ namespace WpfDormitories.ViewModel
 
             _tableServices.Add(Tables.Street, new StreetsTableService());
             _tableServices.Add(Tables.Districts, new DistrictsTableService());
+            _tableServices.Add(Tables.InventoryDirectories, new InventoryDirectoryTableService());
+            
 
             _tableServices[Tables.Street].OnEdit += (dataRow) => { OnEditStreet?.Invoke(dataRow); };
             _tableServices[Tables.Street].OnAdd += () => { OnAddStreet?.Invoke(); };
 
             _tableServices[Tables.Districts].OnEdit += (dataRow) => { OnEditDistrict?.Invoke(dataRow); };
             _tableServices[Tables.Districts].OnAdd += () => { OnAddDistrict?.Invoke(); };
+
+            _tableServices[Tables.InventoryDirectories].OnEdit += (dataRow) => { OnEditInventoryDirectory?.Invoke(dataRow); };
+            _tableServices[Tables.InventoryDirectories].OnAdd += () => { OnAddInventoryDirectory?.Invoke(); };
         }
 
         public void UpdateTable()
         {
             Table = _currentTable.Read();
+        }
+
+        public ICommand AboutProgram
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                   OnAboutProgram?.Invoke();
+                });
+
+            }
+        }
+        public ICommand MenuContents
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnMenuContents?.Invoke();
+                });
+
+            }
+        }
+
+        public ICommand Settings
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnSettings?.Invoke();
+                });
+
+            }
+        }
+
+        public ICommand ChangePassword
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnChangePassword?.Invoke();
+                });
+
+            }
         }
 
         public ICommand Streets
@@ -123,6 +183,24 @@ namespace WpfDormitories.ViewModel
                     D = abilities.D;
                     SelectedIndex = -1;
                     _currentTable = _tableServices[Tables.Street];
+                    Table = _currentTable.Read();
+                });
+
+            }
+        }
+
+        public ICommand InventoryDirectory
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    IUserAbilitiesData abilities = _abilitiesService.GetUserAbilitiesByFuncName("InventoryDirectory");
+                    W = abilities.W;
+                    E = abilities.E;
+                    D = abilities.D;
+                    SelectedIndex = -1;
+                    _currentTable = _tableServices[Tables.InventoryDirectories];
                     Table = _currentTable.Read();
                 });
 

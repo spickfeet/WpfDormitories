@@ -11,22 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfDormitories.ViewModel;
 
 namespace WpfDormitories.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ChangePasswordWindow.xaml
+    /// Логика взаимодействия для MenuContentsWindow.xaml
     /// </summary>
-    public partial class ChangePasswordWindow : Window
+    public partial class MenuContentsWindow : Window
     {
-        public ChangePasswordWindow()
+        public MenuContentsWindow()
         {
             InitializeComponent();
-            if(DataContext is ChangePasswordViewModel changePasswordVM)
-            {
-                changePasswordVM.OnCancel += () => { Close(); };
-            }
         }
     }
 }

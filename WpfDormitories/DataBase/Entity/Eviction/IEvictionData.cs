@@ -1,4 +1,5 @@
-﻿using WpfDormitories.Model.PersonDocument;
+﻿using System.ComponentModel;
+using WpfDormitories.Model.PersonDocument;
 
 namespace WpfDormitories.DataBase.Entity.Eviction
 {
@@ -6,7 +7,9 @@ namespace WpfDormitories.DataBase.Entity.Eviction
     {
         uint Id { get; set; }
         IPersonDocuments PersonDocuments { get; set; }
+        [DisplayName("Причина выселения")]
         string Reason {  get; set; }
+        [DisplayName("Дата выселения")]
         DateOnly Date { get; set; }
     }
 }

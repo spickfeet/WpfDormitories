@@ -11,16 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfDormitories.ViewModel;
 
 namespace WpfDormitories.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ChangePasswordWindow.xaml
+    /// Логика взаимодействия для UserAbilitiesWindow.xaml
     /// </summary>
-    public partial class ChangePasswordWindow : Window
+    public partial class UserAbilitiesWindow : Window
     {
-        public ChangePasswordWindow()
+        public UserAbilitiesWindow()
         {
             InitializeComponent();
         }

@@ -18,14 +18,11 @@ namespace WpfDormitories.ViewModel
         private string _repeatNewPassword;
         private IPasswordChangerService _passwordChanger = new PasswordChangerService(new HashCodeConvertor());
 
-        public Action OnCancel;
-
         public string OldPassword 
         {  
             get { return _oldPassword; } 
             set 
             { 
-                _oldPassword = value;
                 Set<string>(ref _oldPassword, value);
             } 
         }
@@ -34,7 +31,6 @@ namespace WpfDormitories.ViewModel
             get { return _newPassword; }
             set 
             { 
-                _newPassword = value;
                 Set<string>(ref _newPassword, value);
             }
         }
@@ -43,7 +39,6 @@ namespace WpfDormitories.ViewModel
             get { return _repeatNewPassword; }
             set 
             { 
-                _repeatNewPassword = value;
                 Set<string>(ref _repeatNewPassword, value);
             }
         }
@@ -79,7 +74,12 @@ namespace WpfDormitories.ViewModel
         {
             get
             {
-                return new DelegateCommand(() => { OnCancel?.Invoke(); });
+                return new DelegateCommand(() => 
+                { 
+                    OldPassword = "";
+                    NewPassword = "";
+                    RepeatNewPassword = "";
+                });
             }
         }
     }

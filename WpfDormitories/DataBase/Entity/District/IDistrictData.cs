@@ -11,7 +11,7 @@ namespace WpfDormitories.DataBase.Entity.District
     {
         uint Id { get; set; }
 
-        [DisplayName("Районы")]
+        [DisplayName("Район")]
         string Name { get; set; }
     }
 }

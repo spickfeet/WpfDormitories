@@ -10,7 +10,7 @@ namespace WpfDormitories.DataBase.Entity.Street
     public interface IStreetData
     {
         uint Id { get; set; }
-        [DisplayName("Улицы")]
+        [DisplayName("Улица")]
         string Name { get; set; }
     }
 }

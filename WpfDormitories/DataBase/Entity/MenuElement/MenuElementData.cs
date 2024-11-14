@@ -18,5 +18,14 @@
             FuncName = funcName;
             Order = order;
         }
+
+        public MenuElementData(uint parentId, string name, string dllName, string funcName, uint order)
+        {
+            ParentId = parentId;
+            Name = name;
+            DllName = dllName;
+            FuncName = funcName;
+            Order = order;
+        }
     }
 }

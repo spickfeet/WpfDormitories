@@ -41,5 +41,11 @@ namespace WpfDormitories.DataBase.Entity.Child
             DateOfBirth = dateOfBirth;
             FullName = fullName;
         }
+        public ChildData(string gender, DateOnly dateOfBirth, IFullName fullName)
+        {
+            Gender = gender;
+            DateOfBirth = dateOfBirth;
+            FullName = fullName;
+        }
     }
 }

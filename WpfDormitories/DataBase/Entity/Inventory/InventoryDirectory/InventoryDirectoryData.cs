@@ -10,5 +10,10 @@
             Id = id;
             Name = name;
         }
+
+        public InventoryDirectoryData(string name)
+        {
+            Name = name;
+        }
     }
 }

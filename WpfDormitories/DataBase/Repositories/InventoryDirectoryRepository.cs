@@ -18,11 +18,11 @@ namespace WpfDormitories.DataBase.Repositories
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
-        public ICollection<IInventoryDirectoryData> Read()
+        public IList<IInventoryDirectoryData> Read()
         {
             string query = "SELECT * FROM inventory_directory";
             DataTable dt = DormitorySQLConnection.GetInstance().GetData(query);
-            ICollection<IInventoryDirectoryData> result = new Collection<IInventoryDirectoryData>();
+            IList<IInventoryDirectoryData> result = new List<IInventoryDirectoryData>();
             foreach (DataRow row in dt.Rows)
             {
                 result.Add(new InventoryDirectoryData(uint.Parse(row[0].ToString()), row[1].ToString()));

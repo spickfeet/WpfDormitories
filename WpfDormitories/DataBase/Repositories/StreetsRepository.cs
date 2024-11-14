@@ -18,11 +18,11 @@ namespace WpfDormitories.DataBase.Repositories
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
-        public ICollection<IStreetData> Read()
+        public IList<IStreetData> Read()
         {
             string query = "SELECT * FROM streets";
             DataTable dt = DormitorySQLConnection.GetInstance().GetData(query);
-            ICollection<IStreetData> result = new Collection<IStreetData>();
+            IList<IStreetData> result = new List<IStreetData>();
             foreach (DataRow row in dt.Rows)
             {
                 result.Add(new StreetData(uint.Parse(row[0].ToString()), row[1].ToString()));

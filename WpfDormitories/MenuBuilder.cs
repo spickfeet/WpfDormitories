@@ -8,30 +8,26 @@ using WpfDormitories.DataBase;
 using WpfDormitories.DataBase.Entity.UserAbilities;
 using System.Windows.Data;
 using System.Diagnostics;
+using System.Linq;
 
 namespace WpfDormitories
 {
     public class MenuBuilder
     {
-        public Menu menu;
-        string bdName;
-        int userId;
-
-        MainWindow MainWindow { get; set; }
-        List<IMenuElementData> Items;
-        private ICollection<IUserAbilitiesData> _userAbilities;
-        private string connectionString;
+        private MainWindow _mainWindow;
+        private List<IMenuElementData> _elements;
+        private IList<IUserAbilitiesData> _userAbilities;
         public MenuBuilder(MainWindow main)
         {
-            MainWindow = main;
-            Items = new List<IMenuElementData>();
+            _mainWindow = main;
+            _elements = new List<IMenuElementData>();
             _userAbilities = new List<IUserAbilitiesData>();
             GetUserAbilities();
         }
 
         private void GetUserAbilities()
         {
-            ICollection<IUserAbilitiesData> allUsersAbilities = DataManager.GetInstance().UsersAbilitiesRepository.Read();
+            IList<IUserAbilitiesData> allUsersAbilities = DataManager.GetInstance().UsersAbilitiesRepository.Read();
             foreach (var userAbilities in allUsersAbilities)
             {
                 if(userAbilities.UserId == DataManager.GetInstance().CurrentUser.Id)
@@ -41,30 +37,15 @@ namespace WpfDormitories
             }
         }
 
-        private void ReadBd()
-        {
-
-            string query = "SELECT * FROM menu_elements";
-
-            DataTable dt = DormitorySQLConnection.GetInstance().GetData(query);
-
-            foreach (DataRow row in dt.Rows)
-            {
-                IMenuElementData menuItem = new MenuElementData(uint.Parse(row[0].ToString()), uint.Parse(row[1].ToString()), row[2].ToString(),
-                    row[3]?.ToString(), row[4]?.ToString(), uint.Parse(row[5].ToString()));
-                Items.Add(menuItem);
-
-            } 
-        }
         public Menu BuildMenu()
         {
-            ReadBd();
+            _elements = DataManager.GetInstance().MenuElementsRepository.Read().ToList<IMenuElementData>();
 
 
             Menu mainMenu = new Menu();
 
 
-            var topLevelItems = Items.FindAll(item => item.ParentId == 0);
+            var topLevelItems = _elements.FindAll(item => item.ParentId == 0);
             topLevelItems.Sort((b1, b2) => b1.Order.CompareTo(b2.Order));
             foreach (var topLevelItem in topLevelItems)
             {
@@ -78,7 +59,7 @@ namespace WpfDormitories
         private void AddSubMenuItems(MenuItem parentMenuItem, uint parentId)
         {
 
-            var subMenuItems = Items.FindAll(item => item.ParentId == parentId);
+            var subMenuItems = _elements.FindAll(item => item.ParentId == parentId);
             subMenuItems.Sort((b1, b2) => b1.Order.CompareTo(b2.Order));
             foreach (var subMenuItem in subMenuItems)
             {

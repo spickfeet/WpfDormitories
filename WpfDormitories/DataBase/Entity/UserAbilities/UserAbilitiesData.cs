@@ -26,5 +26,15 @@ namespace WpfDormitories.DataBase.Entity.UserAbilities
             E = e;
             D = d;
         }
+
+        public UserAbilitiesData(uint userId, uint menuElementId, bool r, bool w, bool e, bool d)
+        {
+            UserId = userId;
+            MenuElementId = menuElementId;
+            R = r;
+            W = w;
+            E = e;
+            D = d;
+        }
     }
 }

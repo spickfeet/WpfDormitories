@@ -11,6 +11,7 @@ using WpfDormitories.DataBase.Entity.Dorm;
 using WpfDormitories.DataBase.Entity.Eviction;
 using WpfDormitories.DataBase.Entity.Inventory;
 using WpfDormitories.DataBase.Entity.Inventory.InventoryDirectory;
+using WpfDormitories.DataBase.Entity.MenuElement;
 using WpfDormitories.DataBase.Entity.Resident;
 using WpfDormitories.DataBase.Entity.Room;
 using WpfDormitories.DataBase.Entity.Street;
@@ -38,6 +39,7 @@ namespace WpfDormitories.DataBase
         public IRepository<IRoomData> RoomsRepository { get; set; }
         public IRepository<IStreetData> StreetsRepository { get; set; }
         public IRepository<IUserAbilitiesData> UsersAbilitiesRepository { get; set; }
+        public IRepository<IMenuElementData> MenuElementsRepository { get; set; }
 
 
         public void Inject
@@ -45,7 +47,8 @@ namespace WpfDormitories.DataBase
             IRepository<IDistrictData> districtsRepository, IRepository<IDormData> dormsRepository, IRepository<IEvictionData> evictionsRepository,
             IRepository<IInventoryDirectoryData> inventoryDirectoryRepository, IRepository<IInventoryData> inventoryRepository, 
             IRepository<IParentsAndChildrenData> parentsAndChildrenRepository, IRepository<IResidentData> residentsRepository,
-            IRepository<IRoomData> roomsRepository, IRepository<IStreetData> streetsRepository, IRepository<IUserAbilitiesData> usersAbilitiesRepository) 
+            IRepository<IRoomData> roomsRepository, IRepository<IStreetData> streetsRepository, IRepository<IUserAbilitiesData> usersAbilitiesRepository,
+            IRepository<IMenuElementData> menuElementsRepository) 
         {  
             UsersRepository = usersRepository;
             ChildrenRepository = childrenRepository;
@@ -59,6 +62,7 @@ namespace WpfDormitories.DataBase
             RoomsRepository = roomsRepository;
             StreetsRepository = streetsRepository;
             UsersAbilitiesRepository = usersAbilitiesRepository;
+            MenuElementsRepository = menuElementsRepository;
         }
 
         private static DataManager _instance;

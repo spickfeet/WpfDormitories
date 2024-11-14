@@ -32,5 +32,18 @@ namespace WpfDormitories.DataBase.Entity.Resident
             PlaceOfWork = placeOfWork;
             PlaceOfStudy = placeOfStudy;
         }
+
+        public ResidentData(uint contractId, uint roomId, IPersonDocuments personDocuments,
+    bool haveChildren, DateOnly arrivalDate, float payment, string placeOfWork, string placeOfStudy)
+        {
+            ContractId = contractId;
+            RoomId = roomId;
+            PersonDocuments = personDocuments;
+            HaveChildren = haveChildren;
+            ArrivalDate = arrivalDate;
+            Payment = payment;
+            PlaceOfWork = placeOfWork;
+            PlaceOfStudy = placeOfStudy;
+        }
     }
 }

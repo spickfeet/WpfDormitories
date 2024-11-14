@@ -17,7 +17,7 @@ namespace WpfDormitories
             DataManager.GetInstance().Inject(new UsersRepository(), new ChildrenRepository(), new ContractsRepository(),
                 new DistrictsRepository(), new DormsRepository(), new EvictionsRepository(), new InventoryDirectoryRepository(),
                 new InventoryRepository(), new ParentsAndChildrenRepository(), new ResidentsRepository(), new RoomsRepository(),
-                new StreetsRepository(), new UserAbilitiesRepository());
+                new StreetsRepository(), new UserAbilitiesRepository(), new MenuElementsRepository());
             LoginWindow window = new LoginWindow();
             app.Run(window);
         }

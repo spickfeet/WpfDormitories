@@ -17,5 +17,10 @@ namespace WpfDormitories.DataBase.Entity.Child.ParentsAndChildren
             ParentId = parentId;
             ChildId = childId;
         }
+        public ParentsAndChildrenData(uint parentId, uint childId)
+        {
+            ParentId = parentId;
+            ChildId = childId;
+        }
     }
 }

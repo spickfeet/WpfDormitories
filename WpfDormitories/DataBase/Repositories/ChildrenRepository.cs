@@ -22,11 +22,11 @@ namespace WpfDormitories.DataBase.Repositories
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
-        public ICollection<IChildData> Read()
+        public IList<IChildData> Read()
         {
             string query = "SELECT * FROM children";
             DataTable dt = DormitorySQLConnection.GetInstance().GetData(query);
-            ICollection<IChildData> result = new Collection<IChildData>();
+            IList<IChildData> result = new List<IChildData>();
             foreach (DataRow row in dt.Rows)
             {
                 result.Add(

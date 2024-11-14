@@ -21,11 +21,11 @@ namespace WpfDormitories.DataBase.Repositories
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
-        public ICollection<IDormData> Read()
+        public IList<IDormData> Read()
         {
             string query = "SELECT * FROM dorms";
             DataTable dt = DormitorySQLConnection.GetInstance().GetData(query);
-            ICollection<IDormData> result = new Collection<IDormData>();
+            IList<IDormData> result = new List<IDormData>();
             foreach (DataRow row in dt.Rows)
             {
                 result.Add(

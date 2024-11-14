@@ -26,5 +26,15 @@ namespace WpfDormitories.DataBase.Entity.Dorm
             NumberPlace = numberPlace;
             DormNumber = dormNumber;
         }
+
+        public DormData(uint streetId, uint districtId, string dormNumber, string houseNumber, uint numberRooms, uint numberPlace)
+        {
+            StreetId = streetId;
+            DistrictId = districtId;
+            HouseNumber = houseNumber;
+            NumberRooms = numberRooms;
+            NumberPlace = numberPlace;
+            DormNumber = dormNumber;
+        }
     }
 }

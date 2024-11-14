@@ -13,10 +13,10 @@ namespace WpfDormitories.DataBase.Entity.User
             Id = id;
             User = new Model.Users.User(login, password);
         }
-        public UserData(uint id, IUser user)
+
+        public UserData(string login, string password)
         {
-            Id = id;
-            User = new Model.Users.User(user.Login, user.Password);
+            User = new Model.Users.User(login, password);
         }
     }
 }

@@ -44,11 +44,11 @@ namespace WpfDormitories.DataBase.Repositories
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
-        public ICollection<IResidentData> Read()
+        public IList<IResidentData> Read()
         {
             string query = "SELECT * FROM evictions";
             DataTable dt = DormitorySQLConnection.GetInstance().GetData(query);
-            ICollection<IResidentData> result = new Collection<IResidentData>();
+            IList<IResidentData> result = new List<IResidentData>();
             foreach (DataRow row in dt.Rows)
             {
                 result.Add(

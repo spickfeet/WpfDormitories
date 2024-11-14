@@ -17,5 +17,9 @@ namespace WpfDormitories.DataBase.Entity.Street
             Id = id;
             Name = name;
         }
+        public StreetData(string name)
+        {
+            Name = name;
+        }
     }
 }

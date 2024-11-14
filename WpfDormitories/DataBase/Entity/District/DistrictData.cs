@@ -16,5 +16,10 @@ namespace WpfDormitories.DataBase.Entity.District
             Id = id;
             Name = name;
         }
+
+        public DistrictData(string name)
+        {
+            Name = name;
+        }
     }
 }

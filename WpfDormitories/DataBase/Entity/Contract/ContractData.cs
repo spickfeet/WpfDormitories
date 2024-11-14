@@ -24,5 +24,13 @@ namespace WpfDormitories.DataBase.Entity.Contract
             StartAction = startAction;
             Comment = comment;
         }
+        public ContractData(uint documentNumber, string name, string whoGave, DateOnly startAction, string comment)
+        {
+            DocumentNumber = documentNumber;
+            Name = name;
+            WhoGave = whoGave;
+            StartAction = startAction;
+            Comment = comment;
+        }
     }
 }

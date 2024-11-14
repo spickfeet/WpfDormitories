@@ -32,11 +32,13 @@ namespace WpfDormitories.DataBase
             {
                 command.ExecuteNonQuery();
             }
-
             catch (Exception ex)
             {
-                _connection.Close();
                 throw ex;
+            }
+            finally
+            {
+                _connection.Close();
             }
         }
 

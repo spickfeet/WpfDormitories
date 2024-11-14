@@ -12,5 +12,10 @@
             RoomId = roomId;
             NameId = nameId;
         }
+        public InventoryData(uint roomId, uint nameId)
+        {
+            RoomId = roomId;
+            NameId = nameId;
+        }
     }
 }

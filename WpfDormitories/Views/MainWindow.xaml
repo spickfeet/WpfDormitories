@@ -15,7 +15,7 @@
         <Grid Name="Menu" Grid.Row="0">
         </Grid>
 
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Table}" CanUserAddRows="False" CanUserDeleteRows="False">
+        <DataGrid Grid.Row="1" SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding Table}" CanUserAddRows="False" CanUserDeleteRows="False">
         </DataGrid>
 
         <Grid Grid.Row="2">
@@ -27,11 +27,11 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Width="200" Height="30" Margin="10"/>
-            <Button Grid.Column="1" Content="Поиск" Margin="20" Width="70"/>
-            <Button Grid.Column="2" x:Name="AddButton" Content="Добавить" Margin="20" Width="70"/>
-            <Button Grid.Column="3" x:Name="EditButton" Content="Редактировать" Margin="20" Width="90"/>
-            <Button Grid.Column="4" x:Name="DeleteButton" Content="Удалить" Margin="20" Width="70"/>
+            <TextBox Grid.Column="0" Text="{Binding FindName}" Width="200" Height="30" Margin="10"/>
+            <Button Grid.Column="1" Command="{Binding FindAll}" Content="Поиск" Margin="20" Width="70"/>
+            <Button Grid.Column="2" IsEnabled="{Binding W}" Command="{Binding Add}" Content="Добавить" Margin="20" Width="70"/>
+            <Button Grid.Column="3" IsEnabled="{Binding E}" Command="{Binding Edit}" Content="Редактировать" Margin="20" Width="90"/>
+            <Button Grid.Column="4" IsEnabled="{Binding D}" Command="{Binding Delete}" Content="Удалить" Margin="20" Width="70"/>
         </Grid>
     </Grid>
 </Window>

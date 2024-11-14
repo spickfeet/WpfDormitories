@@ -26,5 +26,15 @@ namespace WpfDormitories.DataBase.Entity.Room
             Floor = floor;
             NumberFreePlaces = numberFreePlaces;
         }
+
+        public RoomData(uint dormId, string numberRoom, uint roomArea, uint totalNumberPlaces, uint floor, uint numberFreePlaces)
+        {
+            DormId = dormId;
+            NumberRoom = numberRoom;
+            RoomArea = roomArea;
+            TotalNumberPlaces = totalNumberPlaces;
+            Floor = floor;
+            NumberFreePlaces = numberFreePlaces;
+        }
     }
 }

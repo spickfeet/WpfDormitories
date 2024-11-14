@@ -10,7 +10,7 @@ namespace WpfDormitories.TemporarySolutions
 {
     public static class DataTableParser
     {
-        public static DataTable ToDataTable<T>(ICollection<T> list)
+        public static DataTable ToDataTable<T>(IList<T> list)
         {
             var props = TypeDescriptor.GetProperties(typeof(T));
             var table = new DataTable();

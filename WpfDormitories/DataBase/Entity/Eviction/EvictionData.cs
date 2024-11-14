@@ -16,5 +16,12 @@ namespace WpfDormitories.DataBase.Entity.Eviction
             Reason = reason;
             Date = date;
         }
+
+        public EvictionData(IPersonDocuments personDocuments, string reason, DateOnly date)
+        {
+            PersonDocuments = personDocuments;
+            Reason = reason;
+            Date = date;
+        }
     }
 }

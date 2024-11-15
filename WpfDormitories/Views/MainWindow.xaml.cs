@@ -3,6 +3,7 @@ using WpfDormitories.ViewModel;
 using WpfDormitories.ViewModel.DirectoriesVM.DistrictsVM;
 using WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM;
 using WpfDormitories.ViewModel.DirectoriesVM.StreetVM;
+using WpfDormitories.ViewModel.UserAbilitiesVM;
 
 namespace WpfDormitories.Views
 {
@@ -29,11 +30,6 @@ namespace WpfDormitories.Views
                 {
                     MenuContentsWindow window = new();
                     window.ShowDialog();
-                };
-
-                mainWindowViewModel.OnSettings += () =>
-                {
-                    MessageBox.Show("В процессе");
                 };
 
                 mainWindowViewModel.OnChangePassword += () =>
@@ -81,6 +77,23 @@ namespace WpfDormitories.Views
                 {
                     AddOrEditDirectoriesWindow window = new();
                     window.UpdateDataContext(new EditInventoryViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString()));
+                    window.Show();
+                    window.Closing += UpdateTable;
+                };
+
+                mainWindowViewModel.OnAddUserAbilities += () =>
+                {
+                    AddOrEditUserAbilitiesWindow window = new();
+                    window.UpdateDataContext(new AddUserAbilitiesViewModel());
+                    window.Show();
+                    window.Closing += UpdateTable;
+                };
+                mainWindowViewModel.OnEditUserAbilities += (dataRow) =>
+                {
+                    AddOrEditUserAbilitiesWindow window = new();
+                    window.UpdateDataContext(new EditUserAbilitiesViewModel(uint.Parse(dataRow[0].ToString()), 
+                        uint.Parse(dataRow[1].ToString()), uint.Parse(dataRow[2].ToString()),
+                        (bool)dataRow[3], (bool)dataRow[4], (bool)dataRow[5], (bool)dataRow[6]));
                     window.Show();
                     window.Closing += UpdateTable;
                 };

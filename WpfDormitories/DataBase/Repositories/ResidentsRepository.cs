@@ -87,9 +87,9 @@ namespace WpfDormitories.DataBase.Repositories
                 $"`number_passport` = '{entity.PersonDocuments.Passport.Number}', " +
                 $"`date_of_issue` = '{entity.PersonDocuments.Passport.DateOfIssue.ToString("yyyy-MM-dd")}', " +
                 $"`who_gave` = '{entity.PersonDocuments.Passport.WhoGave}', " +
-                $"`working` = '{!string.IsNullOrEmpty(entity.PlaceOfWork)}', " +
-                $"`studying` = '{!string.IsNullOrEmpty(entity.PlaceOfStudy)}', " +
-                $"`have_children` = '{entity.HaveChildren}'," +
+                $"`working` = {!string.IsNullOrEmpty(entity.PlaceOfWork)}, " +
+                $"`studying` = {!string.IsNullOrEmpty(entity.PlaceOfStudy)}, " +
+                $"`have_children` = {entity.HaveChildren}," +
                 $"`arrival_date` = '{entity.ArrivalDate.ToString("yyyy-MM-dd")}', " +
                 $"`payment` = '{entity.Payment}', " +
                 $"`place_of_work` = '{entity.PlaceOfWork}', " +

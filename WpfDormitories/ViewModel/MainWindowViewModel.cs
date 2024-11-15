@@ -28,7 +28,6 @@ namespace WpfDormitories.ViewModel
 
         public Action OnMenuContents;
         public Action OnAboutProgram;
-        public Action OnSettings;
         public Action OnChangePassword;
 
         private ITableService _currentTable;
@@ -42,6 +41,9 @@ namespace WpfDormitories.ViewModel
 
         public Action<DataRow> OnEditInventoryDirectory;
         public Action OnAddInventoryDirectory;
+
+        public Action<DataRow> OnEditUserAbilities;
+        public Action OnAddUserAbilities;
 
         public DataTable Table
         {
@@ -107,7 +109,8 @@ namespace WpfDormitories.ViewModel
             _tableServices.Add(Tables.Street, new StreetsTableService());
             _tableServices.Add(Tables.Districts, new DistrictsTableService());
             _tableServices.Add(Tables.InventoryDirectories, new InventoryDirectoryTableService());
-            
+            _tableServices.Add(Tables.UsersAbilities, new UsersAbilitiesTableService());
+
 
             _tableServices[Tables.Street].OnEdit += (dataRow) => { OnEditStreet?.Invoke(dataRow); };
             _tableServices[Tables.Street].OnAdd += () => { OnAddStreet?.Invoke(); };
@@ -117,6 +120,9 @@ namespace WpfDormitories.ViewModel
 
             _tableServices[Tables.InventoryDirectories].OnEdit += (dataRow) => { OnEditInventoryDirectory?.Invoke(dataRow); };
             _tableServices[Tables.InventoryDirectories].OnAdd += () => { OnAddInventoryDirectory?.Invoke(); };
+
+            _tableServices[Tables.UsersAbilities].OnEdit += (dataRow) => { OnEditUserAbilities?.Invoke(dataRow); };
+            _tableServices[Tables.UsersAbilities].OnAdd += () => { OnAddUserAbilities?.Invoke(); };
         }
 
         public void UpdateTable()
@@ -147,13 +153,19 @@ namespace WpfDormitories.ViewModel
             }
         }
 
-        public ICommand Settings
+        public ICommand UsersAbilities
         {
             get
             {
                 return new DelegateCommand(() =>
                 {
-                    OnSettings?.Invoke();
+                    IUserAbilitiesData abilities = _abilitiesService.GetUserAbilitiesByFuncName("UsersAbilities");
+                    W = abilities.W;
+                    E = abilities.E;
+                    D = abilities.D;
+                    SelectedIndex = -1;
+                    _currentTable = _tableServices[Tables.UsersAbilities];
+                    Table = _currentTable.Read();
                 });
 
             }

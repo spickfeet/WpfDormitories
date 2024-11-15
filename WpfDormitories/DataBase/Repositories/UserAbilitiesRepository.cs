@@ -41,10 +41,10 @@ namespace WpfDormitories.DataBase.Repositories
             string query = $"UPDATE `dormitory`.`users_abilities` SET " +
                 $"`user_id` = '{entity.UserId}', " +
                 $"`menu_element_id` = '{entity.MenuElementId}', " +
-                $"`r` = '{entity.R}', " +
-                $"`w` = '{entity.W}', " +
-                $"`e` = '{entity.E}', " +
-                $"`d` = '{entity.D}' " +
+                $"`r` = {entity.R}, " +
+                $"`w` = {entity.W}, " +
+                $"`e` = {entity.E}, " +
+                $"`d` = {entity.D} " +
                 $"WHERE (`id` = '{entity.Id}')";
             DormitorySQLConnection.GetInstance().Request(query);
         }

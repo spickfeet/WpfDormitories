@@ -23,6 +23,7 @@ namespace WpfDormitories.Model.Services.Tables
         }
         public DataTable FindAll(string text)
         {
+            _inventoryDirectoriesData = DataManager.GetInstance().InventoryDirectoryRepository.Read();
             if (string.IsNullOrEmpty(text))
             {
                 return Read();

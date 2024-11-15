@@ -4,6 +4,7 @@
     {
         Street,
         Districts,
-        InventoryDirectories
+        InventoryDirectories,
+        UsersAbilities,
     }
 }

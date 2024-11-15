@@ -1,0 +1,36 @@
+﻿<Window x:Class="WpfDormitories.Views.AddOrEditUserAbilitiesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDormitories.Views"
+        mc:Ignorable="d"
+        Title="Права пользователя" Height="170" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Row="0" SelectedIndex="{Binding SelectedUserIndex}" ItemsSource="{Binding UsersLogins}" Grid.Column="0" Height="20" Width="200"/>
+        <ComboBox Grid.Row="1" SelectedIndex="{Binding SelectedMenuElementIndex}" ItemsSource="{Binding MenuElements}" Grid.Column="0" Height="20" Width="200"/>
+        <Button Grid.Row="3" Command="{Binding Apply}" Grid.Column="1" Content="Применить" Height="20" Width="140"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="8*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <CheckBox IsChecked="{Binding R}" VerticalAlignment="Center" Content="Чтение" Grid.ColumnSpan="2"/>
+            <CheckBox Grid.Row="1" IsChecked="{Binding W}" VerticalAlignment="Center" Content="Запись" Grid.ColumnSpan="2"/>
+            <CheckBox Grid.Row="2" IsChecked="{Binding E}" VerticalAlignment="Center" Content="Редактирование" Grid.ColumnSpan="2"/>
+            <CheckBox Grid.Row="3" IsChecked="{Binding D}" VerticalAlignment="Center" Content="Удаление" Grid.ColumnSpan="2"/>
+        </Grid>
+    </Grid>
+</Window>

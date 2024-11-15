@@ -13,7 +13,7 @@ namespace WpfDormitories.ViewModel.DirectoriesVM
         public string Name
         {
             get { return _name; }
-            set { Set(ref _name, value); }
+            set { Set<string>(ref _name, value); }
         }
     }
 }

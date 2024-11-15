@@ -23,6 +23,7 @@ namespace WpfDormitories.Model.Services.Tables
         }
         public DataTable FindAll(string text)
         {
+            _districtsData = DataManager.GetInstance().DistrictsRepository.Read();
             if (string.IsNullOrEmpty(text))
             {
                 return Read();

@@ -28,7 +28,7 @@ namespace WpfDormitories.TemporarySolutions
                 {
                     if (prop.DisplayName != null)
                     {
-                        row[prop.DisplayName] = prop.GetValue(item) ?? DBNull.Value; //тут была ошибка у вас?
+                        row[prop.DisplayName] = prop.GetValue(item) ?? DBNull.Value;
                     }
                 }
                 table.Rows.Add(row);

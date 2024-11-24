@@ -16,17 +16,17 @@ using WpfDormitories.ViewModel;
 namespace WpfDormitories.Views
 {
     /// <summary>
-    /// Логика взаимодействия для AddOrEditUserAbilitiesWindow.xaml
+    /// Логика взаимодействия для AddOrEditDormWindow.xaml
     /// </summary>
-    public partial class AddOrEditUserAbilitiesWindow : Window
+    public partial class AddOrEditDormWindow : Window
     {
-        public AddOrEditUserAbilitiesWindow()
+        public AddOrEditDormWindow()
         {
             InitializeComponent();
-            DataContextChanged += AddOrEditUserAbilitiesWindow_DataContextChanged;
+            DataContextChanged += AddOrEditDormWindow_DataContextChanged;
         }
 
-        private void AddOrEditUserAbilitiesWindow_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void AddOrEditDormWindow_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (DataContext is IApplicableVM applicable)
             {

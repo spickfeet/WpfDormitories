@@ -100,10 +100,7 @@ namespace WpfDormitories
                         }
                         else
                         {
-                            menuItem.Click += (sender, e) =>
-                            {
-                                MessageBox.Show("У данного пользователя нету прав доступа.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-                            };
+                            menuItem.Visibility = Visibility.Collapsed;
                         }
                         break;
                     }

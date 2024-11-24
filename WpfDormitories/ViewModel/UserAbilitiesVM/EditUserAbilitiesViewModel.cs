@@ -29,9 +29,12 @@ namespace WpfDormitories.ViewModel.UserAbilitiesVM
             {
                 return new DelegateCommand(() =>
                 {
-                    DataManager.GetInstance().UsersAbilitiesRepository.Update(new UserAbilitiesData(_id,_users[SelectedUserIndex].Id,
-                    _elementsMenu[SelectedMenuElementIndex].Id, R, W, E, D));
                     OnApply?.Invoke();
+                    if (ConfirmApplyStatus)
+                    {
+                        DataManager.GetInstance().UsersAbilitiesRepository.Update(new UserAbilitiesData(_id, _users[SelectedUserIndex].Id,
+                        _elementsMenu[SelectedMenuElementIndex].Id, R, W, E, D));
+                    }
                 });
             }
         }

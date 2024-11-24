@@ -26,10 +26,13 @@ namespace WpfDormitories.ViewModel.UserAbilitiesVM
                         MessageBox.Show("Пользователь или элемент меню не выбран");
                         return;
                     }
-                    DataManager.GetInstance().UsersAbilitiesRepository.
-                    Create(new UserAbilitiesData(_users[SelectedUserIndex].Id,
-                    _elementsMenu[SelectedMenuElementIndex].Id,R,W,E,D));
                     OnApply?.Invoke();
+                    if (ConfirmApplyStatus)
+                    {
+                        DataManager.GetInstance().UsersAbilitiesRepository.
+                        Create(new UserAbilitiesData(_users[SelectedUserIndex].Id,
+                        _elementsMenu[SelectedMenuElementIndex].Id, R, W, E, D));
+                    }
                 });
             }
         }

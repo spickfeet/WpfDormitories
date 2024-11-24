@@ -95,6 +95,7 @@ namespace WpfDormitories.Model.Services.Tables
         public void Delete(int index)
         {
             DataManager.GetInstance().UsersAbilitiesRepository.Delete(_usersAbilities[index]);
+            _usersAbilities.Remove(_usersAbilities[index]);
         }
 
     }

@@ -24,8 +24,11 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.StreetVM
             {
                 return new DelegateCommand(() =>
                 {
-                    DataManager.GetInstance().StreetsRepository.Update(new StreetData(_id, Name));
                     OnApply?.Invoke();
+                    if (ConfirmApplyStatus)
+                    {
+                        DataManager.GetInstance().StreetsRepository.Update(new StreetData(_id, Name));
+                    }
                 });
             }
         }

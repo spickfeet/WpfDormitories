@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDormitories.Views"
         mc:Ignorable="d"
-        Title="Права пользователя" Height="170" Width="300">
+        Title="Права пользователя" Height="175" Width="200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -13,8 +13,8 @@
             <RowDefinition/>
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
-        <ComboBox Grid.Row="0" SelectedIndex="{Binding SelectedUserIndex}" ItemsSource="{Binding UsersLogins}" Grid.Column="0" Height="20" Width="200"/>
-        <ComboBox Grid.Row="1" SelectedIndex="{Binding SelectedMenuElementIndex}" ItemsSource="{Binding MenuElements}" Grid.Column="0" Height="20" Width="200"/>
+        <ComboBox Grid.Row="0" SelectedIndex="{Binding SelectedUserIndex}" ItemsSource="{Binding UsersLogins}" Height="20" Width="200"/>
+        <ComboBox Grid.Row="1" SelectedIndex="{Binding SelectedMenuElementIndex}" ItemsSource="{Binding MenuElements}" Height="20" Width="200"/>
         <Button Grid.Row="3" Command="{Binding Apply}" Grid.Column="1" Content="Применить" Height="20" Width="140"/>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

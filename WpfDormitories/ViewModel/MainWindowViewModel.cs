@@ -18,20 +18,25 @@ namespace WpfDormitories.ViewModel
     public class MainWindowViewModel : BasicVM
     {
         private DataTable _table;
-        private bool _w;
-        private bool _e;
-        private bool _d;
+        private Visibility _w;
+        private Visibility _e;
+        private Visibility _d;
         private int _selectedIndex;
-        private string _findName;
+        private string _findText;
 
         private UserAbilitiesService _abilitiesService;
 
         public Action OnMenuContents;
         public Action OnAboutProgram;
         public Action OnChangePassword;
+        public Action OnCustomQuery;
+
+        public Action<IUserAbilitiesData> OnDorms;
 
         private ITableService _currentTable;
         private IDictionary<Tables,ITableService> _tableServices;
+
+        public Action OnDelete;
 
         public Action<DataRow> OnEditStreet;
         public Action OnAddStreet;
@@ -44,6 +49,8 @@ namespace WpfDormitories.ViewModel
 
         public Action<DataRow> OnEditUserAbilities;
         public Action OnAddUserAbilities;
+
+        public bool DeleteConfirmStatus {  get; set; }
 
         public DataTable Table
         {
@@ -63,45 +70,50 @@ namespace WpfDormitories.ViewModel
             }
         }
 
-        public string FindName
+        public string FindText
         {
-            get { return _findName; }
+            get { return _findText; }
             set
             {
-                Set<string>(ref _findName, value);
+                Set<string>(ref _findText, value);
             }
         }
 
-        public bool W
+        public Visibility W
         {
             get { return _w; }
             set
             {
-                Set<bool>(ref _w, value);
+                Set<Visibility>(ref _w, value);
             }
         }
 
-        public bool E
+        public Visibility E
         {
             get { return _e; }
             set
             {
-                Set<bool>(ref _e, value);
+                Set<Visibility>(ref _e, value);
             }
         }
 
-        public bool D
+        public Visibility D
         {
             get { return _d; }
             set
             {
-                Set<bool>(ref _d, value);
+                Set<Visibility>(ref _d, value);
             }
         }
 
 
         public MainWindowViewModel()
         {
+            DeleteConfirmStatus = false;
+
+            _w = Visibility.Collapsed;
+            _e = Visibility.Collapsed;
+            _d = Visibility.Collapsed;
             _abilitiesService = new();
 
             _tableServices = new Dictionary<Tables, ITableService>();
@@ -153,6 +165,22 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        public ICommand Dorms
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    IUserAbilitiesData abilities = _abilitiesService.GetUserAbilitiesByFuncName("Dorms");
+                    W = abilities.W == true ? Visibility.Visible : Visibility.Collapsed;
+                    E = abilities.E == true ? Visibility.Visible : Visibility.Collapsed;
+                    D = abilities.D == true ? Visibility.Visible : Visibility.Collapsed;
+                    OnDorms?.Invoke(abilities);
+                });
+
+            }
+        }
+
         public ICommand UsersAbilities
         {
             get
@@ -160,9 +188,9 @@ namespace WpfDormitories.ViewModel
                 return new DelegateCommand(() =>
                 {
                     IUserAbilitiesData abilities = _abilitiesService.GetUserAbilitiesByFuncName("UsersAbilities");
-                    W = abilities.W;
-                    E = abilities.E;
-                    D = abilities.D;
+                    W = abilities.W == true ? Visibility.Visible : Visibility.Collapsed;
+                    E = abilities.E == true ? Visibility.Visible : Visibility.Collapsed;
+                    D = abilities.D == true ? Visibility.Visible : Visibility.Collapsed;
                     SelectedIndex = -1;
                     _currentTable = _tableServices[Tables.UsersAbilities];
                     Table = _currentTable.Read();
@@ -170,6 +198,7 @@ namespace WpfDormitories.ViewModel
 
             }
         }
+        
 
         public ICommand ChangePassword
         {
@@ -183,6 +212,18 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        public ICommand CustomQuery
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnCustomQuery?.Invoke();
+                });
+
+            }
+        }
+
         public ICommand Streets
         {
             get
@@ -190,9 +231,9 @@ namespace WpfDormitories.ViewModel
                 return new DelegateCommand(() =>
                 {
                     IUserAbilitiesData abilities = _abilitiesService.GetUserAbilitiesByFuncName("Streets");
-                    W = abilities.W;
-                    E = abilities.E;
-                    D = abilities.D;
+                    W = abilities.W == true ? Visibility.Visible : Visibility.Collapsed;
+                    E = abilities.E == true ? Visibility.Visible : Visibility.Collapsed;
+                    D = abilities.D == true ? Visibility.Visible : Visibility.Collapsed;
                     SelectedIndex = -1;
                     _currentTable = _tableServices[Tables.Street];
                     Table = _currentTable.Read();
@@ -208,9 +249,9 @@ namespace WpfDormitories.ViewModel
                 return new DelegateCommand(() =>
                 {
                     IUserAbilitiesData abilities = _abilitiesService.GetUserAbilitiesByFuncName("InventoryDirectory");
-                    W = abilities.W;
-                    E = abilities.E;
-                    D = abilities.D;
+                    W = abilities.W == true ? Visibility.Visible : Visibility.Collapsed;
+                    E = abilities.E == true ? Visibility.Visible : Visibility.Collapsed;
+                    D = abilities.D == true ? Visibility.Visible : Visibility.Collapsed;
                     SelectedIndex = -1;
                     _currentTable = _tableServices[Tables.InventoryDirectories];
                     Table = _currentTable.Read();
@@ -226,9 +267,9 @@ namespace WpfDormitories.ViewModel
                 return new DelegateCommand(() =>
                 {
                     IUserAbilitiesData abilities = _abilitiesService.GetUserAbilitiesByFuncName("Districts");
-                    W = abilities.W;
-                    E = abilities.E;
-                    D = abilities.D;
+                    W = abilities.W == true ? Visibility.Visible : Visibility.Collapsed;
+                    E = abilities.E == true ? Visibility.Visible : Visibility.Collapsed;
+                    D = abilities.D == true ? Visibility.Visible : Visibility.Collapsed;
                     SelectedIndex = -1;
                     _currentTable = _tableServices[Tables.Districts];
                     Table = _currentTable.Read();
@@ -247,8 +288,13 @@ namespace WpfDormitories.ViewModel
                     {
                         if(SelectedIndex >= 0 && SelectedIndex< _table.Rows.Count)
                         {
-                            _currentTable.Delete(SelectedIndex);
-                            Table = _currentTable.Read();
+                            OnDelete?.Invoke();
+                            if (DeleteConfirmStatus)
+                            {
+                                _currentTable.Delete(SelectedIndex);
+                                Table = _currentTable.Read();
+                                DeleteConfirmStatus = false;
+                            }
                         }
                     }
                 });
@@ -263,7 +309,7 @@ namespace WpfDormitories.ViewModel
                 return new DelegateCommand(() =>
                 {
                     if (_currentTable != null)
-                        Table = _currentTable.FindAll(FindName);
+                        Table = _currentTable.FindAll(FindText);
                 });
 
             }

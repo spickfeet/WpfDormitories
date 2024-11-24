@@ -1,8 +1,10 @@
 ﻿using System.Windows;
+using WpfDormitories.DataBase.Entity.UserAbilities;
 using WpfDormitories.ViewModel;
 using WpfDormitories.ViewModel.DirectoriesVM.DistrictsVM;
 using WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM;
 using WpfDormitories.ViewModel.DirectoriesVM.StreetVM;
+using WpfDormitories.ViewModel.DormsVM;
 using WpfDormitories.ViewModel.UserAbilitiesVM;
 
 namespace WpfDormitories.Views
@@ -20,6 +22,15 @@ namespace WpfDormitories.Views
             Menu.Children.Add(menuBuilder.BuildMenu());
             if(DataContext is MainWindowViewModel mainWindowViewModel)
             {
+                mainWindowViewModel.OnDelete += () =>
+                {
+                    ConfirmationWindow window = new ConfirmationWindow();
+                    window.ShowDialog();
+                    if (window.DataContext is ConfirmationViewModel confirmation)
+                    {
+                        mainWindowViewModel.DeleteConfirmStatus = confirmation.Result;
+                    }
+                };
                 mainWindowViewModel.OnAboutProgram += () =>
                 {
                     AboutProgramWindow window = new();
@@ -38,69 +49,80 @@ namespace WpfDormitories.Views
                     window.ShowDialog();
                 };
 
+                mainWindowViewModel.OnCustomQuery += () =>
+                {
+                    QueryWindow window = new();
+                    window.ShowDialog();
+                };
+
                 mainWindowViewModel.OnAddStreet += () => 
                 {
                     AddOrEditDirectoriesWindow window = new();
-                    window.UpdateDataContext(new AddStreetViewModel());
-                    window.Show();
-                    window.Closing += UpdateTable;
+                    window.DataContext = new AddStreetViewModel();
+                    window.ShowDialog();
+                    UpdateTable();
                 };
                 mainWindowViewModel.OnEditStreet += (dataRow) => 
                 {
                     AddOrEditDirectoriesWindow window = new();
-                    window.UpdateDataContext(new EditStreetViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString()));
-                    window.Show();
-                    window.Closing += UpdateTable;
+                    window.DataContext = new EditStreetViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString());
+                    window.ShowDialog();
+                    UpdateTable();
                 };
                 mainWindowViewModel.OnAddDistrict += () => 
                 {
                     AddOrEditDirectoriesWindow window = new();
-                    window.UpdateDataContext(new AddDistrictViewModel());
-                    window.Show();
-                    window.Closing += UpdateTable;
+                    window.DataContext = new AddDistrictViewModel();
+                    window.ShowDialog();
+                    UpdateTable();
                 };
                 mainWindowViewModel.OnEditDistrict += (dataRow) => 
                 {
                     AddOrEditDirectoriesWindow window = new();
-                    window.UpdateDataContext(new EditDistrictViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString()));
-                    window.Show();
-                    window.Closing += UpdateTable;
+                    window.DataContext = new EditDistrictViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString());
+                    window.ShowDialog();
+                    UpdateTable();
                 };
                 mainWindowViewModel.OnAddInventoryDirectory += () =>
                 {
                     AddOrEditDirectoriesWindow window = new();
-                    window.UpdateDataContext(new AddInventoryViewModel());
-                    window.Show();
-                    window.Closing += UpdateTable;
+                    window.DataContext = new AddInventoryViewModel();
+                    window.ShowDialog();
+                    UpdateTable();
                 };
                 mainWindowViewModel.OnEditInventoryDirectory += (dataRow) =>
                 {
                     AddOrEditDirectoriesWindow window = new();
-                    window.UpdateDataContext(new EditInventoryViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString()));
-                    window.Show();
-                    window.Closing += UpdateTable;
+                    window.DataContext = new EditInventoryViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString());
+                    window.ShowDialog();
+                    UpdateTable();
                 };
 
                 mainWindowViewModel.OnAddUserAbilities += () =>
                 {
                     AddOrEditUserAbilitiesWindow window = new();
-                    window.UpdateDataContext(new AddUserAbilitiesViewModel());
-                    window.Show();
-                    window.Closing += UpdateTable;
+                    window.DataContext = new AddUserAbilitiesViewModel();
+                    window.ShowDialog();
+                    UpdateTable();
                 };
                 mainWindowViewModel.OnEditUserAbilities += (dataRow) =>
                 {
                     AddOrEditUserAbilitiesWindow window = new();
-                    window.UpdateDataContext(new EditUserAbilitiesViewModel(uint.Parse(dataRow[0].ToString()), 
-                        uint.Parse(dataRow[1].ToString()), uint.Parse(dataRow[2].ToString()),
-                        (bool)dataRow[3], (bool)dataRow[4], (bool)dataRow[5], (bool)dataRow[6]));
-                    window.Show();
-                    window.Closing += UpdateTable;
+                    window.DataContext = new EditUserAbilitiesViewModel(uint.Parse(dataRow[0].ToString()), uint.Parse(dataRow[1].ToString()), 
+                        uint.Parse(dataRow[2].ToString()), (bool)dataRow[3], (bool)dataRow[4], (bool)dataRow[5], (bool)dataRow[6]);
+                    window.ShowDialog();
+                    UpdateTable();
+                };
+                mainWindowViewModel.OnDorms += (userAbilitiesData) =>
+                {
+                    DormsWindow window = new();
+                    window.DataContext = new DormsViewModel(userAbilitiesData);
+                    window.ShowDialog();
                 };
             }
             
         }
-        private void UpdateTable(object? sender, EventArgs e)
+        private void UpdateTable(/*object? sender, EventArgs e*/)
         {
             if (DataContext is MainWindowViewModel mainWindowViewModel) 
             {

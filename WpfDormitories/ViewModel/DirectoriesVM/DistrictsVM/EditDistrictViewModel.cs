@@ -24,8 +24,11 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.DistrictsVM
             {
                 return new DelegateCommand(() =>
                 {
-                    DataManager.GetInstance().DistrictsRepository.Update(new DistrictData(_id, Name));
                     OnApply?.Invoke();
+                    if (ConfirmApplyStatus)
+                    {
+                        DataManager.GetInstance().DistrictsRepository.Update(new DistrictData(_id, Name));
+                    }
                 });
             }
         }

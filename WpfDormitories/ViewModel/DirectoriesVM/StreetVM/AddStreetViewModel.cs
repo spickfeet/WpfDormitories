@@ -13,8 +13,11 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.StreetVM
             {
                 return new DelegateCommand(() =>
                 {
-                    DataManager.GetInstance().StreetsRepository.Create(new StreetData(Name));
                     OnApply?.Invoke();
+                    if (ConfirmApplyStatus)
+                    {
+                        DataManager.GetInstance().StreetsRepository.Create(new StreetData(Name));
+                    }
                 });
             }
         }

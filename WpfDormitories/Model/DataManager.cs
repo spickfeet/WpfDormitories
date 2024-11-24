@@ -63,6 +63,7 @@ namespace WpfDormitories.DataBase
             StreetsRepository = streetsRepository;
             UsersAbilitiesRepository = usersAbilitiesRepository;
             MenuElementsRepository = menuElementsRepository;
+            ResidentsRepository = residentsRepository;
         }
 
         private static DataManager _instance;

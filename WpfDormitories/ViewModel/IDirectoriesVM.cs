@@ -9,5 +9,6 @@ namespace WpfDormitories.ViewModel
     public interface IApplicableVM
     {
         Action OnApply { get; set; }
+        bool ConfirmApplyStatus { get; set; }
     }
 }

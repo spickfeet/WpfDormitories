@@ -23,13 +23,26 @@ namespace WpfDormitories.Views
         public AddOrEditDirectoriesWindow()
         {
             InitializeComponent();
+            DataContextChanged += AddOrEditDirectoriesWindow_DataContextChanged;
         }
-        public void UpdateDataContext(object obj)
+
+        private void AddOrEditDirectoriesWindow_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            DataContext = obj;
             if (DataContext is IApplicableVM applicable)
             {
-                applicable.OnApply += () => { Close(); };
+                applicable.OnApply += () =>
+                {
+                    ConfirmationWindow window = new ConfirmationWindow();
+                    window.ShowDialog();
+                    if (window.DataContext is ConfirmationViewModel confirmation)
+                    {
+                        applicable.ConfirmApplyStatus = confirmation.Result;
+                        if (applicable.ConfirmApplyStatus == true)
+                        {
+                            Close();
+                        }
+                    }
+                };
             }
         }
     }

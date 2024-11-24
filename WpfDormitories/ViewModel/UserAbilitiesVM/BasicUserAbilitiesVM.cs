@@ -87,5 +87,7 @@ namespace WpfDormitories.ViewModel.UserAbilitiesVM
             get { return _d; }
             set { Set<bool>(ref _d, value); }
         }
+
+        public bool ConfirmApplyStatus { get; set; }
     }
 }

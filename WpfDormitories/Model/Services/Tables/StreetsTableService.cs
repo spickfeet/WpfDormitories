@@ -59,6 +59,7 @@ namespace WpfDormitories.Model.Services.Tables
         public void Delete(int index)
         {
             DataManager.GetInstance().StreetsRepository.Delete(_streetsData[index]);
+            _streetsData.Remove(_streetsData[index]);
         }
     }
 }

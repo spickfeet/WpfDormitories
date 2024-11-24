@@ -24,8 +24,11 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM
             {
                 return new DelegateCommand(() =>
                 {
-                    DataManager.GetInstance().InventoryDirectoryRepository.Update(new InventoryDirectoryData(_id, Name));
                     OnApply?.Invoke();
+                    if (ConfirmApplyStatus)
+                    {
+                        DataManager.GetInstance().InventoryDirectoryRepository.Update(new InventoryDirectoryData(_id, Name));
+                    }
                 });
             }
         }

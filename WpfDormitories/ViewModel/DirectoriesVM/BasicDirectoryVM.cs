@@ -15,5 +15,7 @@ namespace WpfDormitories.ViewModel.DirectoriesVM
             get { return _name; }
             set { Set<string>(ref _name, value); }
         }
+
+        public bool ConfirmApplyStatus { get; set; }
     }
 }

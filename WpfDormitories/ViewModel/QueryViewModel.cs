@@ -43,13 +43,11 @@ namespace WpfDormitories.ViewModel
                 else
                 {
                     DormitorySQLConnection.GetInstance().Request(Query);
-                    DataBaseTable.Clear();
                     MessageBox.Show("Запрос выполнен");
                 }
             }
             catch (Exception ex) 
             {
-                DataBaseTable.Clear();
                 MessageBox.Show(ex.Message);
             }
         }

@@ -1,24 +1,25 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WpfDormitories.DataBase;
-using WpfDormitories.DataBase.Entity.Room;
+using WpfDormitories.DataBase.Entity.Inventory.InventoryDirectory;
 using WpfTest.ViewModel;
 
-namespace WpfDormitories.ViewModel.RoomsVM
+namespace WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM
 {
-    public class AddRoomViewModel : BasicAddOrEditRoomVM
+    public class AddInventoryDirectoryViewModel : BasicDirectoryVM
     {
-        public AddRoomViewModel(uint dormId)
-        {
-            _dormId = dormId;
-        }
         public ICommand Apply
         {
             get
             {
                 return new DelegateCommand(() =>
                 {
-                    if (string.IsNullOrEmpty(NumberRoom) || RoomArea == 0 || TotalNumberPlace == 0)
+                    if (string.IsNullOrEmpty(Name))
                     {
                         MessageBox.Show("Заполните все поля");
                         return;
@@ -26,8 +27,7 @@ namespace WpfDormitories.ViewModel.RoomsVM
                     OnApply?.Invoke();
                     if (ConfirmApplyStatus)
                     {
-                        DataManager.GetInstance().RoomsRepository.
-                        Create(new RoomData(_dormId, NumberRoom, RoomArea, TotalNumberPlace, Floor, NumberFreePlace));
+                        DataManager.GetInstance().InventoryDirectoryRepository.Create(new InventoryDirectoryData(Name));
                     }
                 });
             }

@@ -21,9 +21,6 @@ namespace WpfDormitories.ViewModel.DormsVM
         private int _selectedIndex;
         private DataTable _table;
         private string _findText;
-        private Visibility _w;
-        private Visibility _e;
-        private Visibility _d;
 
         private IUserAbilitiesData _userAbilitiesData;
 

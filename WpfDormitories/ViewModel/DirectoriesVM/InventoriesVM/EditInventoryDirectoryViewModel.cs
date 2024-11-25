@@ -11,8 +11,14 @@ using WpfTest.ViewModel;
 
 namespace WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM
 {
-    public class AddInventoryViewModel : BasicDirectoryVM
+    public class EditInventoryDirectoryViewModel : BasicDirectoryVM
     {
+        private uint _id;
+        public EditInventoryDirectoryViewModel(uint id, string name)
+        {
+            _id = id;
+            _name = name;
+        }
         public ICommand Apply
         {
             get
@@ -27,7 +33,7 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM
                     OnApply?.Invoke();
                     if (ConfirmApplyStatus)
                     {
-                        DataManager.GetInstance().InventoryDirectoryRepository.Create(new InventoryDirectoryData(Name));
+                        DataManager.GetInstance().InventoryDirectoryRepository.Update(new InventoryDirectoryData(_id, Name));
                     }
                 });
             }

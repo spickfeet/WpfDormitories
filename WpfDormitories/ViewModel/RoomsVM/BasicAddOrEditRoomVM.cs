@@ -11,6 +11,7 @@ namespace WpfDormitories.ViewModel.RoomsVM
 {
     public class BasicAddOrEditRoomVM : BasicVM, IApplicableVM
     {
+        protected uint _dormId;
         protected string _numberRoom;
         protected uint _roomArea;
         protected uint _totalNumberPlace;

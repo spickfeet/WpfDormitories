@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WpfDormitories.DataBase;
-using WpfDormitories.DataBase.Entity.Inventory.InventoryDirectory;
+using WpfDormitories.DataBase.Entity.Inventory;
 using WpfTest.ViewModel;
 
-namespace WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM
+namespace WpfDormitories.ViewModel.InventoryVM
 {
-    public class EditInventoryViewModel : BasicDirectoryVM
+    public class AddInventoryViewModel : BasicAddOrEditInventoryVM
     {
-        private uint _id;
-        public EditInventoryViewModel(uint id, string name)
+        public AddInventoryViewModel(uint roomId)
         {
-            _id = id;
-            _name = name;
+            _roomId = roomId;
         }
         public ICommand Apply
         {
@@ -25,15 +23,16 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM
             {
                 return new DelegateCommand(() =>
                 {
-                    if (string.IsNullOrEmpty(Name))
+                    if (_selectedIndex == -1)
                     {
-                        MessageBox.Show("Заполните все поля");
+                        MessageBox.Show("Выберите инвентарь");
                         return;
                     }
                     OnApply?.Invoke();
                     if (ConfirmApplyStatus)
                     {
-                        DataManager.GetInstance().InventoryDirectoryRepository.Update(new InventoryDirectoryData(_id, Name));
+                        DataManager.GetInstance().InventoryRepository.
+                        Create(new InventoryData(_roomId, _inventoryDirectory[SelectedIndex].Id));
                     }
                 });
             }

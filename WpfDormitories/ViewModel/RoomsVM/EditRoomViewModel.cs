@@ -14,8 +14,6 @@ namespace WpfDormitories.ViewModel.RoomsVM
     public class EditRoomViewModel : BasicAddOrEditRoomVM
     {
         private uint _id;
-        private uint _dormId;
-
         public EditRoomViewModel(uint id, uint dormId, string numberRoom, uint roomArea, uint totalNumberPlace, uint floor, uint numberFreePlace)
         {
             _id = id;

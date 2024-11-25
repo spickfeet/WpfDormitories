@@ -12,18 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfDormitories.ViewModel;
-using WpfDormitories.ViewModel.DormsVM;
 using WpfDormitories.ViewModel.InventoryVM;
 using WpfDormitories.ViewModel.RoomsVM;
 
 namespace WpfDormitories.Views
 {
     /// <summary>
-    /// Логика взаимодействия для RoomsWindow.xaml
+    /// Логика взаимодействия для InventoryWindow.xaml
     /// </summary>
-    public partial class RoomsWindow : Window
+    public partial class InventoryWindow : Window
     {
-        public RoomsWindow()
+        public InventoryWindow()
         {
             InitializeComponent();
             DataContextChanged += DormsWindow_DataContextChanged;
@@ -31,37 +30,30 @@ namespace WpfDormitories.Views
 
         private void DormsWindow_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (DataContext is RoomsViewModel dormsVM)
+            if (DataContext is InventoryViewModel inventoryVM)
             {
-                dormsVM.OnAdd += (dormId) =>
+                inventoryVM.OnAdd += (roomId) =>
                 {
-                    AddOrEditRoomWindow window = new();
-                    window.DataContext = new AddRoomViewModel(dormId);
+                    AddOrEditInventoryWindow window = new();
+                    window.DataContext = new AddInventoryViewModel(roomId);
                     window.ShowDialog();
-                    dormsVM.UpdateTable();
+                    inventoryVM.UpdateTable();
                 };
-                dormsVM.OnEdit += (dataRow) =>
+                inventoryVM.OnEdit += (dataRow) =>
                 {
-                    AddOrEditRoomWindow window = new();
-                    window.DataContext = new EditRoomViewModel((uint)dataRow[0], (uint)dataRow[1], (string)dataRow[2],
-                        (uint)dataRow[3], (uint)dataRow[4], (uint)dataRow[5], (uint)dataRow[6]);
+                    AddOrEditInventoryWindow window = new();
+                    window.DataContext = new EditInventoryViewModel((uint)dataRow[0], (uint)dataRow[1], (uint)dataRow[2]);
                     window.ShowDialog();
-                    dormsVM.UpdateTable();
+                    inventoryVM.UpdateTable();
                 };
-                dormsVM.OnDelete += () =>
+                inventoryVM.OnDelete += () =>
                 {
                     ConfirmationWindow window = new ConfirmationWindow();
                     window.ShowDialog();
                     if (window.DataContext is ConfirmationViewModel confirmation)
                     {
-                        dormsVM.DeleteConfirmStatus = confirmation.Result;
+                        inventoryVM.DeleteConfirmStatus = confirmation.Result;
                     }
-                };
-                dormsVM.OnInventory += (userAbility, dataRow) =>
-                {
-                    InventoryWindow window = new();
-                    window.DataContext = new InventoryViewModel(userAbility, (uint)dataRow[0]);
-                    window.ShowDialog();
                 };
             }
         }

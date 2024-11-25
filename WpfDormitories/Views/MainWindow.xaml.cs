@@ -86,14 +86,14 @@ namespace WpfDormitories.Views
                 mainWindowViewModel.OnAddInventoryDirectory += () =>
                 {
                     AddOrEditDirectoriesWindow window = new();
-                    window.DataContext = new AddInventoryViewModel();
+                    window.DataContext = new AddInventoryDirectoryViewModel();
                     window.ShowDialog();
                     mainWindowViewModel.UpdateTable();
                 };
                 mainWindowViewModel.OnEditInventoryDirectory += (dataRow) =>
                 {
                     AddOrEditDirectoriesWindow window = new();
-                    window.DataContext = new EditInventoryViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString());
+                    window.DataContext = new EditInventoryDirectoryViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString());
                     window.ShowDialog();
                     mainWindowViewModel.UpdateTable();
                 };

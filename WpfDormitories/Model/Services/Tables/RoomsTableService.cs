@@ -40,7 +40,15 @@ namespace WpfDormitories.Model.Services.Tables
                 return Read();
             }
 
-            _rooms = DataManager.GetInstance().RoomsRepository.Read().ToList();
+            List<IRoomData> allRooms = DataManager.GetInstance().RoomsRepository.Read().ToList();
+            _rooms = new();
+            foreach (IRoomData room in allRooms)
+            {
+                if (room.DormId == _dormId)
+                {
+                    _rooms.Add(room);
+                }
+            }
 
             DataTable res = CreateDataTable();
 

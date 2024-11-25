@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WpfDormitories.DataBase;
 using WpfDormitories.DataBase.Entity.Dorm;
@@ -10,7 +11,7 @@ using WpfTest.ViewModel;
 
 namespace WpfDormitories.ViewModel.DormsVM
 {
-    public class EditDormViewModel : BasicAddOrEditDormsVM
+    public class EditDormViewModel : BasicAddOrEditDormVM
     {
         private uint _id;
         public EditDormViewModel(uint id, uint streetId, uint districtsId, 
@@ -30,6 +31,11 @@ namespace WpfDormitories.ViewModel.DormsVM
             {
                 return new DelegateCommand(() =>
                 {
+                    if (SelectedDistrictIndex == -1 || SelectedStreetIndex == -1 || string.IsNullOrEmpty(DormNumber) || string.IsNullOrEmpty(HouseNumber) || NumberRooms == 0 || NumberPlace == 0)
+                    {
+                        MessageBox.Show("Заполните все поля");
+                        return;
+                    }
                     OnApply?.Invoke();
                     if (ConfirmApplyStatus)
                     {

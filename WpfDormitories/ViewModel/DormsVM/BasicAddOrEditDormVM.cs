@@ -9,7 +9,7 @@ using WpfDormitories.DataBase.Entity.Street;
 
 namespace WpfDormitories.ViewModel.DormsVM
 {
-    public class BasicAddOrEditDormsVM : BasicVM, IApplicableVM
+    public abstract class BasicAddOrEditDormVM : BasicVM, IApplicableVM
     {
         protected IList<IStreetData> _streets;
         protected IList<IDistrictData> _districts;
@@ -85,7 +85,7 @@ namespace WpfDormitories.ViewModel.DormsVM
         public Action OnApply { get; set; }
         public bool ConfirmApplyStatus { get; set; }
 
-        public BasicAddOrEditDormsVM() 
+        public BasicAddOrEditDormVM() 
         {
             _streets = DataManager.GetInstance().StreetsRepository.Read();
             _districts = DataManager.GetInstance().DistrictsRepository.Read();

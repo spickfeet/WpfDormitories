@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfDormitories.DataBase;
+using WpfDormitories.DataBase.Entity.Dorm;
 using WpfDormitories.DataBase.Entity.MenuElement;
 using WpfDormitories.DataBase.Entity.Street;
 using WpfDormitories.DataBase.Entity.User;
@@ -97,6 +98,9 @@ namespace WpfDormitories.Model.Services.Tables
             DataManager.GetInstance().UsersAbilitiesRepository.Delete(_usersAbilities[index]);
             _usersAbilities.Remove(_usersAbilities[index]);
         }
-
+        public DataRow GetByIndex(int index)
+        {
+            return DataTableParser.ToDataTable<IUserAbilitiesData>(_usersAbilities).Rows[index];
+        }
     }
 }

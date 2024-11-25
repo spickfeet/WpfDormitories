@@ -8,6 +8,7 @@ using WpfDormitories.DataBase.Entity.Street;
 using WpfDormitories.DataBase;
 using WpfDormitories.TemporarySolutions;
 using WpfDormitories.DataBase.Entity.Inventory.InventoryDirectory;
+using WpfDormitories.DataBase.Entity.Dorm;
 
 namespace WpfDormitories.Model.Services.Tables
 {
@@ -60,6 +61,10 @@ namespace WpfDormitories.Model.Services.Tables
         {
             DataManager.GetInstance().InventoryDirectoryRepository.Delete(_inventoryDirectoriesData[index]);
             _inventoryDirectoriesData.Remove(_inventoryDirectoriesData[index]);
+        }
+        public DataRow GetByIndex(int index)
+        {
+            return DataTableParser.ToDataTable<IInventoryDirectoryData>(_inventoryDirectoriesData).Rows[index];
         }
     }
 }

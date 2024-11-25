@@ -4,35 +4,43 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows;
 using WpfDormitories.DataBase.Entity.UserAbilities;
-using WpfDormitories.Enums;
 using WpfDormitories.Model.Services.Tables;
 using WpfTest.ViewModel;
+using WpfDormitories.DataBase;
+using WpfDormitories.DataBase.Entity.Dorm;
 
-namespace WpfDormitories.ViewModel.DormsVM
+namespace WpfDormitories.ViewModel.RoomsVM
 {
-    public class DormsViewModel : BasicVM
+    public class RoomsViewModel : BasicVM
     {
         private ITableService _tableService;
+        private string _dormInfo;
 
         private int _selectedIndex;
         private DataTable _table;
         private string _findText;
-        private Visibility _w;
-        private Visibility _e;
-        private Visibility _d;
 
         private IUserAbilitiesData _userAbilitiesData;
 
+
         public bool DeleteConfirmStatus { get; set; }
 
-        public Action<IUserAbilitiesData, DataRow> OnRooms;
+        public Action<IUserAbilitiesData,DataRow> OnInventory;
         public Action<DataRow> OnEdit;
-        public Action OnAdd;
+        public Action<uint> OnAdd;
         public Action OnDelete;
+
+        public string DormInfo
+        {
+            get { return _dormInfo; }
+            set
+            {
+                Set(ref _dormInfo, value);
+            }
+        }
 
         public int SelectedIndex
         {
@@ -76,16 +84,19 @@ namespace WpfDormitories.ViewModel.DormsVM
             get { return _userAbilitiesData.D ? Visibility.Visible : Visibility.Collapsed; ; }
         }
 
-        public DormsViewModel(IUserAbilitiesData userAbilities)
+        public RoomsViewModel(IUserAbilitiesData userAbilities, uint dormId)
         {
             _userAbilitiesData = userAbilities;
+            List<IDormData> dorms = DataManager.GetInstance().DormsRepository.Read().ToList();
+            IDormData dorm = dorms.Find(item => item.Id == dormId);
+            _dormInfo = $"Общежитие №{dorm.DormNumber} {DataManager.GetInstance().StreetsRepository.Read().ToList().Find(item => item.Id == dorm.StreetId).Name}";
             DeleteConfirmStatus = false;
-            _tableService = new DormsTableService();
+            _tableService = new RoomsTableService(dormId);
 
             _table = _tableService.Read();
 
             _tableService.OnEdit += (dataRow) => { OnEdit?.Invoke(dataRow); };
-            _tableService.OnAdd += () => { OnAdd?.Invoke(); };
+            _tableService.OnAdd += () => { OnAdd?.Invoke(dormId); };
         }
 
         public void UpdateTable()
@@ -154,7 +165,7 @@ namespace WpfDormitories.ViewModel.DormsVM
             }
         }
 
-        public ICommand Rooms
+        public ICommand Inventory
         {
             get
             {
@@ -162,7 +173,7 @@ namespace WpfDormitories.ViewModel.DormsVM
                 {
                     if (SelectedIndex >= 0 && SelectedIndex < _table.Rows.Count)
                     {
-                        OnRooms?.Invoke(_userAbilitiesData, _tableService.GetByIndex(SelectedIndex));
+                        MessageBox.Show((string)_tableService.GetByIndex(SelectedIndex)[2]);
                     }
                 });
 

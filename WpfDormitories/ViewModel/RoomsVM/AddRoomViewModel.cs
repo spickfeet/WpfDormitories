@@ -1,20 +1,25 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using WpfDormitories.DataBase;
-using WpfDormitories.DataBase.Entity.Street;
+using WpfDormitories.DataBase.Entity.Room;
 using WpfTest.ViewModel;
 
-namespace WpfDormitories.ViewModel.DirectoriesVM.StreetVM
+namespace WpfDormitories.ViewModel.RoomsVM
 {
-    public class AddStreetViewModel : BasicDirectoryVM
+    public class AddRoomViewModel : BasicAddOrEditRoomVM
     {
+        private uint _dormId;
+        public AddRoomViewModel(uint dormId)
+        {
+            _dormId = dormId;
+        }
         public ICommand Apply
         {
             get
             {
                 return new DelegateCommand(() =>
                 {
-                    if (string.IsNullOrEmpty(Name))
+                    if (string.IsNullOrEmpty(NumberRoom) || RoomArea == 0 || TotalNumberPlace == 0)
                     {
                         MessageBox.Show("Заполните все поля");
                         return;
@@ -22,7 +27,8 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.StreetVM
                     OnApply?.Invoke();
                     if (ConfirmApplyStatus)
                     {
-                        DataManager.GetInstance().StreetsRepository.Create(new StreetData(Name));
+                        DataManager.GetInstance().RoomsRepository.
+                        Create(new RoomData(_dormId, NumberRoom, RoomArea, TotalNumberPlace, Floor, NumberFreePlace));
                     }
                 });
             }

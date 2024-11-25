@@ -140,5 +140,9 @@ namespace WpfDormitories.Model.Services.Tables
             DataManager.GetInstance().DormsRepository.Delete(_dorms[index]);
             _dorms.Remove(_dorms[index]);
         }
+        public DataRow GetByIndex(int index)
+        {
+            return DataTableParser.ToDataTable<IDormData>(_dorms).Rows[index];
+        }
     }
 }

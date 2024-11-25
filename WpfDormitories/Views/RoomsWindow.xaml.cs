@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +18,11 @@ using WpfDormitories.ViewModel.RoomsVM;
 namespace WpfDormitories.Views
 {
     /// <summary>
-    /// Логика взаимодействия для DormsWindow.xaml
+    /// Логика взаимодействия для RoomsWindow.xaml
     /// </summary>
-    public partial class DormsWindow : Window
+    public partial class RoomsWindow : Window
     {
-        public DormsWindow()
+        public RoomsWindow()
         {
             InitializeComponent();
             DataContextChanged += DormsWindow_DataContextChanged;
@@ -31,20 +30,20 @@ namespace WpfDormitories.Views
 
         private void DormsWindow_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (DataContext is DormsViewModel dormsVM)
+            if (DataContext is RoomsViewModel dormsVM)
             {
-                dormsVM.OnAdd += () =>
+                dormsVM.OnAdd += (dormId) =>
                 {
-                    AddOrEditDormWindow window = new();
-                    window.DataContext = new AddDormViewModel();
+                    AddOrEditRoomWindow window = new();
+                    window.DataContext = new AddRoomViewModel(dormId);
                     window.ShowDialog();
                     dormsVM.UpdateTable();
                 };
                 dormsVM.OnEdit += (dataRow) =>
                 {
-                    AddOrEditDormWindow window = new();
-                    window.DataContext = new EditDormViewModel((uint)dataRow[0], (uint)dataRow[1], (uint)dataRow[2],
-                        (string)dataRow[3], (string)dataRow[4], (uint)dataRow[5], (uint)dataRow[6]);
+                    AddOrEditRoomWindow window = new();
+                    window.DataContext = new EditRoomViewModel((uint)dataRow[0], (uint)dataRow[1], (string)dataRow[2],
+                        (uint)dataRow[3], (uint)dataRow[4], (uint)dataRow[5], (uint)dataRow[6]);
                     window.ShowDialog();
                     dormsVM.UpdateTable();
                 };
@@ -57,12 +56,12 @@ namespace WpfDormitories.Views
                         dormsVM.DeleteConfirmStatus = confirmation.Result;
                     }
                 };
-                dormsVM.OnRooms += (userAbility, dataRow) =>
+                dormsVM.OnInventory += (userAbility, dataRow) =>
                 {
-                    RoomsWindow window = new();
-                    window.DataContext = new RoomsViewModel(userAbility, (uint)dataRow[0]);
-                    window.ShowDialog();
-                    dormsVM.UpdateTable();
+                    //RoomsWindow window = new();
+                    //window.DataContext = new RoomsViewModel(userAbility, (uint)dataRow[0]);
+                    //window.ShowDialog();
+                    //dormsVM.UpdateTable();
                 };
             }
         }

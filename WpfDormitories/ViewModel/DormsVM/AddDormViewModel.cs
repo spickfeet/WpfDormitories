@@ -12,7 +12,7 @@ using WpfDormitories.DataBase.Entity.Dorm;
 
 namespace WpfDormitories.ViewModel.DormsVM
 {
-    public class AddDormViewModel : BasicAddOrEditDormsVM
+    public class AddDormViewModel : BasicAddOrEditDormVM
     {
         public ICommand Apply
         {
@@ -20,7 +20,7 @@ namespace WpfDormitories.ViewModel.DormsVM
             {
                 return new DelegateCommand(() =>
                 {
-                    if (SelectedDistrictIndex == -1 || SelectedStreetIndex == -1)
+                    if (SelectedDistrictIndex == -1 || SelectedStreetIndex == -1 || string.IsNullOrEmpty(DormNumber) || string.IsNullOrEmpty(HouseNumber) || NumberRooms == 0 || NumberPlace == 0)
                     {
                         MessageBox.Show("Заполните все поля");
                         return;

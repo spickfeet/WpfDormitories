@@ -60,42 +60,42 @@ namespace WpfDormitories.Views
                     AddOrEditDirectoriesWindow window = new();
                     window.DataContext = new AddStreetViewModel();
                     window.ShowDialog();
-                    UpdateTable();
+                    mainWindowViewModel.UpdateTable();
                 };
                 mainWindowViewModel.OnEditStreet += (dataRow) => 
                 {
                     AddOrEditDirectoriesWindow window = new();
                     window.DataContext = new EditStreetViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString());
                     window.ShowDialog();
-                    UpdateTable();
+                    mainWindowViewModel.UpdateTable();
                 };
                 mainWindowViewModel.OnAddDistrict += () => 
                 {
                     AddOrEditDirectoriesWindow window = new();
                     window.DataContext = new AddDistrictViewModel();
                     window.ShowDialog();
-                    UpdateTable();
+                    mainWindowViewModel.UpdateTable();
                 };
                 mainWindowViewModel.OnEditDistrict += (dataRow) => 
                 {
                     AddOrEditDirectoriesWindow window = new();
                     window.DataContext = new EditDistrictViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString());
                     window.ShowDialog();
-                    UpdateTable();
+                    mainWindowViewModel.UpdateTable();
                 };
                 mainWindowViewModel.OnAddInventoryDirectory += () =>
                 {
                     AddOrEditDirectoriesWindow window = new();
                     window.DataContext = new AddInventoryViewModel();
                     window.ShowDialog();
-                    UpdateTable();
+                    mainWindowViewModel.UpdateTable();
                 };
                 mainWindowViewModel.OnEditInventoryDirectory += (dataRow) =>
                 {
                     AddOrEditDirectoriesWindow window = new();
                     window.DataContext = new EditInventoryViewModel(uint.Parse(dataRow[0].ToString()), dataRow[1].ToString());
                     window.ShowDialog();
-                    UpdateTable();
+                    mainWindowViewModel.UpdateTable();
                 };
 
                 mainWindowViewModel.OnAddUserAbilities += () =>
@@ -103,7 +103,7 @@ namespace WpfDormitories.Views
                     AddOrEditUserAbilitiesWindow window = new();
                     window.DataContext = new AddUserAbilitiesViewModel();
                     window.ShowDialog();
-                    UpdateTable();
+                    mainWindowViewModel.UpdateTable();
                 };
                 mainWindowViewModel.OnEditUserAbilities += (dataRow) =>
                 {
@@ -111,7 +111,7 @@ namespace WpfDormitories.Views
                     window.DataContext = new EditUserAbilitiesViewModel(uint.Parse(dataRow[0].ToString()), uint.Parse(dataRow[1].ToString()), 
                         uint.Parse(dataRow[2].ToString()), (bool)dataRow[3], (bool)dataRow[4], (bool)dataRow[5], (bool)dataRow[6]);
                     window.ShowDialog();
-                    UpdateTable();
+                    mainWindowViewModel.UpdateTable();
                 };
                 mainWindowViewModel.OnDorms += (userAbilitiesData) =>
                 {
@@ -121,13 +121,6 @@ namespace WpfDormitories.Views
                 };
             }
             
-        }
-        private void UpdateTable(/*object? sender, EventArgs e*/)
-        {
-            if (DataContext is MainWindowViewModel mainWindowViewModel) 
-            {
-                mainWindowViewModel.UpdateTable();
-            }
         }
     }
 }

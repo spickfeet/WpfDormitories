@@ -11,6 +11,6 @@ namespace WpfDormitories.Model.Services.Tables
         DataTable FindAll(string elementName);
         void Edit(int index);
         void Delete(int index);
-
+        DataRow GetByIndex(int index);
     }
 }

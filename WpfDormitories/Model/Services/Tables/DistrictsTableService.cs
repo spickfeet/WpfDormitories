@@ -61,5 +61,10 @@ namespace WpfDormitories.Model.Services.Tables
             DataManager.GetInstance().DistrictsRepository.Delete(_districtsData[index]);
             _districtsData.Remove(_districtsData[index]);
         }
+
+        public DataRow GetByIndex(int index)
+        {
+            return DataTableParser.ToDataTable<IDistrictData>(_districtsData).Rows[index];
+        }
     }
 }

@@ -119,34 +119,37 @@ namespace WpfDormitories.Model.Services.Tables
             foreach (IInventoryData item in inventoryInRoom)
             {
                 DataManager.GetInstance().InventoryRepository.Delete(item);
-                inventoryInRoom.Remove(item);
             }
             foreach (IResidentData resident in residentsInRoom)
             {
                 List<IParentsAndChildrenData> parentsAndChildrenByParent = parentsAndChildren.FindAll(item => item.ParentId == resident.Id);
                 foreach (IParentsAndChildrenData parentAndChild in parentsAndChildrenByParent)
                 {
-                    IChildData child = children.Find(item => item.Id == parentAndChild.ChildId);
-                    if (child != null)
-                    {
-                        DataManager.GetInstance().ChildrenRepository.Delete(child);
-                        children.Remove(child);
-                    }
-
                     DataManager.GetInstance().ParentsAndChildrenRepository.Delete(parentAndChild);
-                    parentsAndChildren.Remove(parentAndChild);
                 }
-                IContractData contract = contracts.Find(item => item.Id == resident.ContractId);
-                if (contract != null)
+                DataManager.GetInstance().ResidentsRepository.Delete(resident);
+            }            
+
+            parentsAndChildren = DataManager.GetInstance().ParentsAndChildrenRepository.Read().ToList();
+            foreach (IChildData child in children)
+            {
+                List<IParentsAndChildrenData> parentsAndChildrenByChildren = parentsAndChildren.FindAll(item => item.ChildId == child.Id);
+                if (parentsAndChildrenByChildren.Count == 0)
+                {
+                    DataManager.GetInstance().ChildrenRepository.Delete(child);
+                }
+            }
+
+            residents = DataManager.GetInstance().ResidentsRepository.Read().ToList();
+            foreach (IContractData contract in contracts)
+            {
+                List<IResidentData> residentsByContract = residents.FindAll(item => item.ContractId == contract.Id);
+                if (residentsByContract.Count == 0)
                 {
                     DataManager.GetInstance().ContractsRepository.Delete(contract);
-                    contracts.Remove(contract);
                 }
-
-                DataManager.GetInstance().ResidentsRepository.Delete(resident);
-                residents.Remove(resident);
             }
-            
+
             DataManager.GetInstance().RoomsRepository.Delete(_rooms[index]);
             _rooms.Remove(_rooms[index]);
         }

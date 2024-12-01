@@ -17,6 +17,9 @@ namespace WpfDormitories.ViewModel.DormsVM
 
         private IUserAbilitiesData _userAbilitiesData;
 
+        private Visibility _haveComment;
+        private string _comment;
+
         public bool DeleteConfirmStatus { get; set; }
 
         public Action<IUserAbilitiesData, DataRow> OnResidents;
@@ -24,12 +27,39 @@ namespace WpfDormitories.ViewModel.DormsVM
         public Action OnAdd;
         public Action OnDelete;
 
+        public Visibility HaveComment
+        {
+            get { return _haveComment; }
+            set
+            {
+                Set(ref _haveComment, value);
+            }
+        }
+        public string Comment
+        {
+            get { return _comment; }
+            set
+            {
+                Set(ref _comment, value);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    HaveComment = Visibility.Visible;
+                }
+                else
+                {
+                    HaveComment = Visibility.Collapsed;
+                }
+            }
+        }
+
+
         public int SelectedIndex
         {
             get { return _selectedIndex; }
             set
             {
                 Set(ref _selectedIndex, value);
+                Comment = (string)_tableService.GetByIndex(_selectedIndex)[5];
             }
         }
 
@@ -68,6 +98,7 @@ namespace WpfDormitories.ViewModel.DormsVM
 
         public ContractsViewModel(IUserAbilitiesData userAbilities)
         {
+            _haveComment = Visibility.Collapsed;
             _selectedIndex = -1;
             _userAbilitiesData = userAbilities;
             DeleteConfirmStatus = false;

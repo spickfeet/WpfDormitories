@@ -60,10 +60,10 @@ namespace WpfDormitories.DataBase.Repositories
                             row[3].ToString(),
                             new Passport(
                                 new FullName(row[4].ToString(), row[5].ToString(), row[6]?.ToString()),
-                                row[7].ToString(), DateOnly.Parse(row[8].ToString()), uint.Parse(row[9].ToString()),
-                                uint.Parse(row[10].ToString()), DateOnly.Parse(row[11].ToString()), row[12].ToString())),
+                                row[7].ToString(), DateTime.Parse(row[8].ToString()), uint.Parse(row[9].ToString()),
+                                uint.Parse(row[10].ToString()), DateTime.Parse(row[11].ToString()), row[12].ToString())),
                         int.Parse(row[15].ToString()) == 1 ? true : false,
-                        DateOnly.Parse(row[16].ToString()),
+                        DateTime.Parse(row[16].ToString()),
                         (float)row[17],
                         row[18]?.ToString(),
                         row[19]?.ToString())

@@ -17,7 +17,7 @@ namespace WpfDormitories.DataBase.Entity.Resident
         [DisplayName("Наличие детей")]
         bool HaveChildren { get; set; }
         [DisplayName("Дата заселения")]
-        DateOnly ArrivalDate { get; set; }
+        DateTime ArrivalDate { get; set; }
         [DisplayName("Оплата")]
         float Payment {  get; set; }
         [DisplayName("Место работы")]

@@ -10,6 +10,6 @@ namespace WpfDormitories.DataBase.Entity.Eviction
         [DisplayName("Причина выселения")]
         string Reason {  get; set; }
         [DisplayName("Дата выселения")]
-        DateOnly Date { get; set; }
+        DateTime Date { get; set; }
     }
 }

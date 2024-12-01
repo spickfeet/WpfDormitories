@@ -9,7 +9,7 @@ namespace WpfDormitories.DataBase.Entity.Child
         [DisplayName("Пол")]
         string Gender { get; set; }
         [DisplayName("Дата рождения")]
-        DateOnly DateOfBirth { get; set; }
+        DateTime DateOfBirth { get; set; }
         IFullName FullName { get; set; }
 
     }

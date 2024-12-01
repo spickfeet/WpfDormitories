@@ -17,7 +17,7 @@ namespace WpfDormitories.DataBase.Entity.Contract
         [DisplayName("Кто выдал")]
         string WhoGave { get; set; }
         [DisplayName("Дата начала действия")]
-        DateOnly StartAction { get; set; }
+        DateTime StartAction { get; set; }
         [DisplayName("Комментарий")]
         string Comment { get; set; }
     }

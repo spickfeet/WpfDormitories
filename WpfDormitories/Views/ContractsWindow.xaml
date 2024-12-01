@@ -17,6 +17,9 @@
                 <DataGrid ColumnWidth="*" Grid.Row="1" SelectionMode="Single" IsReadOnly="True" CanUserSortColumns = "False" SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding Table}" CanUserAddRows="False" CanUserReorderColumns="False" CanUserDeleteRows="False">
                 </DataGrid>
             </TabItem>
+            <TabItem Header="Комментарий" Visibility="{Binding HaveComment}">
+                <TextBox AcceptsReturn="True" Text="{Binding Comment}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+            </TabItem>
         </TabControl>
 
         <Grid Grid.Row="2">

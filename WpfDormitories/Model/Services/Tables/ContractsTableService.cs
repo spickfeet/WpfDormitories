@@ -52,7 +52,7 @@ namespace WpfDormitories.Model.Services.Tables
 
             foreach (IContractData contract in _contracts)
             {
-                res.Rows.Add(contract.DocumentNumber, contract.Name, contract.WhoGave, contract.StartAction, contract.Comment);
+                res.Rows.Add(contract.DocumentNumber, contract.Name, contract.WhoGave, contract.StartAction.ToString("yyyy-MM-dd"));
             }
             return res;
         }
@@ -63,7 +63,7 @@ namespace WpfDormitories.Model.Services.Tables
             DataTable res = CreateDataTable();
             foreach (IContractData contract in _contracts)
             {
-                res.Rows.Add(contract.DocumentNumber, contract.Name, contract.WhoGave, contract.StartAction, contract.Comment);
+                res.Rows.Add(contract.DocumentNumber, contract.Name, contract.WhoGave, contract.StartAction.ToString("yyyy-MM-dd"));
             }
             return res;
         }
@@ -75,7 +75,6 @@ namespace WpfDormitories.Model.Services.Tables
             res.Columns.Add("Название документа");
             res.Columns.Add("Кем выдан");
             res.Columns.Add("Начало действия");
-            res.Columns.Add("Комментарий");
             return res;
         }
 

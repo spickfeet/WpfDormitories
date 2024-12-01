@@ -41,7 +41,7 @@ namespace WpfDormitories.Views
                 contractVM.OnEdit += (dataRow) =>
                 {
                     AddOrEditContractWindow window = new();
-                    window.DataContext = new EditContractViewModel((uint)dataRow[0], (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], (DateOnly)dataRow[4], (string)dataRow[5]);
+                    window.DataContext = new EditContractViewModel((uint)dataRow[0], (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], (DateTime)dataRow[4], (string)dataRow[5]);
                     window.ShowDialog();
                     contractVM.UpdateTable();
                 };

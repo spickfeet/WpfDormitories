@@ -14,13 +14,13 @@ namespace WpfDormitories.DataBase.Entity.Resident
         public uint RoomId { get; set; }
         public IPersonDocuments PersonDocuments { get; set; }
         public bool HaveChildren { get; set; }
-        public DateOnly ArrivalDate { get; set; }
+        public DateTime ArrivalDate { get; set; }
         public float Payment { get; set; }
         public string PlaceOfWork { get; set; }
         public string PlaceOfStudy { get; set; }
 
         public ResidentData(uint id, uint contractId, uint roomId, IPersonDocuments personDocuments,
-            bool haveChildren, DateOnly arrivalDate, float payment, string placeOfWork, string placeOfStudy) 
+            bool haveChildren, DateTime arrivalDate, float payment, string placeOfWork, string placeOfStudy) 
         { 
             Id = id;
             ContractId = contractId;
@@ -34,7 +34,7 @@ namespace WpfDormitories.DataBase.Entity.Resident
         }
 
         public ResidentData(uint contractId, uint roomId, IPersonDocuments personDocuments,
-    bool haveChildren, DateOnly arrivalDate, float payment, string placeOfWork, string placeOfStudy)
+    bool haveChildren, DateTime arrivalDate, float payment, string placeOfWork, string placeOfStudy)
         {
             ContractId = contractId;
             RoomId = roomId;

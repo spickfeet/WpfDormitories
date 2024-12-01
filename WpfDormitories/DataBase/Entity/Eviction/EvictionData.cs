@@ -7,9 +7,9 @@ namespace WpfDormitories.DataBase.Entity.Eviction
         public uint Id { get; set; }
         public IPersonDocuments PersonDocuments { get; set; }
         public string Reason { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
 
-        public EvictionData(uint id, IPersonDocuments personDocuments, string reason, DateOnly date)
+        public EvictionData(uint id, IPersonDocuments personDocuments, string reason, DateTime date)
         {
             Id = id;
             PersonDocuments = personDocuments;
@@ -17,7 +17,7 @@ namespace WpfDormitories.DataBase.Entity.Eviction
             Date = date;
         }
 
-        public EvictionData(IPersonDocuments personDocuments, string reason, DateOnly date)
+        public EvictionData(IPersonDocuments personDocuments, string reason, DateTime date)
         {
             PersonDocuments = personDocuments;
             Reason = reason;

@@ -31,7 +31,7 @@ namespace WpfDormitories.ViewModel.DormsVM
                     if (ConfirmApplyStatus)
                     {
                         DataManager.GetInstance().ContractsRepository.
-                        Create(new ContractData(DocumentNumber, Name, WhoGave, new DateOnly(StartAction.Year, StartAction.Month, StartAction.Day), Comment));
+                        Create(new ContractData(DocumentNumber, Name, WhoGave, new DateTime(StartAction.Year, StartAction.Month, StartAction.Day), Comment));
                     }
                 });
             }

@@ -9,13 +9,13 @@ namespace WpfDormitories.Model.PersonDocument.Passport
         [DisplayName("Пол")]
         string Gender { get; set; }
         [DisplayName("Дата рождения")]
-        DateOnly DateOfBirth { get; set; }
+        DateTime DateOfBirth { get; set; }
         [DisplayName("Серия паспорта")]
         uint Series {  get; set; }
         [DisplayName("Номер паспорта")]
         uint Number {  get; set; }
         [DisplayName("Дата выдачи паспорта")]
-        DateOnly DateOfIssue { get; set; }
+        DateTime DateOfIssue { get; set; }
         [DisplayName("Кто выдал паспорт")]
         string WhoGave { get; set; }
     }

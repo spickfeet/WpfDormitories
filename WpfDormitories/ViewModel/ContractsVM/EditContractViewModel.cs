@@ -15,13 +15,13 @@ namespace WpfDormitories.ViewModel.DormsVM
     public class EditContractViewModel : BasicAddOrEditContractVM
     {
         private uint _id;
-        public EditContractViewModel(uint id, string documentNumber, string documentName, string whoGave, DateOnly startAction, string comment)
+        public EditContractViewModel(uint id, string documentNumber, string documentName, string whoGave, DateTime startAction, string comment)
         {
             _id = id;
             _documentNumber = documentNumber;
             _name = documentName;
             _whoGave = whoGave;
-            _startAction = new(startAction,new TimeOnly());
+            _startAction = startAction;
             _comment = comment;
         }
         public ICommand Apply
@@ -38,7 +38,7 @@ namespace WpfDormitories.ViewModel.DormsVM
                     OnApply?.Invoke();
                     if (ConfirmApplyStatus)
                     {
-                        DataManager.GetInstance().ContractsRepository.Update(new ContractData(DocumentNumber, Name, WhoGave, new DateOnly(StartAction.Year, StartAction.Month, StartAction.Day), Comment));
+                        DataManager.GetInstance().ContractsRepository.Update(new ContractData(_id,DocumentNumber, Name, WhoGave, new DateTime(StartAction.Year, StartAction.Month, StartAction.Day), Comment));
                     }
                 });
             }

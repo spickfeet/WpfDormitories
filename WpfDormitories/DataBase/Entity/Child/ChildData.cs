@@ -11,7 +11,7 @@ namespace WpfDormitories.DataBase.Entity.Child
     {
         private uint _id;
         private string _gender;
-        private DateOnly _dateOfBirth;
+        private DateTime _dateOfBirth;
         private IFullName _fullName;
         public uint Id 
         { 
@@ -23,7 +23,7 @@ namespace WpfDormitories.DataBase.Entity.Child
             get => _gender; 
             set => _gender = value; 
         }
-        public DateOnly DateOfBirth 
+        public DateTime DateOfBirth 
         {
             get => _dateOfBirth;
             set => _dateOfBirth = value; 
@@ -34,14 +34,14 @@ namespace WpfDormitories.DataBase.Entity.Child
             set => _fullName = value;
         }
 
-        public ChildData(uint id, string gender, DateOnly dateOfBirth, IFullName fullName)
+        public ChildData(uint id, string gender, DateTime dateOfBirth, IFullName fullName)
         {
             Id = id;
             Gender = gender;
             DateOfBirth = dateOfBirth;
             FullName = fullName;
         }
-        public ChildData(string gender, DateOnly dateOfBirth, IFullName fullName)
+        public ChildData(string gender, DateTime dateOfBirth, IFullName fullName)
         {
             Gender = gender;
             DateOfBirth = dateOfBirth;

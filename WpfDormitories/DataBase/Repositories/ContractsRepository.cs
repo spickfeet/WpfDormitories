@@ -30,7 +30,7 @@ namespace WpfDormitories.DataBase.Repositories
                 result.Add(
                     new ContractData(uint.Parse(row[0].ToString()),
                     row[1].ToString(), row[2].ToString(),
-                    row[3].ToString(), DateOnly.Parse(row[4].ToString()),
+                    row[3].ToString(), DateTime.Parse(row[4].ToString()),
                     row[5].ToString()));
             }
             return result;
@@ -39,7 +39,7 @@ namespace WpfDormitories.DataBase.Repositories
         public void Update(IContractData entity)
         {
             string query = $"UPDATE `dormitory`.`contracts` SET " +
-                $"document_number` = '{entity.DocumentNumber}', " +
+                $"document_number = '{entity.DocumentNumber}', " +
                 $"`name` = '{entity.Name}', " +
                 $"`who_gave` = '{entity.WhoGave}', " +
                 $"`start_action` = '{entity.StartAction.ToString("yyyy-MM-dd")}', " +

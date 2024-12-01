@@ -9,13 +9,13 @@ namespace WpfDormitories.DataBase.Entity.Contract
     public class ContractData : IContractData
     {
         public uint Id { get; set; }
-        public uint DocumentNumber { get; set; }
+        public string DocumentNumber { get; set; }
         public string Name { get; set; }
         public string WhoGave { get; set; }
         public DateOnly StartAction { get; set; }
         public string Comment { get; set; }
 
-        public ContractData(uint id, uint documentNumber, string name, string whoGave, DateOnly startAction, string comment) 
+        public ContractData(uint id, string documentNumber, string name, string whoGave, DateOnly startAction, string comment) 
         {
             Id = id;
             DocumentNumber = documentNumber;
@@ -24,7 +24,7 @@ namespace WpfDormitories.DataBase.Entity.Contract
             StartAction = startAction;
             Comment = comment;
         }
-        public ContractData(uint documentNumber, string name, string whoGave, DateOnly startAction, string comment)
+        public ContractData(string documentNumber, string name, string whoGave, DateOnly startAction, string comment)
         {
             DocumentNumber = documentNumber;
             Name = name;

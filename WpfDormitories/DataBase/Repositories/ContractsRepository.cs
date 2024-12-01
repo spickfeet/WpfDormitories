@@ -29,7 +29,7 @@ namespace WpfDormitories.DataBase.Repositories
             {
                 result.Add(
                     new ContractData(uint.Parse(row[0].ToString()),
-                    uint.Parse(row[1].ToString()), row[2].ToString(),
+                    row[1].ToString(), row[2].ToString(),
                     row[3].ToString(), DateOnly.Parse(row[4].ToString()),
                     row[5].ToString()));
             }

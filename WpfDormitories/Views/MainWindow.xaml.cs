@@ -119,6 +119,12 @@ namespace WpfDormitories.Views
                     window.DataContext = new DormsViewModel(userAbilitiesData);
                     window.ShowDialog();
                 };
+                mainWindowViewModel.OnContracts += (userAbilitiesData) =>
+                {
+                    ContractsWindow window = new();
+                    window.DataContext = new ContractsViewModel(userAbilitiesData);
+                    window.ShowDialog();
+                };
             }
             
         }

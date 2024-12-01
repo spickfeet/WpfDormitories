@@ -75,6 +75,7 @@ namespace WpfDormitories.ViewModel.DormsVM
 
         public DormsViewModel(IUserAbilitiesData userAbilities)
         {
+            _selectedIndex = -1;
             _userAbilitiesData = userAbilities;
             DeleteConfirmStatus = false;
             _tableService = new DormsTableService();

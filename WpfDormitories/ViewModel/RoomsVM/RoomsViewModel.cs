@@ -86,6 +86,7 @@ namespace WpfDormitories.ViewModel.RoomsVM
 
         public RoomsViewModel(IUserAbilitiesData userAbilities, uint dormId)
         {
+            _selectedIndex = -1;
             _userAbilitiesData = userAbilities;
             List<IDormData> dorms = DataManager.GetInstance().DormsRepository.Read().ToList();
             IDormData dorm = dorms.Find(item => item.Id == dormId);

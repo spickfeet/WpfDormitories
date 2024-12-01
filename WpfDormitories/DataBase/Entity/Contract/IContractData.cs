@@ -11,7 +11,7 @@ namespace WpfDormitories.DataBase.Entity.Contract
     {
         uint Id { get; set; }
         [DisplayName("Номер документа")]
-        uint DocumentNumber { get; set; }
+        string DocumentNumber { get; set; }
         [DisplayName("Наименование документа")]
         string Name { get; set; }
         [DisplayName("Кто выдал")]

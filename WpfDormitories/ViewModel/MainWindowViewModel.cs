@@ -32,6 +32,7 @@ namespace WpfDormitories.ViewModel
         public Action OnCustomQuery;
 
         public Action<IUserAbilitiesData> OnDorms;
+        public Action<IUserAbilitiesData> OnContracts;
 
         private ITableService _currentTable;
         private IDictionary<Tables,ITableService> _tableServices;
@@ -160,6 +161,22 @@ namespace WpfDormitories.ViewModel
                 return new DelegateCommand(() =>
                 {
                     OnMenuContents?.Invoke();
+                });
+
+            }
+        }
+
+        public ICommand Contracts
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    IUserAbilitiesData abilities = _abilitiesService.GetUserAbilitiesByFuncName("Contracts");
+                    W = abilities.W == true ? Visibility.Visible : Visibility.Collapsed;
+                    E = abilities.E == true ? Visibility.Visible : Visibility.Collapsed;
+                    D = abilities.D == true ? Visibility.Visible : Visibility.Collapsed;
+                    OnContracts?.Invoke(abilities);
                 });
 
             }

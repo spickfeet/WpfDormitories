@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Data;
 using System.Windows;
+using System.Windows.Input;
 using WpfDormitories.DataBase.Entity.UserAbilities;
 using WpfDormitories.Model.Services.Tables;
 using WpfTest.ViewModel;
 
-namespace WpfDormitories.ViewModel.InventoryVM
+namespace WpfDormitories.ViewModel.DormsVM
 {
-    public class InventoryViewModel : BasicVM
+    public class ContractsViewModel : BasicVM
     {
-        private uint _roomId;
-
         private ITableService _tableService;
 
         private int _selectedIndex;
@@ -26,8 +19,9 @@ namespace WpfDormitories.ViewModel.InventoryVM
 
         public bool DeleteConfirmStatus { get; set; }
 
+        public Action<IUserAbilitiesData, DataRow> OnResidents;
         public Action<DataRow> OnEdit;
-        public Action<uint> OnAdd;
+        public Action OnAdd;
         public Action OnDelete;
 
         public int SelectedIndex
@@ -72,18 +66,17 @@ namespace WpfDormitories.ViewModel.InventoryVM
             get { return _userAbilitiesData.D ? Visibility.Visible : Visibility.Collapsed; ; }
         }
 
-        public InventoryViewModel(IUserAbilitiesData userAbilities, uint roomId)
+        public ContractsViewModel(IUserAbilitiesData userAbilities)
         {
             _selectedIndex = -1;
-            _roomId = roomId;
             _userAbilitiesData = userAbilities;
             DeleteConfirmStatus = false;
-            _tableService = new InventoryTableService(_roomId);
+            _tableService = new ContractsTableService();
 
             _table = _tableService.Read();
 
             _tableService.OnEdit += (dataRow) => { OnEdit?.Invoke(dataRow); };
-            _tableService.OnAdd += () => { OnAdd?.Invoke(_roomId); };
+            _tableService.OnAdd += () => { OnAdd?.Invoke(); };
         }
 
         public void UpdateTable()
@@ -147,6 +140,21 @@ namespace WpfDormitories.ViewModel.InventoryVM
                 return new DelegateCommand(() =>
                 {
                     _tableService.Add();
+                });
+
+            }
+        }
+
+        public ICommand Rooms
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    if (SelectedIndex >= 0 && SelectedIndex < _table.Rows.Count)
+                    {
+                        OnResidents?.Invoke(_userAbilitiesData, _tableService.GetByIndex(SelectedIndex));
+                    }
                 });
 
             }

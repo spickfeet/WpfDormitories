@@ -4,6 +4,7 @@ using WpfDormitories.DataBase.Entity.Resident;
 using WpfDormitories.Model.FullName;
 using WpfDormitories.Model.PersonDocument.Passport;
 using WpfDormitories.Model.PersonDocument;
+using WpfDormitories.DataBase.Entity.Room;
 
 namespace WpfDormitories.DataBase.Repositories
 {
@@ -11,7 +12,7 @@ namespace WpfDormitories.DataBase.Repositories
     {
         public void Create(IResidentData entity)
         {
-            string query = $"INSERT INTO evictions " +
+            string query = $"INSERT INTO residents " +
                 "(contract_id, room_id, registration_number, surname, name, patronymic, gender, " +
                 "date_of_birth, series_passport, number_passport, date_of_issue, " +
                 "who_gave, working, studying, have_children, arrival_date, payment, place_of_work, place_of_study) " +
@@ -28,25 +29,35 @@ namespace WpfDormitories.DataBase.Repositories
                 $"'{entity.PersonDocuments.Passport.Number}'," +
                 $"'{entity.PersonDocuments.Passport.DateOfIssue.ToString("yyyy-MM-dd")}'," +
                 $"'{entity.PersonDocuments.Passport.WhoGave}'," +
-                $"'{!string.IsNullOrEmpty(entity.PlaceOfWork)}'," +
-                $"'{!string.IsNullOrEmpty(entity.PlaceOfStudy)}'," +
-                $"'{entity.HaveChildren}'," +
+                $"{!string.IsNullOrEmpty(entity.PlaceOfWork)}," +
+                $"{!string.IsNullOrEmpty(entity.PlaceOfStudy)}," +
+                $"{entity.HaveChildren}," +
                 $"'{entity.ArrivalDate.ToString("yyyy-MM-dd")}'," +
                 $"'{entity.Payment}'," +
                 $"'{entity.PlaceOfWork}'," +
                 $"'{entity.PlaceOfStudy}')";
             DormitorySQLConnection.GetInstance().Request(query);
+            IRoomData roomsChange = DataManager.GetInstance().RoomsRepository.Read().ToList().Find(item => item.Id == entity.RoomId);
+            DataManager.GetInstance().RoomsRepository.Update(new RoomData(roomsChange.Id,
+                roomsChange.DormId, roomsChange.NumberRoom,
+                roomsChange.RoomArea, roomsChange.TotalNumberPlaces,
+                roomsChange.Floor, roomsChange.NumberFreePlaces - 1));
         }
 
         public void Delete(IResidentData entity)
         {
-            string query = $"DELETE FROM evictions WHERE id={entity.Id}";
+            string query = $"DELETE FROM residents WHERE id={entity.Id}";
             DormitorySQLConnection.GetInstance().Request(query);
+            IRoomData roomsChange = DataManager.GetInstance().RoomsRepository.Read().ToList().Find(item => item.Id == entity.RoomId);
+            DataManager.GetInstance().RoomsRepository.Update(new RoomData(roomsChange.Id,
+                roomsChange.DormId, roomsChange.NumberRoom,
+                roomsChange.RoomArea, roomsChange.TotalNumberPlaces,
+                roomsChange.Floor, roomsChange.NumberFreePlaces + 1));
         }
 
         public IList<IResidentData> Read()
         {
-            string query = "SELECT * FROM evictions";
+            string query = "SELECT * FROM residents";
             DataTable dt = DormitorySQLConnection.GetInstance().GetData(query);
             IList<IResidentData> result = new List<IResidentData>();
             foreach (DataRow row in dt.Rows)
@@ -60,8 +71,8 @@ namespace WpfDormitories.DataBase.Repositories
                             row[3].ToString(),
                             new Passport(
                                 new FullName(row[4].ToString(), row[5].ToString(), row[6]?.ToString()),
-                                row[7].ToString(), DateTime.Parse(row[8].ToString()), uint.Parse(row[9].ToString()),
-                                uint.Parse(row[10].ToString()), DateTime.Parse(row[11].ToString()), row[12].ToString())),
+                                row[7].ToString(), DateTime.Parse(row[8].ToString()), (string)row[9],
+                                (string)row[10], DateTime.Parse(row[11].ToString()), row[12].ToString())),
                         int.Parse(row[15].ToString()) == 1 ? true : false,
                         DateTime.Parse(row[16].ToString()),
                         (float)row[17],
@@ -74,7 +85,7 @@ namespace WpfDormitories.DataBase.Repositories
 
         public void Update(IResidentData entity)
         {
-            string query = $"UPDATE `dormitory`.`evictions` SET " +
+            string query = $"UPDATE `dormitory`.`residents` SET " +
                 $"`contract_id` = '{entity.ContractId}', " +
                 $"`room_id` = '{entity.RoomId}', " +
                 $"`registration_number` = '{entity.PersonDocuments.RegistrationNumber}', " +

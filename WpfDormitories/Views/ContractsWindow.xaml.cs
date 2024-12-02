@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfDormitories.ViewModel;
 using WpfDormitories.ViewModel.DormsVM;
+using WpfDormitories.ViewModel.ResidentsVM;
+using WpfDormitories.ViewModel.RoomsVM;
 
 namespace WpfDormitories.Views
 {
@@ -56,7 +58,10 @@ namespace WpfDormitories.Views
                 };
                 contractVM.OnResidents += (userAbility, dataRow) =>
                 {
-                    MessageBox.Show((string)dataRow[2]);
+                    ResidentsWindow window = new();
+                    window.DataContext = new ResidentsViewModel(userAbility, (uint)dataRow[0]);
+                    window.ShowDialog();
+                    contractVM.UpdateTable();
                 };
             }
         }

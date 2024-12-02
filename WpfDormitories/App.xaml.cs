@@ -18,7 +18,7 @@ namespace WpfDormitories
                 new DistrictsRepository(), new DormsRepository(), new EvictionsRepository(), new InventoryDirectoryRepository(),
                 new InventoryRepository(), new ParentsAndChildrenRepository(), new ResidentsRepository(), new RoomsRepository(),
                 new StreetsRepository(), new UserAbilitiesRepository(), new MenuElementsRepository());
-            LoginWindow window = new LoginWindow();
+            LoginWindow window = new();
             app.Run(window);
         }
     }

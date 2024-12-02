@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDormitories.Views"
         mc:Ignorable="d"
-        Title="Контракт" Height="400" Width="200">
+        Title="Контракт" Height="400" Width="220">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

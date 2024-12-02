@@ -11,9 +11,9 @@ namespace WpfDormitories.Model.PersonDocument.Passport
         [DisplayName("Дата рождения")]
         DateTime DateOfBirth { get; set; }
         [DisplayName("Серия паспорта")]
-        uint Series {  get; set; }
+        string Series {  get; set; }
         [DisplayName("Номер паспорта")]
-        uint Number {  get; set; }
+        string Number {  get; set; }
         [DisplayName("Дата выдачи паспорта")]
         DateTime DateOfIssue { get; set; }
         [DisplayName("Кто выдал паспорт")]

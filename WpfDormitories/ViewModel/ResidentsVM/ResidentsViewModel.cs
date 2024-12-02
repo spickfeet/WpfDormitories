@@ -1,15 +1,24 @@
-﻿using System.Data;
-using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows;
+using WpfDormitories.DataBase.Entity.Dorm;
 using WpfDormitories.DataBase.Entity.UserAbilities;
+using WpfDormitories.DataBase;
 using WpfDormitories.Model.Services.Tables;
 using WpfTest.ViewModel;
+using WpfDormitories.DataBase.Entity.Contract;
 
-namespace WpfDormitories.ViewModel.DormsVM
+namespace WpfDormitories.ViewModel.ResidentsVM
 {
-    public class ContractsViewModel : BasicVM
+    public class ResidentsViewModel : BasicVM
     {
         private ITableService _tableService;
+        private string _contractInfo;
 
         private int _selectedIndex;
         private DataTable _table;
@@ -17,41 +26,22 @@ namespace WpfDormitories.ViewModel.DormsVM
 
         private IUserAbilitiesData _userAbilitiesData;
 
-        private Visibility _haveComment;
-        private string _comment;
 
         public bool DeleteConfirmStatus { get; set; }
 
-        public Action<IUserAbilitiesData, DataRow> OnResidents;
+        public Action<IUserAbilitiesData, DataRow> OnChildren;
         public Action<DataRow> OnEdit;
-        public Action OnAdd;
+        public Action<uint> OnAdd;
         public Action OnDelete;
 
-        public Visibility HaveComment
+        public string ContractInfo
         {
-            get { return _haveComment; }
+            get { return _contractInfo; }
             set
             {
-                Set(ref _haveComment, value);
+                Set(ref _contractInfo, value);
             }
         }
-        public string Comment
-        {
-            get { return _comment; }
-            set
-            {
-                Set(ref _comment, value);
-                if (!string.IsNullOrEmpty(value))
-                {
-                    HaveComment = Visibility.Visible;
-                }
-                else
-                {
-                    HaveComment = Visibility.Collapsed;
-                }
-            }
-        }
-
 
         public int SelectedIndex
         {
@@ -59,8 +49,6 @@ namespace WpfDormitories.ViewModel.DormsVM
             set
             {
                 Set(ref _selectedIndex, value);
-                if (value >= 0)
-                    Comment = (string)_tableService.GetByIndex(_selectedIndex)[5];
             }
         }
 
@@ -97,18 +85,20 @@ namespace WpfDormitories.ViewModel.DormsVM
             get { return _userAbilitiesData.D ? Visibility.Visible : Visibility.Collapsed; ; }
         }
 
-        public ContractsViewModel(IUserAbilitiesData userAbilities)
+        public ResidentsViewModel(IUserAbilitiesData userAbilities, uint contractId)
         {
-            _haveComment = Visibility.Collapsed;
             _selectedIndex = -1;
             _userAbilitiesData = userAbilities;
+            List<IContractData> contracts = DataManager.GetInstance().ContractsRepository.Read().ToList();
+            IContractData contract = contracts.Find(item => item.Id == contractId);
+            _contractInfo = $"Контракт №{contract.DocumentNumber}, {contract.Name}, {contract.StartAction.ToString("yyyy-MM-dd")}";
             DeleteConfirmStatus = false;
-            _tableService = new ContractsTableService();
+            _tableService = new ResidentsTableService(contractId);
 
             _table = _tableService.Read();
 
             _tableService.OnEdit += (dataRow) => { OnEdit?.Invoke(dataRow); };
-            _tableService.OnAdd += () => { OnAdd?.Invoke(); };
+            _tableService.OnAdd += () => { OnAdd?.Invoke(contractId); };
         }
 
         public void UpdateTable()
@@ -177,7 +167,7 @@ namespace WpfDormitories.ViewModel.DormsVM
             }
         }
 
-        public ICommand Residents
+        public ICommand Inventory
         {
             get
             {
@@ -185,7 +175,7 @@ namespace WpfDormitories.ViewModel.DormsVM
                 {
                     if (SelectedIndex >= 0 && SelectedIndex < _table.Rows.Count)
                     {
-                        OnResidents?.Invoke(_userAbilitiesData, _tableService.GetByIndex(SelectedIndex));
+                        OnChildren?.Invoke(_userAbilitiesData, _tableService.GetByIndex(SelectedIndex));
                     }
                 });
 
@@ -193,3 +183,4 @@ namespace WpfDormitories.ViewModel.DormsVM
         }
     }
 }
+

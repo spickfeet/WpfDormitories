@@ -33,6 +33,12 @@ namespace WpfDormitories.Model.Services.Tables
             _streets = DataManager.GetInstance().StreetsRepository.Read().ToList();
             _rooms = DataManager.GetInstance().RoomsRepository.Read().ToList();
         }
+        public ResidentsTableService()
+        {
+            _dorms = DataManager.GetInstance().DormsRepository.Read().ToList();
+            _streets = DataManager.GetInstance().StreetsRepository.Read().ToList();
+            _rooms = DataManager.GetInstance().RoomsRepository.Read().ToList();
+        }
         public void Edit(int index)
         {
             OnEdit.Invoke(DataTableParser.ToDataTable<IResidentData>(_residents).Rows[index]);
@@ -51,7 +57,7 @@ namespace WpfDormitories.Model.Services.Tables
 
             foreach (IResidentData resident in allResidents)
             {
-                if (resident.ContractId == _contractId)
+                if (resident.ContractId == _contractId || _contractId == 0)
                     _residents.Add(resident);
             }
 
@@ -112,7 +118,7 @@ namespace WpfDormitories.Model.Services.Tables
             
             foreach(IResidentData resident in allResidents)
             {
-                if(resident.ContractId == _contractId)
+                if(resident.ContractId == _contractId || _contractId == 0)
                     _residents.Add(resident);
             }
 

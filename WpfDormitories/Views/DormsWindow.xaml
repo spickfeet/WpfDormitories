@@ -12,12 +12,8 @@
             <RowDefinition/>
             <RowDefinition Height ="0.2*"/>
         </Grid.RowDefinitions>
-        <TabControl Grid.Row="0">
-            <TabItem Header="Общежития">
-                <DataGrid ColumnWidth="*" Grid.Row="1" SelectionMode="Single" IsReadOnly="True" CanUserSortColumns = "False" SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding Table}" CanUserAddRows="False" CanUserReorderColumns="False" CanUserDeleteRows="False">
-                </DataGrid>
-            </TabItem>
-        </TabControl>
+        <DataGrid ColumnWidth="*" Grid.Row="0" SelectionMode="Single" IsReadOnly="True" CanUserSortColumns = "False" SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding Table}" CanUserAddRows="False" CanUserReorderColumns="False" CanUserDeleteRows="False">
+        </DataGrid>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

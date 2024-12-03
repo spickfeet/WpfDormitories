@@ -1,0 +1,38 @@
+﻿<Window x:Class="WpfDormitories.Views.EditEvictionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDormitories.Views"
+        mc:Ignorable="d"
+        Title="Выселение" Height="350" Width="300">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Дата выселения"/>
+                <DatePicker Grid.Row="1" SelectedDate="{Binding Date}" Height="20" Width="200"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Причина"/>
+                <TextBox Grid.Row="1" AcceptsReturn="True" Text="{Binding Reason}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxLength="300"/>
+            </Grid>
+
+            <Button Grid.Row="2" Command="{Binding Apply}"  Content="Обновить" Height="40" Width="200"/>
+        </Grid>
+    </Grid>
+</Window>

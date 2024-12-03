@@ -5,6 +5,7 @@ using WpfDormitories.ViewModel.DirectoriesVM.DistrictsVM;
 using WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM;
 using WpfDormitories.ViewModel.DirectoriesVM.StreetVM;
 using WpfDormitories.ViewModel.DormsVM;
+using WpfDormitories.ViewModel.EvictionsVM;
 using WpfDormitories.ViewModel.UserAbilitiesVM;
 
 namespace WpfDormitories.Views
@@ -123,6 +124,12 @@ namespace WpfDormitories.Views
                 {
                     ContractsWindow window = new();
                     window.DataContext = new ContractsViewModel(userAbilitiesData);
+                    window.ShowDialog();
+                };
+                mainWindowViewModel.OnEvictions += (userAbilitiesData) =>
+                {
+                    EvictionsWindow window = new();
+                    window.DataContext = new EvictionsViewModel(userAbilitiesData);
                     window.ShowDialog();
                 };
             }

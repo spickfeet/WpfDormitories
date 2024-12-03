@@ -33,6 +33,7 @@ namespace WpfDormitories.ViewModel
 
         public Action<IUserAbilitiesData> OnDorms;
         public Action<IUserAbilitiesData> OnContracts;
+        public Action<IUserAbilitiesData> OnEvictions;
 
         private ITableService _currentTable;
         private IDictionary<Tables,ITableService> _tableServices;
@@ -177,6 +178,22 @@ namespace WpfDormitories.ViewModel
                     E = abilities.E == true ? Visibility.Visible : Visibility.Collapsed;
                     D = abilities.D == true ? Visibility.Visible : Visibility.Collapsed;
                     OnContracts?.Invoke(abilities);
+                });
+
+            }
+        }
+
+        public ICommand Evictions
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    IUserAbilitiesData abilities = _abilitiesService.GetUserAbilitiesByFuncName("Evictions");
+                    W = abilities.W == true ? Visibility.Visible : Visibility.Collapsed;
+                    E = abilities.E == true ? Visibility.Visible : Visibility.Collapsed;
+                    D = abilities.D == true ? Visibility.Visible : Visibility.Collapsed;
+                    OnEvictions?.Invoke(abilities);
                 });
 
             }

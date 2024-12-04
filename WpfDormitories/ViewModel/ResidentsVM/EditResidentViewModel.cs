@@ -19,6 +19,21 @@ namespace WpfDormitories.ViewModel.ResidentsVM
     {
         private uint _id;
         private uint _originalRoomId;
+        public override int SelectedIndexDorm
+        {
+            get { return _selectedIndexDorm; }
+            set
+            {
+                Set(ref _selectedIndexDorm, value);
+                SelectedIndexRoom = -1;
+                _roomsData = DataManager.GetInstance().RoomsRepository.Read().ToList().
+                    FindAll(item => (item.DormId == _dorms[SelectedIndexDorm].Id && (item.NumberFreePlaces > 0 || item.Id == _originalRoomId)));
+                List<string> rooms = new();
+                foreach (IRoomData room in _roomsData)
+                    rooms.Add($"Комната №{room.NumberRoom}\nСвободных мест: {room.NumberFreePlaces} из {room.TotalNumberPlaces}");
+                Rooms = rooms;
+            }
+        }
         public EditResidentViewModel(uint id, uint contractId, uint roomId, IPersonDocuments personDocuments,
             bool haveChildren, DateTime arrivalDate, float payment, string placeOfWork, string placeOfStudy)
         {
@@ -45,8 +60,6 @@ namespace WpfDormitories.ViewModel.ResidentsVM
             _dateOfBirth = personDocuments.Passport.DateOfBirth;
             _placeOfStudy = placeOfStudy;
             _arrivalDate = arrivalDate;
-
-
         }
         public ICommand Apply
         {

@@ -54,7 +54,7 @@ namespace WpfDormitories.ViewModel.ResidentsVM
             }
         }
 
-        public int SelectedIndexDorm
+        public virtual int SelectedIndexDorm
         {
             get { return _selectedIndexDorm; }
             set 

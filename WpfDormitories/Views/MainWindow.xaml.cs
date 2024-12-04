@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using WpfDormitories.DataBase.Entity.UserAbilities;
 using WpfDormitories.ViewModel;
+using WpfDormitories.ViewModel.ChildrenVM;
 using WpfDormitories.ViewModel.DirectoriesVM.DistrictsVM;
 using WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM;
 using WpfDormitories.ViewModel.DirectoriesVM.StreetVM;
@@ -130,6 +131,12 @@ namespace WpfDormitories.Views
                 {
                     EvictionsWindow window = new();
                     window.DataContext = new EvictionsViewModel(userAbilitiesData);
+                    window.ShowDialog();
+                };
+                mainWindowViewModel.OnChildren += (userAbilitiesData) =>
+                {
+                    ChildrenWindow window = new();
+                    window.DataContext = new ChildrenViewModel(userAbilitiesData);
                     window.ShowDialog();
                 };
             }

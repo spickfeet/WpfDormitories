@@ -1,0 +1,60 @@
+﻿<Window x:Class="WpfDormitories.Views.AddOrEditChildWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDormitories.Views"
+        mc:Ignorable="d"
+           Title="Ребенок" Height="270" Width="220">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Пол"/>
+            <ComboBox Grid.Row="1" SelectedIndex="{Binding SelectedGenderIndex}" ItemsSource="{Binding Genders}" Height="20" Width="200"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Дата рождения"/>
+            <DatePicker Grid.Row="1" SelectedDate="{Binding DateOfBirth}" Height="20" Width="200"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Фамилия"/>
+            <TextBox Grid.Row="1" Text="{Binding Surname}" Height="20" Width="200"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Имя"/>
+            <TextBox Grid.Row="1" Text="{Binding Name}" Height="20" Width="200"/>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Отчество"/>
+            <TextBox Grid.Row="1" Text="{Binding Patronymic}" Height="20" Width="200"/>
+        </Grid>
+        <Button Grid.Row="6" Command="{Binding Apply}" Content="Применить" Height="20" Width="200"/>
+    </Grid>
+</Window>

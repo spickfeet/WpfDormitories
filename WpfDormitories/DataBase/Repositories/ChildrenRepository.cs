@@ -31,7 +31,7 @@ namespace WpfDormitories.DataBase.Repositories
             {
                 result.Add(
                     new ChildData(uint.Parse(row[0].ToString()),
-                    row[1].ToString(), DateTime.Parse(row[2].ToString()), new FullName(row[2].ToString(), row[3].ToString(), row[4]?.ToString())
+                    row[1].ToString(), DateTime.Parse(row[2].ToString()), new FullName(row[3].ToString(), row[4].ToString(), row[5]?.ToString())
                     ));
             }
             return result;

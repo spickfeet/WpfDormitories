@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDormitories.Views"
         mc:Ignorable="d"
-        Title="AboutProgramWindow" Height="450" Width="800">
+        Title="О программе" Height="450" Width="800">
     <Grid>
         <TextBox x:Name="Text" IsReadOnly="True" FontSize="20">
         </TextBox>

@@ -53,7 +53,11 @@ namespace WpfDormitories.ViewModel.EvictionsVM
         public string FindText
         {
             get { return _findText; }
-            set { Set(ref _findText, value); }
+            set 
+            { 
+                Set(ref _findText, value); 
+                Residents = _tableService.FindAll(value); 
+            }
         }
 
         public AddEvictionViewModel()
@@ -63,17 +67,6 @@ namespace WpfDormitories.ViewModel.EvictionsVM
             _selectedResidentIndex = -1;
             _tableService = new ResidentsTableService();
             _residents = _tableService.Read();
-        }
-
-        public ICommand Find
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    Residents = _tableService.FindAll(FindText);
-                });
-            }
         }
 
         public ICommand Apply

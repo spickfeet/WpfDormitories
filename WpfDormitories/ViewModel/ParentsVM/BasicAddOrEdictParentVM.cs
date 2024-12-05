@@ -21,7 +21,11 @@ namespace WpfDormitories.ViewModel.ParentsVM
         public string FindText
         {
             get { return _findText; }
-            set { Set(ref _findText, value); }
+            set 
+            { 
+                Set(ref _findText, value);
+                ParentsTable = _parentsTableService.FindAll(value);
+            }
         }
 
         public int SelectedParentIndex

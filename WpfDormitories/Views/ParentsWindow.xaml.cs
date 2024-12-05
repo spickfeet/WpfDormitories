@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfDormitories.Model.Services.Tables;
+using WpfDormitories.ViewModel;
 using WpfDormitories.ViewModel.EvictionsVM;
 using WpfDormitories.ViewModel.ParentsVM;
 
@@ -46,6 +47,15 @@ namespace WpfDormitories.Views
                     window.DataContext = new EditParentViewModel((uint)dataRow[0], (uint)dataRow[1], (uint)dataRow[2]);
                     window.ShowDialog();
                     parentsVM.UpdateTable();
+                };
+                parentsVM.OnDelete += () =>
+                {
+                    ConfirmationWindow window = new ConfirmationWindow();
+                    window.ShowDialog();
+                    if (window.DataContext is ConfirmationViewModel confirmation)
+                    {
+                        parentsVM.DeleteConfirmStatus = confirmation.Result;
+                    }
                 };
             }
         }

@@ -28,8 +28,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Text="{Binding FindText}" Height="20" Width="200"/>
-                <Button Grid.Column="1" Command="{Binding Find}" Content="Поиск" Height="20" Width="200"/>
+                <TextBox Grid.Column="0" Text="{Binding FindText, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="200"/>
             </Grid>
         </Grid>
         

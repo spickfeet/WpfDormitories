@@ -9,12 +9,16 @@ using System.Windows;
 using WpfDormitories.DataBase.Entity.UserAbilities;
 using WpfDormitories.Model.Services.Tables;
 using WpfTest.ViewModel;
+using WpfDormitories.DataBase;
+using WpfDormitories.DataBase.Entity.Child;
 
 namespace WpfDormitories.ViewModel.ParentsVM
 {
     public class ParentsViewModel : BasicVM
     {
         private uint _childId;
+
+        private string _childInfo;
 
         private ITableService _tableService;
 
@@ -29,6 +33,15 @@ namespace WpfDormitories.ViewModel.ParentsVM
         public Action<DataRow> OnEdit;
         public Action<uint> OnAdd;
         public Action OnDelete;
+
+        public string ChildInfo
+        {
+            get { return _childInfo; }
+            set
+            {
+                Set(ref _childInfo, value);
+            }
+        }
 
         public int SelectedIndex
         {
@@ -77,6 +90,9 @@ namespace WpfDormitories.ViewModel.ParentsVM
         public ParentsViewModel(IUserAbilitiesData userAbilities, uint childId)
         {
             _selectedIndex = -1;
+            IChildData child = DataManager.GetInstance().ChildrenRepository.Read().ToList().Find(item => item.Id == childId);
+            _childInfo = $"ФИО: {child.FullName.Surname} {child.FullName.Name} {child.FullName.Patronymic}, " +
+                $"Дата рождения: {child.DateOfBirth.ToString("yyyy-MM-dd")}, Пол: {child.Gender}";
             _childId = childId;
             _userAbilitiesData = userAbilities;
             DeleteConfirmStatus = false;

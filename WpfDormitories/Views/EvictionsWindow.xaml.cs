@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfDormitories.Model.PersonDocument;
+using WpfDormitories.ViewModel;
 using WpfDormitories.ViewModel.EvictionsVM;
 
 namespace WpfDormitories.Views
@@ -46,6 +47,15 @@ namespace WpfDormitories.Views
                         (string)dataRow[2], (DateTime)dataRow[3]);
                     window.ShowDialog();
                     evictionsVM.UpdateTable();
+                };
+                evictionsVM.OnDelete += () =>
+                {
+                    ConfirmationWindow window = new ConfirmationWindow();
+                    window.ShowDialog();
+                    if (window.DataContext is ConfirmationViewModel confirmation)
+                    {
+                        evictionsVM.DeleteConfirmStatus = confirmation.Result;
+                    }
                 };
             }
         }

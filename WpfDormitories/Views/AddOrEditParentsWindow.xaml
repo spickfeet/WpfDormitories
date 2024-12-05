@@ -38,10 +38,12 @@
             </TabControl>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="48*"/>
+                    <ColumnDefinition Width="191*"/>
+                    <ColumnDefinition Width="294*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Text="{Binding FindText, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="200"/>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Поиск" FontSize="14"/>
+                <TextBox Grid.Column="1" Text="{Binding FindText, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="200"/>
             </Grid>
         </Grid>
 

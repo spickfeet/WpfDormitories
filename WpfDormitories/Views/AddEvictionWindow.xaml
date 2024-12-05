@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDormitories.Views"
         mc:Ignorable="d"
-        Title="Выселить" Height="450" Width="800">
+        Title="Выселить" Height="470" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
-        
+
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="0.1*"/>
             </Grid.RowDefinitions>
-            
+
             <TabControl Grid.Column="0">
                 <TabItem Header="Жильцы">
                     <DataGrid Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" SelectionMode="Single" IsReadOnly="True" CanUserSortColumns = "False" SelectedIndex="{Binding SelectedResidentIndex}" ItemsSource="{Binding Residents}" CanUserAddRows="False" CanUserReorderColumns="False" CanUserDeleteRows="False"/>
@@ -25,20 +25,22 @@
             </TabControl>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="48*"/>
+                    <ColumnDefinition Width="191*"/>
+                    <ColumnDefinition Width="294*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Text="{Binding FindText, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="200"/>
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Поиск" FontSize="14"/>
+                <TextBox HorizontalAlignment="Left" Text="{Binding FindText, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="200" Grid.ColumnSpan="3" Margin="48,10,0,9"/>
             </Grid>
         </Grid>
-        
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.2*"/>
                 <RowDefinition/>
                 <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
-            
+
             <Grid Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>

@@ -78,7 +78,9 @@ namespace WpfDormitories.ViewModel
             get { return _findText; }
             set
             {
-                Set<string>(ref _findText, value);
+                Set(ref _findText, value);
+                if (_currentTable != null)
+                    Table = _currentTable.FindAll(FindText);
             }
         }
 
@@ -336,19 +338,6 @@ namespace WpfDormitories.ViewModel
                             }
                         }
                     }
-                });
-
-            }
-        }
-
-        public ICommand FindAll
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    if (_currentTable != null)
-                        Table = _currentTable.FindAll(FindText);
                 });
 
             }

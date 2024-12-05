@@ -36,6 +36,7 @@ namespace WpfDormitories.Model.Services.Tables
             {
                 return Read();
             }
+            text = text.ToUpper();
 
             _dorms = DataManager.GetInstance().DormsRepository.Read().ToList<IDormData>();
 
@@ -45,9 +46,9 @@ namespace WpfDormitories.Model.Services.Tables
 
             foreach (IDormData dorm in _dorms)
             {
-                if (_streets.Find(item => item.Id == dorm.StreetId).Name.ToLower().Contains(text.ToLower()) ||
-                        _districts.Find(item => item.Id == dorm.DistrictId).Name.ToLower().Contains(text.ToLower()) ||
-                        dorm.DormNumber.Contains(text))
+                if (_streets.Find(item => item.Id == dorm.StreetId).Name.ToUpper().Contains(text) ||
+                        _districts.Find(item => item.Id == dorm.DistrictId).Name.ToUpper().Contains(text) ||
+                        dorm.DormNumber.ToUpper().Contains(text) || dorm.HouseNumber.ToUpper().Contains(text))
                 {
                     resDorms.Add(dorm);
                 }

@@ -24,13 +24,11 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Text="{Binding FindText}" Width="200" Height="30" Margin="10"/>
-            <Button Grid.Column="1" Command="{Binding FindAll}" Content="Поиск" Margin="20" Width="70"/>
-            <Button Grid.Column="2" Visibility="{Binding W}" Command="{Binding Add}" Content="Добавить" Margin="20" Width="70"/>
-            <Button Grid.Column="3" Visibility="{Binding E}" Command="{Binding Edit}" Content="Редактировать" Margin="20" Width="90"/>
-            <Button Grid.Column="4" Visibility="{Binding D}" Command="{Binding Delete}" Content="Удалить" Margin="20" Width="70"/>
+            <TextBox Grid.Column="0" Text="{Binding FindText, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="30" Margin="10"/>
+            <Button Grid.Column="1" Visibility="{Binding W}" Command="{Binding Add}" Content="Добавить" Margin="20" Width="70"/>
+            <Button Grid.Column="2" Visibility="{Binding E}" Command="{Binding Edit}" Content="Редактировать" Margin="20" Width="90"/>
+            <Button Grid.Column="3" Visibility="{Binding D}" Command="{Binding Delete}" Content="Удалить" Margin="20" Width="70"/>
         </Grid>
     </Grid>
 </Window>

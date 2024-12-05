@@ -54,6 +54,8 @@ namespace WpfDormitories.ViewModel.ParentsVM
             set
             {
                 Set(ref _findText, value);
+                if (_tableService != null)
+                    Table = _tableService.FindAll(FindText);
             }
         }
 
@@ -108,18 +110,6 @@ namespace WpfDormitories.ViewModel.ParentsVM
                         }
                     }
 
-                });
-
-            }
-        }
-
-        public ICommand FindAll
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    Table = _tableService.FindAll(FindText);
                 });
 
             }

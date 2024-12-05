@@ -12,9 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfDormitories.Model.FullName;
+using WpfDormitories.Model.Services.Tables;
 using WpfDormitories.ViewModel;
 using WpfDormitories.ViewModel.ChildrenVM;
 using WpfDormitories.ViewModel.DormsVM;
+using WpfDormitories.ViewModel.ParentsVM;
 
 namespace WpfDormitories.Views
 {
@@ -58,10 +60,10 @@ namespace WpfDormitories.Views
                 };
                 childrenVM.OnParents += (userAbility, dataRow) =>
                 {
-                    //ResidentsWindow window = new();
-                    //window.DataContext = new ResidentsViewModel(userAbility, (uint)dataRow[0]);
-                    //window.ShowDialog();
-                    //contractVM.UpdateTable();
+                    ParentsWindow window = new();
+                    window.DataContext = new ParentsViewModel(userAbility, (uint)dataRow[0]);
+                    window.ShowDialog();
+                    childrenVM.UpdateTable();
                 };
             }
         }

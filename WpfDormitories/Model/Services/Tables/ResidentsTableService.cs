@@ -67,7 +67,11 @@ namespace WpfDormitories.Model.Services.Tables
 
             foreach (IResidentData resident in _residents)
             {
-                if (resident.PersonDocuments.RegistrationNumber.Contains(text) ||
+                    IRoomData room = _rooms.Find(item => item.Id == resident.RoomId);
+                    IDormData dorm = _dorms.Find(item => item.Id == room.DormId);
+
+                    if ($"Общежитие №{dorm.DormNumber}, {_streets.Find(item => item.Id == dorm.StreetId).Name}".ToUpper().Contains(text) || 
+                    resident.PersonDocuments.RegistrationNumber.Contains(text) ||
                     resident.PersonDocuments.Passport.FullName.Name.ToUpper().Contains(text) ||
                     resident.PersonDocuments.Passport.FullName.Surname.ToUpper().Contains(text) ||
                     resident.PersonDocuments.Passport.FullName.Patronymic.ToUpper().Contains(text) ||

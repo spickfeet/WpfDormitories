@@ -6,16 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
-using WpfDormitories.DataBase.Entity.Dorm;
 using WpfDormitories.DataBase.Entity.UserAbilities;
-using WpfDormitories.DataBase;
 using WpfDormitories.Model.Services.Tables;
 using WpfTest.ViewModel;
 
-namespace WpfDormitories.ViewModel.ChildrenVM
+namespace WpfDormitories.ViewModel.ParentsVM
 {
-    public class ChildrenViewModel : BasicVM
+    public class ParentsViewModel : BasicVM
     {
+        private uint _childId;
+
         private ITableService _tableService;
 
         private int _selectedIndex;
@@ -24,12 +24,10 @@ namespace WpfDormitories.ViewModel.ChildrenVM
 
         private IUserAbilitiesData _userAbilitiesData;
 
-
         public bool DeleteConfirmStatus { get; set; }
 
-        public Action<IUserAbilitiesData, DataRow> OnParents;
         public Action<DataRow> OnEdit;
-        public Action OnAdd;
+        public Action<uint> OnAdd;
         public Action OnDelete;
 
         public int SelectedIndex
@@ -74,18 +72,18 @@ namespace WpfDormitories.ViewModel.ChildrenVM
             get { return _userAbilitiesData.D ? Visibility.Visible : Visibility.Collapsed; ; }
         }
 
-        public ChildrenViewModel(IUserAbilitiesData userAbilities)
+        public ParentsViewModel(IUserAbilitiesData userAbilities, uint childId)
         {
             _selectedIndex = -1;
+            _childId = childId;
             _userAbilitiesData = userAbilities;
-            
             DeleteConfirmStatus = false;
-            _tableService = new ChildrenTableService();
+            _tableService = new ParentsByChildTableService(_childId);
 
             _table = _tableService.Read();
 
             _tableService.OnEdit += (dataRow) => { OnEdit?.Invoke(dataRow); };
-            _tableService.OnAdd += () => { OnAdd?.Invoke(); };
+            _tableService.OnAdd += () => { OnAdd?.Invoke(_childId); };
         }
 
         public void UpdateTable()
@@ -149,36 +147,6 @@ namespace WpfDormitories.ViewModel.ChildrenVM
                 return new DelegateCommand(() =>
                 {
                     _tableService.Add();
-                });
-
-            }
-        }
-
-        public ICommand Inventory
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    if (SelectedIndex >= 0 && SelectedIndex < _table.Rows.Count)
-                    {
-                        OnParents?.Invoke(_userAbilitiesData, _tableService.GetByIndex(SelectedIndex));
-                    }
-                });
-
-            }
-        }
-
-        public ICommand Parents
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    if (SelectedIndex >= 0 && SelectedIndex < _table.Rows.Count)
-                    {
-                        OnParents?.Invoke(_userAbilitiesData, _tableService.GetByIndex(SelectedIndex));
-                    }
                 });
 
             }

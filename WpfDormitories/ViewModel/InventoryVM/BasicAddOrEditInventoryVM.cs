@@ -20,7 +20,6 @@ namespace WpfDormitories.ViewModel.InventoryVM
             _selectedIndex = -1;
             _inventoryDirectory = DataManager.GetInstance().InventoryDirectoryRepository.Read().ToList<IInventoryDirectoryData>();
         }
-        public Action OnApply { get; set; }
         public int SelectedIndex
         {
             get { return _selectedIndex; }
@@ -39,6 +38,7 @@ namespace WpfDormitories.ViewModel.InventoryVM
                 return res;
             }
         }
+        public Action OnApply { get; set; }
         public bool ConfirmApplyStatus { get; set; }
     }
 }

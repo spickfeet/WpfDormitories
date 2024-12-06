@@ -29,7 +29,7 @@ namespace WpfDormitories.ViewModel
             {
                 return new DelegateCommand(() =>
                 {
-                    MyExportToWord.ExportTable(Table);
+                    Model.Services.Tables.ExportToWord.ExportTable(Table);
                 });
             }
         }

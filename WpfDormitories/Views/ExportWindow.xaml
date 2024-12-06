@@ -29,11 +29,11 @@
         </TabControl>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition/>
-                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="65"/>
             </Grid.RowDefinitions>
-            <DataGrid Grid.Row="1" SelectionMode="Single" IsReadOnly="True" CanUserSortColumns = "False" 
+            <DataGrid ColumnWidth="*" Grid.Row="1" SelectionMode="Single" IsReadOnly="True" CanUserSortColumns = "False" 
                 ItemsSource="{Binding Table}" CanUserAddRows="False" 
                 CanUserReorderColumns="False" CanUserDeleteRows="False"/>
         </Grid>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,35 @@ namespace WpfDormitories.Views
         public ChangePasswordWindow()
         {
             InitializeComponent();
+            Enter.Click += Enter_Click;
+            Cancel.Click += Cancel_Click;
+            if (DataContext is IApplicableVM applicable)
+            {
+                applicable.OnApply += () =>
+                {
+                    ConfirmationWindow window = new ConfirmationWindow();
+                    window.ShowDialog();
+                    if (window.DataContext is ConfirmationViewModel confirmation)
+                    {
+                        applicable.ConfirmApplyStatus = confirmation.Result;
+                    }
+                };
+            }
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Enter_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is ChangePasswordViewModel changePasswordVM)
+            {
+                changePasswordVM.NewPassword = NewPassword.Password;
+                changePasswordVM.OldPassword = OldPassword.Password;
+                changePasswordVM.RepeatNewPassword = RepeatNewPassword.Password;
+            }
         }
     }
 }

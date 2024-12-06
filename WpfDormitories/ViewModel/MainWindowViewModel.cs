@@ -33,6 +33,7 @@ namespace WpfDormitories.ViewModel
         public Action OnAboutProgram;
         public Action OnChangePassword;
         public Action OnCustomQuery;
+        public Action OnRegistration;
 
         public Action<IUserAbilitiesData> OnDorms;
         public Action<IUserAbilitiesData> OnContracts;
@@ -242,7 +243,18 @@ namespace WpfDormitories.ViewModel
 
             }
         }
-        
+
+        public ICommand Registration
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnRegistration?.Invoke();
+                });
+
+            }
+        }
 
         public ICommand ChangePassword
         {

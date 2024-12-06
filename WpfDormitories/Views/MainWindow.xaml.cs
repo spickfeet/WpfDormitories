@@ -45,6 +45,12 @@ namespace WpfDormitories.Views
                     window.ShowDialog();
                 };
 
+                mainWindowViewModel.OnRegistration += () =>
+                {
+                    RegistrationWindow window = new();
+                    window.ShowDialog();
+                };
+
                 mainWindowViewModel.OnChangePassword += () =>
                 {
                     ChangePasswordWindow window = new();

@@ -11,12 +11,15 @@ using WpfTest.ViewModel;
 
 namespace WpfDormitories.ViewModel
 {
-    public class ChangePasswordViewModel : BasicVM
+    public class ChangePasswordViewModel : BasicVM, IApplicableVM
     {
         private string _oldPassword;
         private string _newPassword;
         private string _repeatNewPassword;
         private IPasswordChangerService _passwordChanger = new PasswordChangerService(new HashCodeConvertor());
+
+        public Action OnApply { get; set; }
+        public bool ConfirmApplyStatus { get; set; }
 
         public string OldPassword 
         {  
@@ -42,6 +45,10 @@ namespace WpfDormitories.ViewModel
                 Set<string>(ref _repeatNewPassword, value);
             }
         }
+        public ChangePasswordViewModel()
+        {
+            ConfirmApplyStatus = false;
+        }
 
         public void ChangePassword()
         {
@@ -49,11 +56,13 @@ namespace WpfDormitories.ViewModel
             {
                 if (string.IsNullOrWhiteSpace(OldPassword) || string.IsNullOrWhiteSpace(NewPassword) || string.IsNullOrWhiteSpace(RepeatNewPassword)) 
                 {
-                    throw new ArgumentException("Одно или несколько полей не заполнены");
+                    MessageBox.Show("Одно или несколько полей не заполнены");
                 }
                 if (RepeatNewPassword == NewPassword)
                 {
+                    OnApply?.Invoke();
                     _passwordChanger.Change(OldPassword, NewPassword);
+                    MessageBox.Show("Пароль успешно изменен");
                 }
             }
             catch (Exception ex)

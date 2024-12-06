@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="О программе" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="Text" IsReadOnly="True" FontSize="20">
-        </TextBox>
+        <TextBox x:Name="Text" IsReadOnly="True" FontSize="20"/>
     </Grid>
 </Window>

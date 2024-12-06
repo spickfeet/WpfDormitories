@@ -38,7 +38,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBox x:Name="Login" Grid.Column="1" Grid.Row="0" Background="White" Canvas.Top="10" Text="{Binding Login}" FontSize="14" Height="20" Width="230"/>
-            <TextBox x:Name="Password" Grid.Column="1" Grid.Row="1" Background="White" Canvas.Bottom="10" Text="{Binding Password}" FontSize="14" Height="20" Width="230"/>
+            <PasswordBox x:Name="Password" Grid.Column="1" Grid.Row="1" Background="White" Canvas.Bottom="10" FontSize="14" Height="20" Width="230"/>
 
             <TextBlock Text="Имя пользователя" Grid.Column="0" Grid.Row="0" FontSize="14" VerticalAlignment="Center"/>
             <TextBlock Text="Пароль" Grid.Column="0" Grid.Row="1" FontSize="14" VerticalAlignment="Center"/>
@@ -51,7 +51,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button x:Name="Enter" Grid.Column="0" Width="130" Height="20" Content="Вход" Command="{Binding EnterCommand}"/>
-            <Button x:Name="Cancel" Grid.Column="1"  Width="130" Height="20" Content="Отмена" Command="{Binding CancelCommand}"/>
+            <Button x:Name="Cancel" Grid.Column="1"  Width="130" Height="20" Content="Отмена"/>
         </Grid>
 
         <Grid Grid.Row="3">

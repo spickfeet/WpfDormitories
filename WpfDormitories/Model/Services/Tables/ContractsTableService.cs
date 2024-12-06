@@ -57,7 +57,7 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
-        public DataTable Read()
+        virtual public DataTable Read()
         {
             _contracts = DataManager.GetInstance().ContractsRepository.Read().ToList();
             DataTable res = CreateDataTable();

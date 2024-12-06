@@ -1,0 +1,41 @@
+﻿<Window x:Class="WpfDormitories.Views.ExportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDormitories.Views"
+        mc:Ignorable="d"
+        Title="Экспорт" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Экспорт в Word">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="8"/>
+                    </Grid.RowDefinitions>
+                    <Button Command="{Binding ExportToWord}" Content="Экспорт" FontSize="20" Width="200" Height="40" VerticalAlignment="Bottom"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Экспорт в Excel">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="8"/>
+                    </Grid.RowDefinitions>
+                    <Button Command="{Binding ExportToExcel}" Content="Экспорт" FontSize="20" Width="200" Height="40" VerticalAlignment="Bottom"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+            <DataGrid Grid.Row="1" SelectionMode="Single" IsReadOnly="True" CanUserSortColumns = "False" 
+                ItemsSource="{Binding Table}" CanUserAddRows="False" 
+                CanUserReorderColumns="False" CanUserDeleteRows="False"/>
+        </Grid>
+    </Grid>
+</Window>

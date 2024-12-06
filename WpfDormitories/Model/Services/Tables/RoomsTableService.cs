@@ -29,6 +29,10 @@ namespace WpfDormitories.Model.Services.Tables
         {
             _dormId = dormId;
         }
+        public RoomsTableService()
+        {
+        }
+
         public void Edit(int index)
         {
             OnEdit.Invoke(GetByIndex(index));
@@ -44,7 +48,7 @@ namespace WpfDormitories.Model.Services.Tables
             _rooms = new();
             foreach (IRoomData room in allRooms)
             {
-                if (room.DormId == _dormId)
+                if (room.DormId == _dormId || _dormId == 0)
                 {
                     _rooms.Add(room);
                 }
@@ -70,13 +74,13 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
-        public DataTable Read()
+        public virtual DataTable Read()
         {
             List<IRoomData> allRooms = DataManager.GetInstance().RoomsRepository.Read().ToList();
             _rooms = new();
             foreach (IRoomData room in allRooms)
             {
-                if(room.DormId == _dormId)
+                if(room.DormId == _dormId || _dormId == 0)
                 {
                     _rooms.Add(room);
                 }

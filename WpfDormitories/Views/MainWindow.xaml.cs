@@ -139,6 +139,12 @@ namespace WpfDormitories.Views
                     window.DataContext = new ChildrenViewModel(userAbilitiesData);
                     window.ShowDialog();
                 };
+                mainWindowViewModel.OnExport += (tableService) =>
+                {
+                    ExportWindow window = new();
+                    window.DataContext = new ExportViewModel(tableService);
+                    window.ShowDialog();
+                };
             }
             
         }

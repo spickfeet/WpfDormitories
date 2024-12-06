@@ -20,9 +20,9 @@ namespace WpfDormitories.Model.Services.Tables
     {
         private uint _contractId;
         private List<IResidentData> _residents;
-        private List<IRoomData> _rooms;
-        private List<IDormData> _dorms;
-        private List<IStreetData> _streets;
+        protected List<IRoomData> _rooms;
+        protected List<IDormData> _dorms;
+        protected List<IStreetData> _streets;
         public Action<DataRow> OnEdit { get; set; }
         public Action OnAdd { get; set; }
 
@@ -114,7 +114,7 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
-        public DataTable Read()
+        public virtual DataTable Read()
         {
             List<IResidentData> allResidents = DataManager.GetInstance().ResidentsRepository.Read().ToList();
 

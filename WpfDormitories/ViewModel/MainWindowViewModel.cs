@@ -10,6 +10,7 @@ using WpfDormitories.DataBase.Entity.UserAbilities;
 using WpfDormitories.Enums;
 using WpfDormitories.Model.Services;
 using WpfDormitories.Model.Services.Tables;
+using WpfDormitories.Model.Services.Tables.ExportFormattedTables;
 using WpfDormitories.TemporarySolutions;
 using WpfTest.ViewModel;
 
@@ -25,6 +26,8 @@ namespace WpfDormitories.ViewModel
         private string _findText;
 
         private UserAbilitiesService _abilitiesService;
+
+        public Action<ITableService> OnExport;
 
         public Action OnMenuContents;
         public Action OnAboutProgram;
@@ -314,6 +317,114 @@ namespace WpfDormitories.ViewModel
                     SelectedIndex = -1;
                     _currentTable = _tableServices[Tables.Districts];
                     Table = _currentTable.Read();
+                });
+
+            }
+        }
+
+        public ICommand StreetsExport
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnExport?.Invoke(new StreetsTableService());
+                });
+
+            }
+        }
+
+        public ICommand DistrictsExport
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnExport?.Invoke(new DistrictsTableService());
+                });
+
+            }
+        }
+
+        public ICommand InventoryExport
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnExport?.Invoke(new InventoryDirectoryTableService());
+                });
+
+            }
+        }
+
+        public ICommand DormsExport
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnExport?.Invoke(new DormsTableService());
+                });
+
+            }
+        }
+
+        public ICommand RoomsExport
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnExport?.Invoke(new ExportRoomsTableService());
+                });
+
+            }
+        }
+
+        public ICommand ContractsExport
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnExport?.Invoke(new ContractsTableService());
+                });
+
+            }
+        }
+
+        public ICommand ResidentsExport
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnExport?.Invoke(new ExportResidentsTableService());
+                });
+
+            }
+        }
+
+        public ICommand ChildrenExport
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnExport?.Invoke(new ChildrenTableService());
+                });
+
+            }
+        }
+
+        public ICommand EvictionsExport
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    OnExport?.Invoke(new ExportEvictionsTableService());
                 });
 
             }

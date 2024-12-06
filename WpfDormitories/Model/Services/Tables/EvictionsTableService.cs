@@ -73,7 +73,7 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
-        public DataTable Read()
+        public virtual DataTable Read()
         {
             _evictions = DataManager.GetInstance().EvictionsRepository.Read().ToList();
 

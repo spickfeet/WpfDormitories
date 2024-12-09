@@ -65,7 +65,7 @@ namespace WpfTest.ViewModel
 
         public LoginViewModel()
         {
-            //StartTimer(100);
+            StartTimer(100);
         }
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")

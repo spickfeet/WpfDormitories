@@ -59,7 +59,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="Language" Grid.Column="0" Text="{Binding LeaKeyboardLayoutText}" FontSize="14"/>
-            <TextBlock x:Name="CapsStatus" Grid.Column="1" Text="{Binding CapsLockStatusText}" FontSize="14"/>
+            <TextBlock x:Name="CapsStatus" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding CapsLockStatusText}" FontSize="14"/>
         </Grid>
 
 

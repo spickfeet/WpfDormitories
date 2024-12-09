@@ -21,7 +21,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Номер документа заселения"/>
-            <TextBox Grid.Row="1" Text="{Binding DocumentNumber}" Height="20" Width="200"/>
+            <TextBox Grid.Row="1" MaxLength="25" Text="{Binding DocumentNumber}" Height="20" Width="200"/>
         </Grid>
 
 
@@ -31,7 +31,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Название документа заселения"/>
-            <TextBox Grid.Row="1" Text="{Binding Name}" Height="20" Width="200"/>
+            <TextBox Grid.Row="1" MaxLength="100" Text="{Binding Name}" Height="20" Width="200"/>
         </Grid>
 
         <Grid Grid.Row="2">
@@ -40,7 +40,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Кто выдал"/>
-            <TextBox Grid.Row="1" Text="{Binding WhoGave}" Height="20" Width="200"/>
+            <TextBox Grid.Row="1" MaxLength="100" Text="{Binding WhoGave}" Height="20" Width="200"/>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>

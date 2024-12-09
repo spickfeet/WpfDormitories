@@ -54,7 +54,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Фамилия"/>
-                    <TextBox Grid.Row="1" Text="{Binding Surname}" Height="20" Width="200"/>
+                    <TextBox Grid.Row="1" MaxLength="50" Text="{Binding Surname}" Height="20" Width="200"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
@@ -62,7 +62,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Имя"/>
-                    <TextBox Grid.Row="1" Text="{Binding Name}" Height="20" Width="200"/>
+                    <TextBox Grid.Row="1" MaxLength="50" Text="{Binding Name}" Height="20" Width="200"/>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
@@ -70,7 +70,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Отчество"/>
-                    <TextBox Grid.Row="1" Text="{Binding Patronymic}" Height="20" Width="200"/>
+                    <TextBox Grid.Row="1" MaxLength="50" Text="{Binding Patronymic}" Height="20" Width="200"/>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.RowDefinitions>
@@ -96,7 +96,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Регистрационный номер"/>
-                    <TextBox Grid.Row="1" Text="{Binding RegistrationNumber}" Height="20" Width="200"/>
+                    <TextBox Grid.Row="1" MaxLength="20" Text="{Binding RegistrationNumber}" Height="20" Width="200"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
@@ -104,7 +104,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Серия паспорта"/>
-                    <TextBox Grid.Row="1" Text="{Binding SeriesPassport}" Height="20" Width="200"/>
+                    <TextBox Grid.Row="1" MaxLength="10" Text="{Binding SeriesPassport}" Height="20" Width="200"/>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
@@ -112,7 +112,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Номер паспорта"/>
-                    <TextBox Grid.Row="1" Text="{Binding NumberPassport}" Height="20" Width="200"/>
+                    <TextBox Grid.Row="1" MaxLength="10" Text="{Binding NumberPassport}" Height="20" Width="200"/>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.RowDefinitions>
@@ -120,7 +120,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Место работы"/>
-                    <TextBox Grid.Row="1" Text="{Binding PlaceOfWork}" Height="20" Width="200"/>
+                    <TextBox Grid.Row="1" MaxLength="150" Text="{Binding PlaceOfWork}" Height="20" Width="200"/>
                 </Grid>
                 <Grid Grid.Row="4">
                     <Grid.RowDefinitions>
@@ -154,7 +154,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Кто выдал паспорт"/>
-                    <TextBox Grid.Row="1" Text="{Binding WhoGave}" Height="20" Width="200"/>
+                    <TextBox Grid.Row="1" MaxLength="45" Text="{Binding WhoGave}" Height="20" Width="200"/>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
@@ -170,7 +170,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Место учебы"/>
-                    <TextBox Grid.Row="1" Text="{Binding PlaceOfStudy}" Height="20" Width="200"/>
+                    <TextBox Grid.Row="1" MaxLength="150" Text="{Binding PlaceOfStudy}" Height="20" Width="200"/>
                 </Grid>
                 <Grid Grid.Row="4">
                     <Grid.RowDefinitions>

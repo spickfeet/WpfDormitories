@@ -32,7 +32,7 @@
                 <TextBox Grid.Row="1" AcceptsReturn="True" Text="{Binding Reason}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxLength="300"/>
             </Grid>
 
-            <Button Grid.Row="2" Command="{Binding Apply}"  Content="Обновить" Height="40" Width="200"/>
+            <Button Grid.Row="2" Command="{Binding Apply}"  Content="Применить" Height="40" Width="200"/>
         </Grid>
     </Grid>
 </Window>

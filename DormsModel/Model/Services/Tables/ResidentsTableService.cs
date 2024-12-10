@@ -32,12 +32,14 @@ namespace WpfDormitories.Model.Services.Tables
             _dorms = DataManager.GetInstance().DormsRepository.Read().ToList();
             _streets = DataManager.GetInstance().StreetsRepository.Read().ToList();
             _rooms = DataManager.GetInstance().RoomsRepository.Read().ToList();
+            _residents = DataManager.GetInstance().ResidentsRepository.Read().ToList();
         }
         public ResidentsTableService()
         {
             _dorms = DataManager.GetInstance().DormsRepository.Read().ToList();
             _streets = DataManager.GetInstance().StreetsRepository.Read().ToList();
             _rooms = DataManager.GetInstance().RoomsRepository.Read().ToList();
+            _residents = DataManager.GetInstance().ResidentsRepository.Read().ToList();
         }
         public void Edit(int index)
         {

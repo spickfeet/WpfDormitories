@@ -17,6 +17,7 @@ using WpfDormitories.Model.PersonDocument;
 using WpfDormitories.ViewModel;
 using WpfDormitories.ViewModel.ResidentsVM;
 using WpfDormitories.ViewModel.RoomsVM;
+using WpfDormitories.ViewModel.EvictionsVM;
 
 namespace WpfDormitories.Views
 {
@@ -66,11 +67,12 @@ namespace WpfDormitories.Views
                         residentsVM.DeleteConfirmStatus = confirmation.Result;
                     }
                 };
-                residentsVM.OnChildren += (userAbility, dataRow) =>
+                residentsVM.OnEvict += (residentId) =>
                 {
-                    //InventoryWindow window = new();
-                    //window.DataContext = new InventoryViewModel(userAbility, (uint)dataRow[0]);
-                    //window.ShowDialog();
+                    EditEvictionWindow window = new();
+                    window.DataContext = new AddEvictionViewModel(residentId);
+                    window.ShowDialog();
+                    residentsVM.UpdateTable();
                 };
             }
         }

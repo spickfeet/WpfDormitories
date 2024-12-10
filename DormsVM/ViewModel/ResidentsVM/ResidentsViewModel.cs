@@ -12,6 +12,7 @@ using WpfDormitories.DataBase;
 using WpfDormitories.Model.Services.Tables;
 using WpfTest.ViewModel;
 using WpfDormitories.DataBase.Entity.Contract;
+using WpfDormitories.Model.PersonDocument;
 
 namespace WpfDormitories.ViewModel.ResidentsVM
 {
@@ -26,10 +27,10 @@ namespace WpfDormitories.ViewModel.ResidentsVM
 
         private IUserAbilitiesData _userAbilitiesData;
 
+        public Action<uint> OnEvict;
 
         public bool DeleteConfirmStatus { get; set; }
 
-        public Action<IUserAbilitiesData, DataRow> OnChildren;
         public Action<DataRow> OnEdit;
         public Action<uint> OnAdd;
         public Action OnDelete;
@@ -157,7 +158,7 @@ namespace WpfDormitories.ViewModel.ResidentsVM
             }
         }
 
-        public ICommand Inventory
+        public ICommand Evict
         {
             get
             {
@@ -165,7 +166,7 @@ namespace WpfDormitories.ViewModel.ResidentsVM
                 {
                     if (SelectedIndex >= 0 && SelectedIndex < _table.Rows.Count)
                     {
-                        OnChildren?.Invoke(_userAbilitiesData, _tableService.GetByIndex(SelectedIndex));
+                        OnEvict?.Invoke((uint)_tableService.GetByIndex(SelectedIndex)[0]);
                     }
                 });
 

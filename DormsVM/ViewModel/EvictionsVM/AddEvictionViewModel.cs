@@ -20,6 +20,8 @@ namespace WpfDormitories.ViewModel.EvictionsVM
     {
         private ITableService _tableService;
 
+        private uint _residentId;
+
         private DateTime _date;
         private string _reason;
 
@@ -68,6 +70,13 @@ namespace WpfDormitories.ViewModel.EvictionsVM
             _tableService = new ResidentsTableService();
             _residents = _tableService.Read();
         }
+        public AddEvictionViewModel(uint residentId)
+        {
+            _date = DateTime.Now;
+            _residentId = residentId;
+            ConfirmApplyStatus = false;
+            _tableService = new ResidentsTableService();
+        }
 
         public ICommand Apply
         {
@@ -75,19 +84,34 @@ namespace WpfDormitories.ViewModel.EvictionsVM
             {
                 return new DelegateCommand(() =>
                 {
-                    if (SelectedResidentIndex == -1)
+                    if(_residentId == 0)
                     {
-                        MessageBox.Show("Выберите кого выселить");
-                        return;
+                        if (SelectedResidentIndex == -1)
+                        {
+                            MessageBox.Show("Выберите кого выселить");
+                            return;
+                        }
+                        OnApply?.Invoke();
+                        if (ConfirmApplyStatus)
+                        {
+                            DataRow row = _tableService.GetByIndex(SelectedResidentIndex);
+                            DataManager.GetInstance().EvictionsRepository.
+                            Create(new EvictionData((IPersonDocuments)row[3], Reason, Date));
+                            _tableService.Delete(SelectedResidentIndex);
+                        }
                     }
-                    OnApply?.Invoke();
-                    if (ConfirmApplyStatus)
+                    else
                     {
-                        DataRow row = _tableService.GetByIndex(SelectedResidentIndex);
-                        DataManager.GetInstance().EvictionsRepository.
-                        Create(new EvictionData((IPersonDocuments)row[3],Reason,Date));
-                        _tableService.Delete(SelectedResidentIndex);
+                        OnApply?.Invoke();
+                        if (ConfirmApplyStatus)
+                        {
+                            List<IResidentData> residents = DataManager.GetInstance().ResidentsRepository.Read().ToList();
+                            DataManager.GetInstance().EvictionsRepository.
+                            Create(new EvictionData(residents.Find(item => item.Id == _residentId).PersonDocuments, Reason, Date));
+                            _tableService.Delete(residents.FindIndex(item => item.Id == _residentId));
+                        }
                     }
+                    
                 });
             }
         }

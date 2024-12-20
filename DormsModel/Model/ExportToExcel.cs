@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace WpfDormitories.Model.Services.Tables
+namespace DormsModel.Model
 {
     public static class ExportToExcel
     {

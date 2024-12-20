@@ -334,65 +334,6 @@ namespace WpfDormitories.ViewModel
             }
         }
 
-        public ICommand StreetsExport
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    OnExport?.Invoke(new StreetsTableService());
-                });
-
-            }
-        }
-
-        public ICommand DistrictsExport
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    OnExport?.Invoke(new DistrictsTableService());
-                });
-
-            }
-        }
-
-        public ICommand InventoryExport
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    OnExport?.Invoke(new InventoryDirectoryTableService());
-                });
-
-            }
-        }
-
-        public ICommand DormsExport
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    OnExport?.Invoke(new DormsTableService());
-                });
-
-            }
-        }
-
-        public ICommand RoomsExport
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    OnExport?.Invoke(new ExportRoomsTableService());
-                });
-
-            }
-        }
 
         public ICommand ContractsExport
         {
@@ -401,42 +342,6 @@ namespace WpfDormitories.ViewModel
                 return new DelegateCommand(() =>
                 {
                     OnExport?.Invoke(new ContractsTableService());
-                });
-
-            }
-        }
-
-        public ICommand ResidentsExport
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    OnExport?.Invoke(new ExportResidentsTableService());
-                });
-
-            }
-        }
-
-        public ICommand ChildrenExport
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    OnExport?.Invoke(new ChildrenTableService());
-                });
-
-            }
-        }
-
-        public ICommand EvictionsExport
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    OnExport?.Invoke(new ExportEvictionsTableService());
                 });
 
             }

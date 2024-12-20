@@ -34,7 +34,7 @@
                 <RowDefinition Height="65"/>
             </Grid.RowDefinitions>
             <DataGrid ColumnWidth="*" Grid.Row="1" SelectionMode="Single" IsReadOnly="True" CanUserSortColumns = "False" 
-                ItemsSource="{Binding Table}" CanUserAddRows="False" 
+                SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding Table}" CanUserAddRows="False" 
                 CanUserReorderColumns="False" CanUserDeleteRows="False"/>
         </Grid>
     </Grid>

@@ -1,5 +1,7 @@
 ﻿using System.Data;
+using System.Diagnostics.Contracts;
 using System.Windows.Input;
+using WpfDormitories.DataBase.Entity.Contract;
 using WpfDormitories.Model.Services.Tables;
 using WpfDormitories.Model.Services.Tables.ExportFormattedTables;
 using WpfTest.ViewModel;
@@ -10,6 +12,13 @@ namespace WpfDormitories.ViewModel
     {
         private DataTable _table;
         private ITableService _tableService;
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set { Set(ref _selectedIndex, value); }
+        }
 
         public DataTable Table 
         {
@@ -19,6 +28,7 @@ namespace WpfDormitories.ViewModel
 
         public ExportViewModel(ITableService tableService)
         {
+            _selectedIndex = -1;
             _tableService = tableService;
             Table = _tableService.Read();
         }
@@ -29,7 +39,16 @@ namespace WpfDormitories.ViewModel
             {
                 return new DelegateCommand(() =>
                 {
-                    Model.Services.Tables.ExportToWord.ExportTable(Table);
+                    if(_tableService is ContractsTableService c)
+                    {
+                        if(SelectedIndex != -1)
+                        {
+                            DataRow dr = _tableService.GetByIndex(SelectedIndex);
+                            DormsModel.Model.ExportToWord.ExportContract(new ContractData((uint)dr[0], (string)dr[1], (string)dr[2], (string)dr[3], (DateTime)dr[4], (string)dr[5]));
+                        }
+                        return;
+                    }
+                    DormsModel.Model.ExportToWord.ExportTable(Table);
                 });
             }
         }
@@ -39,7 +58,7 @@ namespace WpfDormitories.ViewModel
             {
                 return new DelegateCommand(() =>
                 {
-                    Model.Services.Tables.ExportToExcel.ExportTable(Table);
+                    DormsModel.Model.ExportToExcel.ExportTable(Table);
                 });
             }
         }

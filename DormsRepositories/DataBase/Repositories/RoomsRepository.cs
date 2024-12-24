@@ -4,8 +4,15 @@ using WpfDormitories.DataBase.Entity.Room;
 
 namespace WpfDormitories.DataBase.Repositories
 {
+    /// <summary>
+    /// Репозиторий для взаимодействия с таблицей комнаты.
+    /// </summary>
     public class RoomsRepository : IRepository<IRoomData>
     {
+        /// <summary>
+        /// Создание новой записи в таблице комнаты.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Create(IRoomData entity)
         {
             string query = $"INSERT INTO rooms " +
@@ -14,12 +21,20 @@ namespace WpfDormitories.DataBase.Repositories
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
+        /// <summary>
+        /// Удаление записи в таблице комнаты.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Delete(IRoomData entity)
         {
             string query = $"DELETE FROM rooms WHERE id={entity.Id}";
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
+        /// <summary>
+        /// Чтение всех записей в таблице комнаты.
+        /// </summary>
+        /// <param name="entity"></param>
         public IList<IRoomData> Read()
         {
             string query = "SELECT * FROM rooms";
@@ -36,6 +51,10 @@ namespace WpfDormitories.DataBase.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Обновление записи в таблице комнаты.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Update(IRoomData entity)
         {
             string query = $"UPDATE `dormitory`.`rooms` SET " +

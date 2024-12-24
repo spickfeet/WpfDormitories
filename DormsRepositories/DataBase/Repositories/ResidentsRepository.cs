@@ -8,8 +8,15 @@ using WpfDormitories.DataBase.Entity.Room;
 
 namespace WpfDormitories.DataBase.Repositories
 {
+    /// <summary>
+    /// Репозиторий для взаимодействия с таблицей жильцы.
+    /// </summary>
     public class ResidentsRepository : IRepository<IResidentData>
     {
+        /// <summary>
+        /// Создание новой записи в таблице жильцы.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Create(IResidentData entity)
         {
             string query = $"INSERT INTO residents " +
@@ -44,6 +51,10 @@ namespace WpfDormitories.DataBase.Repositories
                 roomsChange.Floor, roomsChange.NumberFreePlaces - 1));
         }
 
+        /// <summary>
+        /// Удаление записи в таблице жильцы.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Delete(IResidentData entity)
         {
             string query = $"DELETE FROM residents WHERE id={entity.Id}";
@@ -55,6 +66,10 @@ namespace WpfDormitories.DataBase.Repositories
                 roomsChange.Floor, roomsChange.NumberFreePlaces + 1));
         }
 
+        /// <summary>
+        /// Чтение всех записей в таблице жильцы.
+        /// </summary>
+        /// <param name="entity"></param>
         public IList<IResidentData> Read()
         {
             string query = "SELECT * FROM residents";
@@ -83,6 +98,10 @@ namespace WpfDormitories.DataBase.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Обновление записи в таблице жильцы.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Update(IResidentData entity)
         {
             string query = $"UPDATE `dormitory`.`residents` SET " +

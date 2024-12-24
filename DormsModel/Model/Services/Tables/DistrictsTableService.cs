@@ -17,10 +17,21 @@ namespace WpfDormitories.Model.Services.Tables
 
         public Action<DataRow> OnEdit { get; set; }
         public Action OnAdd { get; set; }
+
+        /// <summary>
+        /// Вызвать событие для изменения объекта.
+        /// </summary>
+        /// <param name="index"></param>
         public void Edit(int index)
         {
             OnEdit.Invoke(DataTableParser.ToDataTable<IDistrictData>(_districtsData).Rows[index]);
         }
+
+        /// <summary>
+        /// Найти объекты по тексту.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public DataTable FindAll(string text)
         {
             _districtsData = DataManager.GetInstance().DistrictsRepository.Read();
@@ -43,6 +54,10 @@ namespace WpfDormitories.Model.Services.Tables
             return dt;
         }
 
+        /// <summary>
+        /// Прочитать все объекты.
+        /// </summary>
+        /// <returns></returns>
         public DataTable Read()
         {
             _districtsData = DataManager.GetInstance().DistrictsRepository.Read();
@@ -51,17 +66,30 @@ namespace WpfDormitories.Model.Services.Tables
             return dt;
         }
 
+        /// <summary>
+        /// Вызвать событие для добавления объекта.
+        /// </summary>
+        /// <param></param>
         public void Add()
         {
             OnAdd.Invoke();
         }
 
+        /// <summary>
+        /// Удалить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
         public void Delete(int index)
         {
             DataManager.GetInstance().DistrictsRepository.Delete(_districtsData[index]);
             _districtsData.Remove(_districtsData[index]);
         }
 
+        /// <summary>
+        /// Получить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public DataRow GetByIndex(int index)
         {
             return DataTableParser.ToDataTable<IDistrictData>(_districtsData).Rows[index];

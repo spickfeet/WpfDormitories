@@ -12,6 +12,16 @@ namespace WpfTest.Model.Services.Registration
         {
             _convertor = convertor;
         }
+
+        /// <summary>
+        /// Попытаться зарегистрироваться.
+        /// </summary>
+        /// <param name="surname"></param>
+        /// <param name="name"></param>
+        /// <param name="patronymic"></param>
+        /// <param name="login"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool TryRegistration(string surname, string name, string patronymic, string login, string password)
         {
             foreach(IUserData userData in DataManager.GetInstance().UsersRepository.Read())

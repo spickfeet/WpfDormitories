@@ -18,10 +18,21 @@ namespace WpfDormitories.Model.Services.Tables
 
         public Action<DataRow> OnEdit { get; set; }
         public Action OnAdd { get; set; }
+
+        /// <summary>
+        /// Вызвать событие для изменения объекта.
+        /// </summary>
+        /// <param name="index"></param>
         public void Edit(int index)
         {
             OnEdit.Invoke(DataTableParser.ToDataTable<IStreetData>(_streetsData).Rows[index]);
         }
+
+        /// <summary>
+        /// Найти объекты по тексту.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public DataTable FindAll(string text)
         {
             _streetsData = DataManager.GetInstance().StreetsRepository.Read();
@@ -42,8 +53,12 @@ namespace WpfDormitories.Model.Services.Tables
             DataTable dt = DataTableParser.ToDataTable<IStreetData>(res);
             dt.Columns.Remove(dt.Columns[0]);
             return dt;
-        }      
+        }
 
+        /// <summary>
+        /// Прочитать все объекты.
+        /// </summary>
+        /// <returns></returns>
         public DataTable Read()
         {
             _streetsData = DataManager.GetInstance().StreetsRepository.Read();
@@ -52,16 +67,30 @@ namespace WpfDormitories.Model.Services.Tables
             return dt;
         }
 
+        /// <summary>
+        /// Вызвать событие для добавления объекта.
+        /// </summary>
+        /// <param></param>
         public void Add()
         {
             OnAdd.Invoke();
         }
 
+        /// <summary>
+        /// Удалить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
         public void Delete(int index)
         {
             DataManager.GetInstance().StreetsRepository.Delete(_streetsData[index]);
             _streetsData.Remove(_streetsData[index]);
         }
+
+        /// <summary>
+        /// Получить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public DataRow GetByIndex(int index)
         {
             return DataTableParser.ToDataTable<IStreetData>(_streetsData).Rows[index];

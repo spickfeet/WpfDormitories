@@ -13,6 +13,11 @@ namespace DormsModel.Model
 {
     public class ExportToWord
     {
+
+        /// <summary>
+        /// Экспортировать таблицу в Word
+        /// </summary>
+        /// <param name="dataTable"></param>
         public static void ExportTable(System.Data.DataTable dataTable)
         {
             if (dataTable.Rows.Count > 0)
@@ -49,6 +54,10 @@ namespace DormsModel.Model
             }
         }
 
+        /// <summary>
+        /// Экспортировать договор в Word
+        /// </summary>
+        /// <param name="contract"></param>
         public static void ExportContract(IContractData contract)
         {
             Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();

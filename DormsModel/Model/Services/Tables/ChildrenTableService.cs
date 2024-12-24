@@ -15,16 +15,29 @@ using WpfDormitories.TemporarySolutions;
 
 namespace WpfDormitories.Model.Services.Tables
 {
+    /// <summary>
+    /// Сервис для работы с таблицей дети.
+    /// </summary>
     public class ChildrenTableService : ITableService
     {
         private List<IChildData> _children;
         public Action<DataRow> OnEdit { get; set; }
         public Action OnAdd { get; set; }
 
+        /// <summary>
+        /// Вызвать событие для изменения объекта.
+        /// </summary>
+        /// <param name="index"></param>
         public void Edit(int index)
         {
             OnEdit.Invoke(GetByIndex(index));
         }
+
+        /// <summary>
+        /// Найти объекты по тексту.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public DataTable FindAll(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -56,6 +69,10 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Прочитать все объекты.
+        /// </summary>
+        /// <returns></returns>
         public DataTable Read()
         {
             _children = DataManager.GetInstance().ChildrenRepository.Read().ToList();
@@ -69,6 +86,10 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Создать таблицу.
+        /// </summary>
+        /// <returns></returns>
         private DataTable CreateDataTable()
         {
             DataTable res = new();
@@ -80,11 +101,19 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Вызвать событие для добавления объекта.
+        /// </summary>
+        /// <param></param>
         public void Add()
         {
             OnAdd.Invoke();
         }
 
+        /// <summary>
+        /// Удалить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
         public void Delete(int index)
         {
             List<IParentsAndChildrenData> parentsAndChildren = DataManager.GetInstance().ParentsAndChildrenRepository.Read().ToList().FindAll(item => item.ChildId == _children[index].Id);
@@ -96,6 +125,12 @@ namespace WpfDormitories.Model.Services.Tables
             DataManager.GetInstance().ChildrenRepository.Delete(_children[index]);
             _children.Remove(_children[index]);
         }
+
+        /// <summary>
+        /// Получить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public DataRow GetByIndex(int index)
         {
             return DataTableParser.ToDataTable(_children).Rows[index];

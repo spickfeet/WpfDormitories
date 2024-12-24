@@ -4,8 +4,15 @@ using WpfDormitories.DataBase.Entity.Contract;
 
 namespace WpfDormitories.DataBase.Repositories
 {
+    /// <summary>
+    /// Репозиторий для взаимодействия с таблицей договоры.
+    /// </summary>
     public class ContractsRepository : IRepository<IContractData>
     {
+        /// <summary>
+        /// Создание новой записи в таблице договоры.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Create(IContractData entity)
         {
             string query = $"INSERT INTO contracts " +
@@ -14,12 +21,20 @@ namespace WpfDormitories.DataBase.Repositories
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
+        /// <summary>
+        /// Удаление записи в таблице договоры.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Delete(IContractData entity)
         {
             string query = $"DELETE FROM contracts WHERE id={entity.Id}";
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
+        /// <summary>
+        /// Чтение всех записей в таблице договоры.
+        /// </summary>
+        /// <param name="entity"></param>
         public IList<IContractData> Read()
         {
             string query = "SELECT * FROM contracts";
@@ -36,6 +51,10 @@ namespace WpfDormitories.DataBase.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Обновление записи в таблице договоры.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Update(IContractData entity)
         {
             string query = $"UPDATE `dormitory`.`contracts` SET " +

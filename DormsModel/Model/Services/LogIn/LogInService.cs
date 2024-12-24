@@ -17,6 +17,13 @@ namespace WpfDormitories.Model.Services.LogIn
         {
             _convertor = convertor;
         }
+
+        /// <summary>
+        /// Попытаться войти.
+        /// </summary>
+        /// <param name="oldPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <exception cref="ArgumentException"></exception>
         public bool TryLogIn(string login, string password)
         {
             foreach (IUserData userData in DataManager.GetInstance().UsersRepository.Read())

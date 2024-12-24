@@ -10,16 +10,17 @@ using WpfDormitories.DataBase.Entity.MenuElement;
 
 namespace WpfDormitories.DataBase.Repositories
 {
+    /// <summary>
+    /// Репозиторий для взаимодействия с таблицей элементы меню.
+    /// </summary>
     public class MenuElementsRepository : IRepository<IMenuElementData>
     {
         public void Create(IMenuElementData entity)
         {
-            throw new NotImplementedException();
         }
 
         public void Delete(IMenuElementData entity)
         {
-            throw new NotImplementedException();
         }
 
         public IList<IMenuElementData> Read()
@@ -38,7 +39,6 @@ namespace WpfDormitories.DataBase.Repositories
 
         public void Update(IMenuElementData entity)
         {
-            throw new NotImplementedException();
         }
     }
 }

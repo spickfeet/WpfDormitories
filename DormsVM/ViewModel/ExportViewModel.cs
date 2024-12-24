@@ -1,9 +1,7 @@
 ﻿using System.Data;
-using System.Diagnostics.Contracts;
 using System.Windows.Input;
 using WpfDormitories.DataBase.Entity.Contract;
 using WpfDormitories.Model.Services.Tables;
-using WpfDormitories.Model.Services.Tables.ExportFormattedTables;
 using WpfTest.ViewModel;
 
 namespace WpfDormitories.ViewModel

@@ -5,8 +5,15 @@ using WpfDormitories.Model.FullName;
 
 namespace WpfDormitories.DataBase.Repositories
 {
+    /// <summary>
+    /// Репозиторий для взаимодействия с таблицей дети.
+    /// </summary>
     public class ChildrenRepository : IRepository<IChildData>
     {
+        /// <summary>
+        /// Создание новой записи в таблице дети.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Create(IChildData entity)
         {
             string query = $"INSERT INTO children " +
@@ -16,12 +23,20 @@ namespace WpfDormitories.DataBase.Repositories
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
+        /// <summary>
+        /// Удаление записи в таблице дети.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Delete(IChildData entity)
         {
             string query = $"DELETE FROM children WHERE id={entity.Id}";
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
+        /// <summary>
+        /// Чтение всех записей в таблице дети.
+        /// </summary>
+        /// <param name="entity"></param>
         public IList<IChildData> Read()
         {
             string query = "SELECT * FROM children";
@@ -37,6 +52,10 @@ namespace WpfDormitories.DataBase.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Обновление записи в таблице дети.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Update(IChildData entity)
         {
             string query = $"UPDATE `dormitory`.`children` SET " +

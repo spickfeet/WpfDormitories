@@ -36,10 +36,21 @@ namespace WpfDormitories.Model.Services.Tables
             _dorms = DataManager.GetInstance().DormsRepository.Read().ToList();
             _streets = DataManager.GetInstance().StreetsRepository.Read().ToList();
         }
+
+        /// <summary>
+        /// Вызвать событие для изменения объекта.
+        /// </summary>
+        /// <param name="index"></param>
         public void Edit(int index)
         {
             OnEdit.Invoke(DataTableParser.ToDataTable(_parentsAndChildren).Rows[index]);
         }
+
+        /// <summary>
+        /// Найти объекты по тексту.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public DataTable FindAll(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -100,6 +111,10 @@ namespace WpfDormitories.Model.Services.Tables
             return dt;
         }
 
+        /// <summary>
+        /// Прочитать все объекты.
+        /// </summary>
+        /// <returns></returns>
         public DataTable Read()
         {
             List<IParentsAndChildrenData> allParentsAndChildren = DataManager.GetInstance().ParentsAndChildrenRepository.Read().ToList();
@@ -138,11 +153,19 @@ namespace WpfDormitories.Model.Services.Tables
             return dt;
         }
 
+        /// <summary>
+        /// Вызвать событие для добавления объекта.
+        /// </summary>
+        /// <param></param>
         public void Add()
         {
             OnAdd.Invoke();
         }
 
+        /// <summary>
+        /// Удалить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
         public void Delete(int index)
         {
             DataManager.GetInstance().ParentsAndChildrenRepository.Delete(_parentsAndChildren[index]);
@@ -174,6 +197,11 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Получить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public DataRow GetByIndex(int index)
         {
             return DataTableParser.ToDataTable(_parentsAndChildren).Rows[index];

@@ -1,17 +1,10 @@
-﻿using System.Collections;
-using System.Data;
+﻿using System.Data;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
-using WpfDormitories.DataBase;
-using WpfDormitories.DataBase.Entity.District;
-using WpfDormitories.DataBase.Entity.Street;
 using WpfDormitories.DataBase.Entity.UserAbilities;
 using WpfDormitories.Enums;
 using WpfDormitories.Model.Services;
 using WpfDormitories.Model.Services.Tables;
-using WpfDormitories.Model.Services.Tables.ExportFormattedTables;
-using WpfDormitories.TemporarySolutions;
 using WpfTest.ViewModel;
 
 namespace WpfDormitories.ViewModel

@@ -7,8 +7,15 @@ using WpfDormitories.Model.PersonDocument.Passport;
 
 namespace WpfDormitories.DataBase.Repositories
 {
+    /// <summary>
+    /// Репозиторий для взаимодействия с таблицей выселения.
+    /// </summary>
     public class EvictionsRepository : IRepository<IEvictionData>
     {
+        /// <summary>
+        /// Создание новой записи в таблице выселения.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Create(IEvictionData entity)
         {
             string query = $"INSERT INTO evictions " +
@@ -30,12 +37,20 @@ namespace WpfDormitories.DataBase.Repositories
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
+        /// <summary>
+        /// Удаление записи в таблице выселения.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Delete(IEvictionData entity)
         {
             string query = $"DELETE FROM evictions WHERE id={entity.Id}";
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
+        /// <summary>
+        /// Чтение всех записей в таблице выселения.
+        /// </summary>
+        /// <param name="entity"></param>
         public IList<IEvictionData> Read()
         {
             string query = "SELECT * FROM evictions";
@@ -59,6 +74,10 @@ namespace WpfDormitories.DataBase.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Обновление записи в таблице выселения.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Update(IEvictionData entity)
         {
             string query = $"UPDATE `dormitory`.`evictions` SET " +

@@ -33,10 +33,20 @@ namespace WpfDormitories.Model.Services.Tables
         {
         }
 
+        /// <summary>
+        /// Вызвать событие для изменения объекта.
+        /// </summary>
+        /// <param name="index"></param>
         public void Edit(int index)
         {
             OnEdit.Invoke(GetByIndex(index));
         }
+
+        /// <summary>
+        /// Найти объекты по тексту.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public DataTable FindAll(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -74,6 +84,10 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Прочитать все объекты.
+        /// </summary>
+        /// <returns></returns>
         public virtual DataTable Read()
         {
             List<IRoomData> allRooms = DataManager.GetInstance().RoomsRepository.Read().ToList();
@@ -93,6 +107,10 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Создать таблицу.
+        /// </summary>
+        /// <returns></returns>
         private DataTable CreateDataTable()
         {
             DataTable res = new();
@@ -104,11 +122,19 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Вызвать событие для добавления объекта.
+        /// </summary>
+        /// <param></param>
         public void Add()
         {
             OnAdd.Invoke();
         }
 
+        /// <summary>
+        /// Удалить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
         public void Delete(int index)
         {
             List<IInventoryData> inventory = DataManager.GetInstance().InventoryRepository.Read().ToList();
@@ -157,6 +183,12 @@ namespace WpfDormitories.Model.Services.Tables
             DataManager.GetInstance().RoomsRepository.Delete(_rooms[index]);
             _rooms.Remove(_rooms[index]);
         }
+
+        /// <summary>
+        /// Получить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public DataRow GetByIndex(int index)
         {
             return DataTableParser.ToDataTable<IRoomData>(_rooms).Rows[index];

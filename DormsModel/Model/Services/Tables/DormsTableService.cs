@@ -26,10 +26,21 @@ namespace WpfDormitories.Model.Services.Tables
             _streets = DataManager.GetInstance().StreetsRepository.Read().ToList<IStreetData>();
             _districts = DataManager.GetInstance().DistrictsRepository.Read().ToList<IDistrictData>();
         }
+
+        /// <summary>
+        /// Вызвать событие для изменения объекта.
+        /// </summary>
+        /// <param name="index"></param>
         public void Edit(int index)
         {
             OnEdit.Invoke(DataTableParser.ToDataTable<IDormData>(_dorms).Rows[index]);
         }
+
+        /// <summary>
+        /// Найти объекты по тексту.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public DataTable FindAll(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -63,6 +74,10 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Прочитать все объекты.
+        /// </summary>
+        /// <returns></returns>
         public DataTable Read()
         {
             _dorms = DataManager.GetInstance().DormsRepository.Read().ToList<IDormData>();
@@ -75,6 +90,10 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Создать таблицу.
+        /// </summary>
+        /// <returns></returns>
         private DataTable CreateDataTable()
         {
             DataTable res = new();
@@ -87,11 +106,19 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Вызвать событие для добавления объекта.
+        /// </summary>
+        /// <param></param>
         public void Add()
         {
             OnAdd.Invoke();
         }
 
+        /// <summary>
+        /// Удалить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
         public void Delete(int index)
         {
 
@@ -150,6 +177,12 @@ namespace WpfDormitories.Model.Services.Tables
             DataManager.GetInstance().DormsRepository.Delete(_dorms[index]);
             _dorms.Remove(_dorms[index]);
         }
+
+        /// <summary>
+        /// Получить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public DataRow GetByIndex(int index)
         {
             return DataTableParser.ToDataTable<IDormData>(_dorms).Rows[index];

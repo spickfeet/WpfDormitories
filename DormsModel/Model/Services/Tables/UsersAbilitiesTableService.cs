@@ -31,6 +31,13 @@ namespace WpfDormitories.Model.Services.Tables
         {
             OnEdit.Invoke(DataTableParser.ToDataTable<IUserAbilitiesData>(_usersAbilities).Rows[index]);
         }
+
+
+        /// <summary>
+        /// Найти объекты по тексту.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public DataTable FindAll(string text)
         {
             _usersAbilities = DataManager.GetInstance().UsersAbilitiesRepository.Read().ToList().FindAll(item => item.UserId != 2);
@@ -64,6 +71,10 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Прочитать все объекты.
+        /// </summary>
+        /// <returns></returns>
         public DataTable Read()
         {
             _usersAbilities = DataManager.GetInstance().UsersAbilitiesRepository.Read().ToList().FindAll(item => item.UserId != 2); ;
@@ -76,6 +87,10 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Создать таблицу.
+        /// </summary>
+        /// <returns></returns>
         private DataTable CreateDataTable()
         {
             DataTable res = new();
@@ -88,16 +103,30 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Вызвать событие для добавления объекта.
+        /// </summary>
+        /// <param></param>
         public void Add()
         {
             OnAdd.Invoke();
         }
 
+        /// <summary>
+        /// Удалить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
         public void Delete(int index)
         {
             DataManager.GetInstance().UsersAbilitiesRepository.Delete(_usersAbilities[index]);
             _usersAbilities.Remove(_usersAbilities[index]);
         }
+
+        /// <summary>
+        /// Получить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public DataRow GetByIndex(int index)
         {
             return DataTableParser.ToDataTable<IUserAbilitiesData>(_usersAbilities).Rows[index];

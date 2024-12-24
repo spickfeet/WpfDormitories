@@ -2,8 +2,15 @@
 
 namespace DormsModel.Model
 {
+    /// <summary>
+    /// Класс для экспорта в Excel
+    /// </summary>
     public static class ExportToExcel
     {
+        /// <summary>
+        /// Экспортировать таблицу в Excel
+        /// </summary>
+        /// <param name="dataTable"></param>
         public static void ExportTable(DataTable dataTable)
         {
             if (dataTable.Rows.Count > 0)

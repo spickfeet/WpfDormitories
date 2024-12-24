@@ -41,10 +41,22 @@ namespace WpfDormitories.Model.Services.Tables
             _rooms = DataManager.GetInstance().RoomsRepository.Read().ToList();
             _residents = DataManager.GetInstance().ResidentsRepository.Read().ToList();
         }
+
+
+        /// <summary>
+        /// Вызвать событие для изменения объекта.
+        /// </summary>
+        /// <param name="index"></param>
         public void Edit(int index)
         {
             OnEdit.Invoke(DataTableParser.ToDataTable<IResidentData>(_residents).Rows[index]);
         }
+
+        /// <summary>
+        /// Найти объекты по тексту.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public DataTable FindAll(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -116,6 +128,10 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Прочитать все объекты.
+        /// </summary>
+        /// <returns></returns>
         public virtual DataTable Read()
         {
             List<IResidentData> allResidents = DataManager.GetInstance().ResidentsRepository.Read().ToList();
@@ -156,6 +172,10 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Создать таблицу.
+        /// </summary>
+        /// <returns></returns>
         private DataTable CreateDataTable()
         {
             DataTable res = new();
@@ -181,11 +201,19 @@ namespace WpfDormitories.Model.Services.Tables
             return res;
         }
 
+        /// <summary>
+        /// Вызвать событие для добавления объекта.
+        /// </summary>
+        /// <param></param>
         public void Add()
         {
             OnAdd.Invoke();
         }
 
+        /// <summary>
+        /// Удалить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
         public void Delete(int index)
         {
             List<IChildData> children = DataManager.GetInstance().ChildrenRepository.Read().ToList();
@@ -211,6 +239,12 @@ namespace WpfDormitories.Model.Services.Tables
 
             _residents.Remove(_residents[index]);
         }
+
+        /// <summary>
+        /// Получить объект по индексу.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public DataRow GetByIndex(int index)
         {
             return DataTableParser.ToDataTable(_residents).Rows[index];

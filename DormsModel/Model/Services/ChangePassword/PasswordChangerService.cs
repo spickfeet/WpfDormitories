@@ -10,6 +10,13 @@ namespace WpfDormitories.Model.Services.ChangePassword
         {
             _convertor = convertor;
         }
+        
+        /// <summary>
+        /// Сменить пароль.
+        /// </summary>
+        /// <param name="oldPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <exception cref="ArgumentException"></exception>
         public void Change(string oldPassword, string newPassword)
         {
             if (_convertor.Convert(oldPassword) == DataManager.GetInstance().CurrentUser.User.Password)

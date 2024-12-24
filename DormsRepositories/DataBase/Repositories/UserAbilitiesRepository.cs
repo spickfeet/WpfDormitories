@@ -4,8 +4,15 @@ using WpfDormitories.DataBase.Entity.UserAbilities;
 
 namespace WpfDormitories.DataBase.Repositories
 {
+    /// <summary>
+    /// Репозиторий для взаимодействия с таблицей права пользователей.
+    /// </summary>
     public class UserAbilitiesRepository : IRepository<IUserAbilitiesData>
     {
+        /// <summary>
+        /// Создание новой записи в таблице права пользователей.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Create(IUserAbilitiesData entity)
         {
             string query = $"INSERT INTO users_abilities " +
@@ -14,12 +21,20 @@ namespace WpfDormitories.DataBase.Repositories
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
+        /// <summary>
+        /// Удаление записи в таблице права пользователей.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Delete(IUserAbilitiesData entity)
         {
             string query = $"DELETE FROM users_abilities WHERE id={entity.Id}";
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
+        /// <summary>
+        /// Чтение всех записей в таблице права пользователей.
+        /// </summary>
+        /// <param name="entity"></param>
         public IList<IUserAbilitiesData> Read()
         {
             string query = "SELECT * FROM users_abilities";
@@ -36,6 +51,10 @@ namespace WpfDormitories.DataBase.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Обновление записи в таблице права пользователей.
+        /// </summary>
+        /// <param name="entity"></param>
         public void Update(IUserAbilitiesData entity)
         {
             string query = $"UPDATE `dormitory`.`users_abilities` SET " +

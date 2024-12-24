@@ -38,6 +38,10 @@ namespace WpfDormitories.ViewModel.EvictionsVM
             _reason = reason;
             _date = date;
         }
+
+        /// <summary>
+        /// Изменить данные о выселении.
+        /// </summary>
         public ICommand Apply
         {
             get

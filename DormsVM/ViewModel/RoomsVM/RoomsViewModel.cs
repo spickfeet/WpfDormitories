@@ -102,11 +102,17 @@ namespace WpfDormitories.ViewModel.RoomsVM
             _tableService.OnAdd += () => { OnAdd?.Invoke(dormId); };
         }
 
+        /// <summary>
+        /// обновить данные в таблице.
+        /// </summary>
         public void UpdateTable()
         {
             Table = _tableService.Read();
         }
 
+        /// <summary>
+        /// Удалить данные о комнате
+        /// </summary>
         public ICommand Delete
         {
             get
@@ -129,6 +135,9 @@ namespace WpfDormitories.ViewModel.RoomsVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна для изменения данных о комнате.
+        /// </summary>
         public ICommand Edit
         {
             get
@@ -144,6 +153,9 @@ namespace WpfDormitories.ViewModel.RoomsVM
             }
         }
 
+        /// <summary>
+        /// вызвать событие для открытия окна добавления данных о комнате.
+        /// </summary>
         public ICommand Add
         {
             get

@@ -16,6 +16,9 @@ namespace WpfDormitories.ViewModel.DormsVM
 {
     public class AddContractViewModel : BasicAddOrEditContractVM
     {
+        /// <summary>
+        /// Добавить данные о договоре.
+        /// </summary>
         public ICommand Apply
         {
             get

@@ -31,6 +31,9 @@ namespace WpfDormitories.ViewModel
             Table = _tableService.Read();
         }
 
+        /// <summary>
+        /// Отправить данные в Word.
+        /// </summary>
         public ICommand ExportToWord
         {
             get
@@ -50,6 +53,10 @@ namespace WpfDormitories.ViewModel
                 });
             }
         }
+
+        /// <summary>
+        /// Отправить данные в Excel.
+        /// </summary>
         public ICommand ExportToExcel
         {
             get

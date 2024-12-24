@@ -13,6 +13,9 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM
 {
     public class AddInventoryDirectoryViewModel : BasicDirectoryVM
     {
+        /// <summary>
+        /// Добавить данные о справочнике инвентаря.
+        /// </summary>
         public ICommand Apply
         {
             get

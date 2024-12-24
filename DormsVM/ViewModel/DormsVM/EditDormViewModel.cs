@@ -25,6 +25,10 @@ namespace WpfDormitories.ViewModel.DormsVM
             _numberRooms = numberRooms;
             _numberPlace = numberPlace;
         }
+
+        /// <summary>
+        /// Изменить данные об общежитии.
+        /// </summary>
         public ICommand Apply
         {
             get

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace WpfDormitories.ViewModel
 {
+    /// <summary>
+    /// Базовый класс для всех view model.
+    /// </summary>
     public class BasicVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;

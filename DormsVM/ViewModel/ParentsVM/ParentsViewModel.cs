@@ -104,11 +104,17 @@ namespace WpfDormitories.ViewModel.ParentsVM
             _tableService.OnAdd += () => { OnAdd?.Invoke(_childId); };
         }
 
+        /// <summary>
+        /// Обновить дынные в таблице.
+        /// </summary>
         public void UpdateTable()
         {
             Table = _tableService.Read();
         }
 
+        /// <summary>
+        /// Удалить данные о родителе.
+        /// </summary>
         public ICommand Delete
         {
             get
@@ -131,6 +137,9 @@ namespace WpfDormitories.ViewModel.ParentsVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна для изменения данные о родителе.
+        /// </summary>
         public ICommand Edit
         {
             get
@@ -146,6 +155,9 @@ namespace WpfDormitories.ViewModel.ParentsVM
             }
         }
 
+        /// <summary>
+        /// вызвать событие открытия окна для добавления данных о родителе.
+        /// </summary>
         public ICommand Add
         {
             get

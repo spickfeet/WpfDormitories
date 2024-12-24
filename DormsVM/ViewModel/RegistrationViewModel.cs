@@ -80,7 +80,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
-
+        /// <summary>
+        /// Регистрация нового пользователя.
+        /// </summary>
         private void Register()
         {
             if (Password != RepeatPassword) return;

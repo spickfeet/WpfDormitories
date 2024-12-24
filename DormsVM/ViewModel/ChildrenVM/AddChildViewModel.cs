@@ -14,6 +14,9 @@ namespace WpfDormitories.ViewModel.ChildrenVM
 {
     public class AddChildViewModel : BasicAddOrEditChildVM
     {
+        /// <summary>
+        /// Добавить данные о ребенке.
+        /// </summary>
         public ICommand Apply
         {
             get

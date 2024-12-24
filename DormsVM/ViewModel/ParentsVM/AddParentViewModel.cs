@@ -35,6 +35,9 @@ namespace WpfDormitories.ViewModel.ParentsVM
             }
         }
 
+        /// <summary>
+        /// Добавить данные о родителе.
+        /// </summary>
         public ICommand Apply
         {
             get

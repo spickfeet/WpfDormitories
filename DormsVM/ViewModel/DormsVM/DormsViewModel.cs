@@ -88,11 +88,17 @@ namespace WpfDormitories.ViewModel.DormsVM
             _tableService.OnAdd += () => { OnAdd?.Invoke(); };
         }
 
+        /// <summary>
+        /// Обновить данные об общежитиях.
+        /// </summary>
         public void UpdateTable()
         {
             Table = _tableService.Read();
         }
 
+        /// <summary>
+        /// Удалить данные об общежитии.
+        /// </summary>
         public ICommand Delete
         {
             get
@@ -115,7 +121,9 @@ namespace WpfDormitories.ViewModel.DormsVM
             }
         }
 
-
+        /// <summary>
+        /// Вызвать событие открытия окна для изменения данных общежития. 
+        /// </summary>
         public ICommand Edit
         {
             get
@@ -131,6 +139,9 @@ namespace WpfDormitories.ViewModel.DormsVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие для открытия окна изменения данных общежития.
+        /// </summary>
         public ICommand Add
         {
             get
@@ -143,6 +154,9 @@ namespace WpfDormitories.ViewModel.DormsVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие для открытия окна с комнатами в общежитии.
+        /// </summary>
         public ICommand Rooms
         {
             get

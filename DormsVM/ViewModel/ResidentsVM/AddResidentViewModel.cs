@@ -21,6 +21,10 @@ namespace WpfDormitories.ViewModel.ResidentsVM
         {
             _contractId = contractId;
         }
+
+        /// <summary>
+        /// Добавить данные о жильце.
+        /// </summary>
         public ICommand Apply
         {
             get

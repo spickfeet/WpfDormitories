@@ -14,6 +14,10 @@ namespace WpfDormitories.ViewModel.DormsVM
 {
     public class AddDormViewModel : BasicAddOrEditDormVM
     {
+
+        /// <summary>
+        /// Добавить данные об общежитии.
+        /// </summary>
         public ICommand Apply
         {
             get

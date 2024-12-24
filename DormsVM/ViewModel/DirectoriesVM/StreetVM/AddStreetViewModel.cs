@@ -8,6 +8,9 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.StreetVM
 {
     public class AddStreetViewModel : BasicDirectoryVM
     {
+        /// <summary>
+        /// Добавить данные о улице.
+        /// </summary>
         public ICommand Apply
         {
             get

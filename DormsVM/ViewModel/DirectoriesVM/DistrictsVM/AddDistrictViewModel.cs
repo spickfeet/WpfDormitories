@@ -13,6 +13,9 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.DistrictsVM
 {
     public class AddDistrictViewModel : BasicDirectoryVM
     {
+        /// <summary>
+        /// Добавить данные о районе.
+        /// </summary>
         public ICommand Apply
         {
             get

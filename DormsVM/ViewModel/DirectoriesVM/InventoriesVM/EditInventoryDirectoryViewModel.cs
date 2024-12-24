@@ -19,6 +19,10 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.InventoriesVM
             _id = id;
             _name = name;
         }
+
+        /// <summary>
+        /// изменить данные о справочнике инвентаря.
+        /// </summary>
         public ICommand Apply
         {
             get

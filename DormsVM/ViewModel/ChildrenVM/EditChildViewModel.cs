@@ -25,6 +25,10 @@ namespace WpfDormitories.ViewModel.ChildrenVM
             _name = fullName.Name;
             _patronymic = fullName.Patronymic;
         }
+        
+        /// <summary>
+        /// Изменить данные о ребенке.
+        /// </summary>
         public ICommand Apply
         {
             get

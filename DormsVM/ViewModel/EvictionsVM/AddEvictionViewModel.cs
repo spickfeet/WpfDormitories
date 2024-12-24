@@ -78,6 +78,9 @@ namespace WpfDormitories.ViewModel.EvictionsVM
             _tableService = new ResidentsTableService();
         }
 
+        /// <summary>
+        /// Добавить данные о выселении.
+        /// </summary>
         public ICommand Apply
         {
             get

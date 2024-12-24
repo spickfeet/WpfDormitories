@@ -15,6 +15,9 @@ namespace WpfDormitories.ViewModel.UserAbilitiesVM
 {
     public class AddUserAbilitiesViewModel : BasicUserAbilitiesVM
     {
+        /// <summary>
+        ///  Добавить данные о правах пользователя.
+        /// </summary>
         public ICommand Apply
         {
             get

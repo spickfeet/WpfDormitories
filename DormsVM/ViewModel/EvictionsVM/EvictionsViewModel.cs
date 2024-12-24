@@ -120,11 +120,17 @@ namespace WpfDormitories.ViewModel.EvictionsVM
             _tableService.OnAdd += () => { OnAdd?.Invoke(); };
         }
 
+        /// <summary>
+        /// Обновить данные в таблице.
+        /// </summary>
         public void UpdateTable()
         {
             Table = _tableService.Read();
         }
 
+        /// <summary>
+        /// Удалить данные о выселении.
+        /// </summary>
         public ICommand Delete
         {
             get
@@ -147,6 +153,9 @@ namespace WpfDormitories.ViewModel.EvictionsVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна изменения данных о выселении.
+        /// </summary>
         public ICommand Edit
         {
             get
@@ -162,6 +171,9 @@ namespace WpfDormitories.ViewModel.EvictionsVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна добавления данных о выселении.
+        /// </summary>
         public ICommand Add
         {
             get

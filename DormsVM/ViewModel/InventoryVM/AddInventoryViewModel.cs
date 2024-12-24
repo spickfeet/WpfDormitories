@@ -17,6 +17,10 @@ namespace WpfDormitories.ViewModel.InventoryVM
         {
             _roomId = roomId;
         }
+
+        /// <summary>
+        /// Добавить данные для инвентаря.
+        /// </summary>
         public ICommand Apply
         {
             get

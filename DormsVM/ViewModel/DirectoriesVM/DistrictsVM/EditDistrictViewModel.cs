@@ -19,6 +19,10 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.DistrictsVM
             _id = id;
             _name = name;
         }
+        
+        /// <summary>
+        /// Изменить данные о районе
+        /// </summary>
         public ICommand Apply
         {
             get

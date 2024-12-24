@@ -90,11 +90,17 @@ namespace WpfDormitories.ViewModel.ChildrenVM
             _tableService.OnAdd += () => { OnAdd?.Invoke(); };
         }
 
+        /// <summary>
+        /// Обновить данные в таблице.
+        /// </summary>
         public void UpdateTable()
         {
             Table = _tableService.Read();
         }
 
+        /// <summary>
+        /// Удалить ребенка.
+        /// </summary>
         public ICommand Delete
         {
             get
@@ -117,6 +123,9 @@ namespace WpfDormitories.ViewModel.ChildrenVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна изменения ребенка.
+        /// </summary>
         public ICommand Edit
         {
             get
@@ -132,6 +141,9 @@ namespace WpfDormitories.ViewModel.ChildrenVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна добавления ребенка.
+        /// </summary>
         public ICommand Add
         {
             get
@@ -144,21 +156,9 @@ namespace WpfDormitories.ViewModel.ChildrenVM
             }
         }
 
-        public ICommand Inventory
-        {
-            get
-            {
-                return new DelegateCommand(() =>
-                {
-                    if (SelectedIndex >= 0 && SelectedIndex < _table.Rows.Count)
-                    {
-                        OnParents?.Invoke(_userAbilitiesData, _tableService.GetByIndex(SelectedIndex));
-                    }
-                });
-
-            }
-        }
-
+        /// <summary>
+        /// Вызвать событие для открытия окна с родителями.
+        /// </summary>
         public ICommand Parents
         {
             get

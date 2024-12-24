@@ -33,6 +33,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Выполнить запрос.
+        /// </summary>
         public void ExecuteQuery()
         {
             try
@@ -52,6 +55,10 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Определения типа запроса.
+        /// </summary>
+        /// <returns></returns>
         private bool IsGetQuery()
         {
             string command = Query.Split(' ')[0].ToUpper();

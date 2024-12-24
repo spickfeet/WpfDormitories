@@ -12,6 +12,9 @@ using System.Linq;
 
 namespace WpfDormitories
 {
+    /// <summary>
+    /// Класс для создания меню.
+    /// </summary>
     public class MenuBuilder
     {
         private MainWindow _mainWindow;
@@ -25,6 +28,9 @@ namespace WpfDormitories
             GetUserAbilities();
         }
 
+        /// <summary>
+        /// Получить права текущего пользователя.
+        /// </summary>
         private void GetUserAbilities()
         {
             IList<IUserAbilitiesData> allUsersAbilities = DataManager.GetInstance().UsersAbilitiesRepository.Read();
@@ -37,6 +43,10 @@ namespace WpfDormitories
             }
         }
 
+        /// <summary>
+        /// Метод для создания меню.
+        /// </summary>
+        /// <returns></returns>
         public Menu BuildMenu()
         {
             _elements = DataManager.GetInstance().MenuElementsRepository.Read().ToList<IMenuElementData>();
@@ -56,9 +66,14 @@ namespace WpfDormitories
             }
             return mainMenu;
         }
+
+        /// <summary>
+        /// Добавить подэлемент меню.
+        /// </summary>
+        /// <param name="parentMenuItem"></param>
+        /// <param name="parentId"></param>
         private void AddSubMenuItems(MenuItem parentMenuItem, uint parentId)
         {
-
             var subMenuItems = _elements.FindAll(item => item.ParentId == parentId);
             subMenuItems.Sort((b1, b2) => b1.Order.CompareTo(b2.Order));
             foreach (var subMenuItem in subMenuItems)
@@ -69,6 +84,11 @@ namespace WpfDormitories
             }
         }
 
+        /// <summary>
+        /// Добавить элемент меню.
+        /// </summary>
+        /// <param name="menuItemData"></param>
+        /// <returns></returns>
         private MenuItem CreateMenuItem(IMenuElementData menuItemData)
         {
 
@@ -85,12 +105,6 @@ namespace WpfDormitories
                     {
                         if (_userAbilitiesItem.R == true)
                         {
-                            //Binding myBinding = new Binding();
-                            //myBinding.Source = MainWindow.DataContext;
-                            //myBinding.Path = new PropertyPath(menuItemData.FuncName);
-                            //myBinding.Mode = BindingMode.TwoWay;
-                            //myBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-
                             DependencyProperty commProp = MenuItem.CommandProperty;
                             if (!BindingOperations.IsDataBound(menuItem, commProp))
                             {

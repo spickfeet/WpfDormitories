@@ -23,6 +23,10 @@ namespace WpfDormitories.ViewModel.UserAbilitiesVM
             _e = e;
             _d = d;
         }
+
+        /// <summary>
+        /// Изменить данные о правах пользователя.
+        /// </summary>
         public ICommand Apply
         {
             get

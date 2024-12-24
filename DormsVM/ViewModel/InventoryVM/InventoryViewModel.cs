@@ -88,11 +88,17 @@ namespace WpfDormitories.ViewModel.InventoryVM
             _tableService.OnAdd += () => { OnAdd?.Invoke(_roomId); };
         }
 
+        /// <summary>
+        /// Обновить таблицу с данными.
+        /// </summary>
         public void UpdateTable()
         {
             Table = _tableService.Read();
         }
 
+        /// <summary>
+        /// Удалить данные о инвентаре.
+        /// </summary>
         public ICommand Delete
         {
             get
@@ -115,6 +121,9 @@ namespace WpfDormitories.ViewModel.InventoryVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна для изменения данных о инвентаре.
+        /// </summary>
         public ICommand Edit
         {
             get
@@ -130,6 +139,9 @@ namespace WpfDormitories.ViewModel.InventoryVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна для добавления данных о инвентаре.
+        /// </summary>
         public ICommand Add
         {
             get

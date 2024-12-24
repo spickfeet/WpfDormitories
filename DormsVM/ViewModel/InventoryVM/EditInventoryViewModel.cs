@@ -20,6 +20,10 @@ namespace WpfDormitories.ViewModel.InventoryVM
             _roomId = roomId;
             _selectedIndex = _inventoryDirectory.FindIndex(item => item.Id == nameId);
         }
+
+        /// <summary>
+        /// Изменить данные инвентаря.
+        /// </summary>
         public ICommand Apply
         {
             get

@@ -139,11 +139,17 @@ namespace WpfDormitories.ViewModel
             _tableServices[Tables.UsersAbilities].OnAdd += () => { OnAddUserAbilities?.Invoke(); };
         }
 
+        /// <summary>
+        /// Обновить данные в таблице.
+        /// </summary>
         public void UpdateTable()
         {
             Table = _currentTable.Read();
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна о программе.
+        /// </summary>
         public ICommand AboutProgram
         {
             get
@@ -155,6 +161,10 @@ namespace WpfDormitories.ViewModel
 
             }
         }
+
+        /// <summary>
+        /// Вызвать событие открытия данных о содержании. 
+        /// </summary>
         public ICommand MenuContents
         {
             get
@@ -167,6 +177,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия данных о детях. 
+        /// </summary>
         public ICommand Children
         {
             get
@@ -180,6 +193,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия данных о договорах. 
+        /// </summary>
         public ICommand Contracts
         {
             get
@@ -193,6 +209,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия данных о выселениях. 
+        /// </summary>
         public ICommand Evictions
         {
             get
@@ -206,6 +225,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия данных об общежитиях. 
+        /// </summary>
         public ICommand Dorms
         {
             get
@@ -219,6 +241,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Изменить текущую таблицу на права пользователей. 
+        /// </summary>
         public ICommand UsersAbilities
         {
             get
@@ -237,6 +262,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна регистрации новых пользователей. 
+        /// </summary>
         public ICommand Registration
         {
             get
@@ -249,6 +277,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна смены пароля. 
+        /// </summary>
         public ICommand ChangePassword
         {
             get
@@ -261,6 +292,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна для пользовательского запроса. 
+        /// </summary>
         public ICommand CustomQuery
         {
             get
@@ -273,6 +307,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Изменить текущую таблицу на улицы.
+        /// </summary>
         public ICommand Streets
         {
             get
@@ -291,6 +328,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Изменить текущую таблицу на справочник инвентаря. 
+        /// </summary>
         public ICommand InventoryDirectory
         {
             get
@@ -309,6 +349,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Изменить текущую таблицу на районы. 
+        /// </summary>
         public ICommand Districts
         {
             get
@@ -327,7 +370,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
-
+        /// <summary>
+        /// Вызвать событие открытия окна экспорта. 
+        /// </summary>
         public ICommand ContractsExport
         {
             get
@@ -339,7 +384,9 @@ namespace WpfDormitories.ViewModel
 
             }
         }
-
+        /// <summary>
+        /// Удаления данных текущей таблицы. 
+        /// </summary>
         public ICommand Delete
         {
             get
@@ -364,6 +411,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Вызвать событие для обновления данных текущей таблицы.
+        /// </summary>
         public ICommand Edit
         {
             get
@@ -382,6 +432,9 @@ namespace WpfDormitories.ViewModel
             }
         }
 
+        /// <summary>
+        /// Добавления данных в текущую таблицу.
+        /// </summary>
         public ICommand Add
         {
             get

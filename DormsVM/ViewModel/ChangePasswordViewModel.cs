@@ -50,6 +50,9 @@ namespace WpfDormitories.ViewModel
             ConfirmApplyStatus = false;
         }
 
+        /// <summary>
+        /// Изменить пароль.
+        /// </summary>
         public void ChangePassword()
         {
             try

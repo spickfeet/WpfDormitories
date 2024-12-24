@@ -12,6 +12,10 @@ namespace WpfDormitories.ViewModel.RoomsVM
         {
             _dormId = dormId;
         }
+
+        /// <summary>
+        /// Добавить данные о комнате. 
+        /// </summary>
         public ICommand Apply
         {
             get

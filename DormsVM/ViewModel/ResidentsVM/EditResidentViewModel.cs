@@ -61,6 +61,10 @@ namespace WpfDormitories.ViewModel.ResidentsVM
             _placeOfStudy = placeOfStudy;
             _arrivalDate = arrivalDate;
         }
+
+        /// <summary>
+        /// Изменить данные о жильце.
+        /// </summary>
         public ICommand Apply
         {
             get

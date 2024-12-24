@@ -24,6 +24,10 @@ namespace WpfDormitories.ViewModel.RoomsVM
             _floor = floor;
             _numberFreePlace = numberFreePlace;
         }
+
+        /// <summary>
+        /// Изменить данные о комнате.
+        /// </summary>
         public ICommand Apply
         {
             get

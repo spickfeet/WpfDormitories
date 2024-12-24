@@ -18,6 +18,9 @@ namespace WpfDormitories.ViewModel
             Result = false;
         }
 
+        /// <summary>
+        /// Подтвердить.
+        /// </summary>
         public ICommand Yes
         {
             get
@@ -29,6 +32,10 @@ namespace WpfDormitories.ViewModel
                 });
             }
         }
+
+        /// <summary>
+        /// Отказаться.
+        /// </summary>
         public ICommand No
         {
             get

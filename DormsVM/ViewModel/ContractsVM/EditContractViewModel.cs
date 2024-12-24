@@ -24,6 +24,10 @@ namespace WpfDormitories.ViewModel.DormsVM
             _startAction = startAction;
             _comment = comment;
         }
+
+        /// <summary>
+        /// Изменить данные о договоре.
+        /// </summary>
         public ICommand Apply
         {
             get

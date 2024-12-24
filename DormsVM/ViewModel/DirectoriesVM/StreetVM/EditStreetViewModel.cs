@@ -19,6 +19,10 @@ namespace WpfDormitories.ViewModel.DirectoriesVM.StreetVM
             _id = id;
             _name = name;
         }
+
+        /// <summary>
+        /// Изменить данные о улице.
+        /// </summary>
         public ICommand Apply
         {
             get

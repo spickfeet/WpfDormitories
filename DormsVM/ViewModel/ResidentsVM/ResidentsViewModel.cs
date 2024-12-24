@@ -104,11 +104,17 @@ namespace WpfDormitories.ViewModel.ResidentsVM
             _tableService.OnAdd += () => { OnAdd?.Invoke(contractId); };
         }
 
+        /// <summary>
+        /// обновить данные в таблице.
+        /// </summary>
         public void UpdateTable()
         {
             Table = _tableService.Read();
         }
 
+        /// <summary>
+        /// удалить данные о жильце.
+        /// </summary>
         public ICommand Delete
         {
             get
@@ -131,6 +137,9 @@ namespace WpfDormitories.ViewModel.ResidentsVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна для изменения данных о жильце.
+        /// </summary>
         public ICommand Edit
         {
             get
@@ -146,6 +155,9 @@ namespace WpfDormitories.ViewModel.ResidentsVM
             }
         }
 
+        /// <summary>
+        /// Вызвать событие открытия окна для добавления данных о жильце.
+        /// </summary>
         public ICommand Add
         {
             get
@@ -158,6 +170,9 @@ namespace WpfDormitories.ViewModel.ResidentsVM
             }
         }
 
+        /// <summary>
+        /// Выселить жильца.
+        /// </summary>
         public ICommand Evict
         {
             get

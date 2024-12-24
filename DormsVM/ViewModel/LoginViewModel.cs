@@ -74,17 +74,23 @@ namespace WpfTest.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
+        /// <summary>
+        /// Запустить таймер.
+        /// </summary>
+        /// <param name="interval"></param>
         private void StartTimer(long interval)
         {
             _timerForWindow.Interval = new System.TimeSpan(interval);
             _timerForWindow.Start();
             _timerForWindow.Tick += Timer_Tick;
-
-            //textBlockVersion.Text = "Версия" + assembly.GetName().Version.ToString();
         }
 
 
-
+        /// <summary>
+        /// Таймер раз во сколько проверять капс и раскладку.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, System.EventArgs e)
         {
             if (Console.CapsLock)
@@ -95,6 +101,11 @@ namespace WpfTest.ViewModel
             LeaKeyboardLayoutText = "Язык ввода " + ParseLanguage(InputLanguageManager.Current.CurrentInputLanguage.DisplayName);
         }
 
+        /// <summary>
+        /// Преобразовать раскладку.
+        /// </summary>
+        /// <param name="language"></param>
+        /// <returns></returns>
         private string ParseLanguage(string language)
         {         
             int startIndex = language.IndexOf('(');
@@ -104,24 +115,15 @@ namespace WpfTest.ViewModel
             return Char.ToUpper(language[0]) + language.Substring(1);
         }
 
-        private void Cancel()
-        {
-            Login = "";
-            Password = "";
-        }
+        /// <summary>
+        /// Войти в аккаунт.
+        /// </summary>
         private void Enter()
         {
             if(_logInService.TryLogIn(Login,Password))
                 OnLogInSuccess?.Invoke();
         }
 
-        public ICommand CancelCommand
-        {
-            get
-            {
-                return new DelegateCommand(() => Cancel());
-            }
-        }
         public ICommand EnterCommand
         {
             get

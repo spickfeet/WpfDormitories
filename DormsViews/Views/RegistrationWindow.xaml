@@ -3,10 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfDormitories"
+        xmlns:local="clr-namespace:WpfDormitories.Views"
         mc:Ignorable="d"
-        Title="Регистрация" Height="400" Width="300">
+        Title="Регистрация" Height="400" Width="600">
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.7*"/>
             <RowDefinition/>
@@ -14,16 +18,44 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Регистрация" TextAlignment="Center" FontSize="40"/>
-        <Grid Grid.Row="1">
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Регистрация" TextAlignment="Center" FontSize="40"/>
+
+        <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Логин" TextAlignment="Center" FontSize="25"/>
+            <TextBlock Grid.Row="0" Text="Фамилия" TextAlignment="Center" FontSize="25"/>
+            <TextBox Grid.Row="1" Width="250" FontSize="25" Text="{Binding Surname}"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Имя" TextAlignment="Center" FontSize="25"/>
+            <TextBox Grid.Row="1" Width="250" FontSize="25" Text="{Binding Name}"/>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Отчество" TextAlignment="Center" FontSize="25"/>
+            <TextBox Grid.Row="1" Width="250" FontSize="25" Text="{Binding Patronymic}"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Имя пользователя" TextAlignment="Center" FontSize="25"/>
             <TextBox Grid.Row="1" Width="250" FontSize="25" Text="{Binding Login}"/>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -32,7 +64,7 @@
             <TextBox Grid.Row="1" Width="250" FontSize="25" Text="{Binding Password}"/>
         </Grid>
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -40,6 +72,6 @@
             <TextBlock Grid.Row="0" Text="Повторите пароль" TextAlignment="Center" FontSize="25"/>
             <TextBox Grid.Row="1" Width="250" FontSize="25" Text="{Binding RepeatPassword}"/>
         </Grid>
-        <Button Grid.Row="4" Width="250" Height="40" Content="Зарегистрировать" FontSize="25" Command="{Binding RegisterCommand}"/>
+        <Button Grid.Row="7" Grid.ColumnSpan="2" Width="250" Height="40" Content="Зарегистрировать" FontSize="25" Command="{Binding RegisterCommand}"/>
     </Grid>
 </Window>

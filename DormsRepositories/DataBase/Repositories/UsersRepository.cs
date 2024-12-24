@@ -8,7 +8,7 @@ namespace WpfDormitories.DataBase.Repositories
     {
         public void Create(IUserData entity)
         {
-            string query = $"INSERT INTO users (login, password) VALUES ('{entity.User.Login}','{entity.User.Password}')";
+            string query = $"INSERT INTO users (surname, name, patronymic, login, password) VALUES ('{entity.Surname}','{entity.Name}','{entity.Patronymic}','{entity.User.Login}','{entity.User.Password}')";
             DormitorySQLConnection.GetInstance().Request(query);
         }
 
@@ -25,14 +25,20 @@ namespace WpfDormitories.DataBase.Repositories
             IList<IUserData> result = new List<IUserData>();
             foreach (DataRow row in dt.Rows) 
             {
-                result.Add(new UserData(uint.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString()));
+                result.Add(new UserData(uint.Parse(row[0].ToString()), row[3].ToString(), row[4].ToString(), row[5].ToString(), row[1].ToString(), row[2].ToString()));
             }
             return result;
         }
 
         public void Update(IUserData entity)
         {
-            string query = $"UPDATE `dormitory`.`users` SET `login` = '{entity.User.Login}', `password` = '{entity.User.Password}' WHERE (`id` = '{entity.Id}')";
+            string query = $"UPDATE `dormitory`.`users` " +
+                $"SET `login` = '{entity.User.Login}', " +
+                $"`password` = '{entity.User.Password}' " +
+                $"`surname` = '{entity.Surname}' " +
+                $"`name` = '{entity.Name}' " +
+                $"`patronymic` = '{entity.Patronymic}' " +
+                $"WHERE (`id` = '{entity.Id}')";
             DormitorySQLConnection.GetInstance().Request(query);
         }
     }

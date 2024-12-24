@@ -12,7 +12,7 @@ namespace WpfTest.Model.Services.Registration
         {
             _convertor = convertor;
         }
-        public bool TryRegistration(string login, string password)
+        public bool TryRegistration(string surname, string name, string patronymic, string login, string password)
         {
             foreach(IUserData userData in DataManager.GetInstance().UsersRepository.Read())
             {
@@ -21,7 +21,7 @@ namespace WpfTest.Model.Services.Registration
                     return false;
                 }
             }
-            DataManager.GetInstance().UsersRepository.Create(new UserData(0, login, _convertor.Convert(password)));
+            DataManager.GetInstance().UsersRepository.Create(new UserData(surname, name, patronymic, login, _convertor.Convert(password)));
             return true;
         }
     }

@@ -33,7 +33,7 @@ namespace WpfDormitories.Model.Services.Tables
         }
         public DataTable FindAll(string text)
         {
-            _usersAbilities = DataManager.GetInstance().UsersAbilitiesRepository.Read().ToList<IUserAbilitiesData>();
+            _usersAbilities = DataManager.GetInstance().UsersAbilitiesRepository.Read().ToList().FindAll(item => item.UserId != 2);
             
             if (string.IsNullOrEmpty(text))
             {
@@ -66,7 +66,7 @@ namespace WpfDormitories.Model.Services.Tables
 
         public DataTable Read()
         {
-            _usersAbilities = DataManager.GetInstance().UsersAbilitiesRepository.Read().ToList<IUserAbilitiesData>();
+            _usersAbilities = DataManager.GetInstance().UsersAbilitiesRepository.Read().ToList().FindAll(item => item.UserId != 2); ;
             DataTable res = CreateDataTable();
             foreach (IUserAbilitiesData userAbility in _usersAbilities)
             {
